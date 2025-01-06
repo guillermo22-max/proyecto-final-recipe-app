@@ -1,22 +1,84 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import { registerUser } from '../../services/userService';
+import UserContext from '../../context/UserContext';
 
 function RegistrationModal({ show, onClose }) {
-  const [formData, setFormData] = useState({ name: '', email: '', password: '', remember: false });
+  const [formData, setFormData] = useState({
+    nombre: '',
+    apellidos: '',
+    nombre_usuario: '',
+    email: '',
+    password: '',
+    remember: false,
+  });
+
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const { addUser } = useContext(UserContext); // Consumir el contexto
   const navigate = useNavigate();
 
+  // Manejar cambios en el formulario
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value });
   };
 
-  const handleSubmit = () => {
-    if (formData.name && formData.email && formData.password) {
-      localStorage.setItem('userData', JSON.stringify(formData));
-      onClose();
-      navigate('/profile');
+  // Manejar el envío del formulario
+  const handleSubmit = async () => {
+    setError('');
+    setSuccess('');
+    try {
+      if (formData.nombre && formData.email && formData.password) {
+        const response = await registerUser({
+          nombre: formData.nombre,
+          apellidos: formData.apellidos,
+          nombre_usuario: formData.nombre_usuario,
+          email: formData.email,
+          password: formData.password,
+        });
+
+        const { access_token } = response;
+
+        // Guardar token y datos en localStorage
+        localStorage.setItem('token', access_token);
+        localStorage.setItem('userData', JSON.stringify({
+          nombre: formData.nombre,
+          apellidos: formData.apellidos,
+          nombre_usuario: formData.nombre_usuario,
+          email: formData.email,
+        }));
+
+        // Actualizar el contexto global
+        addUser({
+          nombre: formData.nombre,
+          apellidos: formData.apellidos,
+          nombre_usuario: formData.nombre_usuario,
+          email: formData.email,
+        });
+
+        setSuccess('Usuario registrado correctamente');
+
+        // Limpiar formulario
+        setFormData({
+          nombre: '',
+          apellidos: '',
+          nombre_usuario: '',
+          email: '',
+          password: '',
+          remember: false,
+        });
+
+        onClose(); // Cerrar el modal
+        navigate('/profile'); // Redirigir al perfil
+      } else {
+        setError('Todos los campos son obligatorios');
+      }
+    } catch (error) {
+      console.error('Error al registrar el usuario:', error);
+      setError(error.response?.data?.error || 'Error al registrar el usuario');
     }
   };
 
@@ -26,19 +88,48 @@ function RegistrationModal({ show, onClose }) {
     <div className="modal d-block bg-dark bg-opacity-50">
       <div className="modal-dialog">
         <div className="modal-content">
+          {/* Encabezado */}
           <div className="modal-header">
             <h5 className="modal-title">Registro</h5>
             <button className="btn-close" onClick={onClose}></button>
           </div>
+
+          {/* Cuerpo */}
           <div className="modal-body">
+            {error && <p className="text-danger">{error}</p>}
+            {success && <p className="text-success">{success}</p>}
+
+            {/* Nombre */}
             <input
               type="text"
-              name="name"
+              name="nombre"
               placeholder="Nombre"
               className="form-control mb-2"
-              value={formData.name}
+              value={formData.nombre}
               onChange={handleChange}
             />
+
+            {/* Apellidos */}
+            <input
+              type="text"
+              name="apellidos"
+              placeholder="Apellidos"
+              className="form-control mb-2"
+              value={formData.apellidos}
+              onChange={handleChange}
+            />
+
+            {/* Nombre de Usuario */}
+            <input
+              type="text"
+              name="nombre_usuario"
+              placeholder="Nombre de Usuario"
+              className="form-control mb-2"
+              value={formData.nombre_usuario}
+              onChange={handleChange}
+            />
+
+            {/* Correo */}
             <input
               type="email"
               name="email"
@@ -47,6 +138,8 @@ function RegistrationModal({ show, onClose }) {
               value={formData.email}
               onChange={handleChange}
             />
+
+            {/* Contraseña */}
             <div className="input-group mb-2">
               <input
                 type={showPassword ? 'text' : 'password'}
@@ -55,6 +148,7 @@ function RegistrationModal({ show, onClose }) {
                 className="form-control"
                 value={formData.password}
                 onChange={handleChange}
+                autoComplete="current-password"
               />
               <button
                 className="btn btn-outline-secondary"
@@ -64,6 +158,8 @@ function RegistrationModal({ show, onClose }) {
                 {showPassword ? 'Ocultar' : 'Mostrar'}
               </button>
             </div>
+
+            {/* Recordar */}
             <div className="form-check mb-2">
               <input
                 type="checkbox"
@@ -75,8 +171,12 @@ function RegistrationModal({ show, onClose }) {
               <label className="form-check-label">Recordar contraseña</label>
             </div>
           </div>
+
+          {/* Pie */}
           <div className="modal-footer">
-            <button className="btn btn-primary" onClick={handleSubmit}>Registrar</button>
+            <button className="btn btn-primary" onClick={handleSubmit}>
+              Registrar
+            </button>
           </div>
         </div>
       </div>
@@ -84,9 +184,17 @@ function RegistrationModal({ show, onClose }) {
   );
 }
 
+// Validación de Props
 RegistrationModal.propTypes = {
   show: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 
 export default RegistrationModal;
+
+
+
+
+
+
+
