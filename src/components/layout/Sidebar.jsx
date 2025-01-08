@@ -19,6 +19,9 @@ function Sidebar({ onSidebarClick }) {
         <li className="nav-item" onClick={() => handleNavigation('/recipes')}>
           <i className="bi bi-book me-2"></i>Recetas
         </li>
+        <li className="nav-item" onClick={() => handleNavigation('/recipes/ai')}>
+          <i className="bi bi-robot me-2"></i>Buscar con IA
+        </li>
         <li className="nav-item" onClick={() => handleNavigation('/shopping-list')}>
           <i className="bi bi-cart me-2"></i>Lista de la compra
         </li>
@@ -44,3 +47,4 @@ Sidebar.propTypes = {
 };
 
 export default Sidebar;
+
