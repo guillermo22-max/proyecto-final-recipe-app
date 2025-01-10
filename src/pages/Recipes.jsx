@@ -25,6 +25,7 @@ function Recipes() {
       setAiRecipe(recipe);
     } catch (err) {
       setError('Error al generar la receta con IA');
+      console.log(err)
     } finally {
       setLoading(false);
     }
