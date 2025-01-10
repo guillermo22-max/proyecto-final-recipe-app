@@ -1,5 +1,9 @@
   body {
     background-color: #BFD7EA;
+    background-image:url("/Designer.jpg");
+    background-repeat: repeat;
+    background-position: center;
+    background-size: 100%; 
   }
   
   h1 {
@@ -8,18 +12,27 @@
   
   .img-chef {
     object-position: top;
-    height: 100px;
-    width: 100px;
-    border-radius: 50%; /* Hace que la imagen sea redonda */
+    width: 10vw;
+    height: 10vw;
+    border-radius: 50%; 
     border: 5px solid #198754;
     object-fit: cover;
   }
+
+  @media (max-width: 768px) {
+    .img-chef {
+        width: 80px; /* Tamaño fijo para pantallas pequeñas */
+        height: 80px;
+    }
+
+}
 
   .conversation {
     padding: 5px;
     background-color: white;
     width: 60%;
     border-radius: 5px;
+    border: 1px solid rgba(187, 187, 187, 0.521)
   }
 
   .own-conversation {
