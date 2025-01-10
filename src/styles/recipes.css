@@ -1,0 +1,49 @@
+/* Contenedor principal de la ficha técnica */
+.recipe-card {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid #198754; /* Borde delgado para resaltar la ficha */
+    border-radius: 10px;
+    background-color: #FFF8E7; /* Fondo claro */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Título de la receta */
+  .recipe-title {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #198754;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+  
+  /* Secciones de la receta */
+  .recipe-section {
+    margin-bottom: 20px;
+  }
+  
+  /* Listas de ingredientes y pasos */
+  .recipe-section ul,
+  .recipe-section ol {
+    margin: 10px 0;
+    padding-left: 20px; /* Espaciado a la izquierda */
+  }
+  
+  .recipe-section ul li,
+  .recipe-section ol li {
+    margin-bottom: 5px;
+  }
+  
+  /* Etiquetas en negrita */
+  .recipe-section p strong {
+    color: #198754; /* Color diferente para las etiquetas */
+  }
+  
+  /* Ajuste de enlaces o textos que podrían desbordarse */
+  .recipe-card p,
+  .recipe-card li {
+    word-wrap: break-word; /* Evita que textos largos desborden */
+  }
+  

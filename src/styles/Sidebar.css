@@ -1,8 +1,5 @@
-.sidebar {
-  background: #f8f9fa;
-  border-right: 1px solid #e9ecef;
-  height: 100vh;
-}
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
 .sidebar h4 {
   font-size: 1.25rem;
   margin-bottom: 20px;
@@ -21,11 +18,75 @@
   font-weight: 500;
 }
 .sidebar .nav-item:hover {
-  background: #e2e6ea;
+  background: #f1c39e;
 }
 .sidebar .nav-item i {
   margin-right: 10px;
   font-size: 1.2rem;
 }
 
-  
+/* Contenedor del Sidebar */
+.sidebar-container {
+  padding: 0px;
+  position: fixed;
+  width: 65px;
+  height: 100vh; /* Anchura inicial del sidebar */
+  overflow: hidden;
+  transition: width 0.3s ease; /* Animación suave */
+  border-right: 3px solid #855229d8;
+
+}
+
+/* Sidebar visible en hover */
+.sidebar-container:hover {
+  width: 220px; /* Anchura cuando se pasa el ratón */
+  border-right: 3px solid #F4A261;
+}
+
+/* Estilo del Sidebar */
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #F4A261; /* Color de fondo */
+  transition: opacity 0.3s ease;
+  padding: 0;
+}
+
+/* Opciones del menú */
+.nav-item {
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.nav-item:hover {
+  background-color: #e9ecef;
+}
+
+.nav-item {
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  /* Asegurarse de que el texto no se divida en dos filas */
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+}
+
+/* Íconos y texto alineados correctamente */
+.nav-item i {
+  margin-right: 10px;
+  font-size: 1.2rem;
+  vertical-align: middle; /* Asegura que el ícono esté alineado con el texto */
+}
+
+/* Sidebar visible en hover */
+.sidebar-container:hover .nav-item {
+  white-space: nowrap; /* Permite que el texto se expanda cuando el navbar se ensancha */
+  overflow: visible;
+  text-overflow: clip;
+}
