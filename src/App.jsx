@@ -6,6 +6,7 @@ import ShoppingList from './pages/ShoppingList';
 import MealPlan from './pages/MealPlan';
 import Tags from './pages/Tags';
 import SavedRecipes from './pages/SavedRecipes';
+import RecipeDetail from './pages/RecipeDetail';
 import { UserProvider } from './context/UserProvider';
 
 
@@ -21,6 +22,7 @@ function App() {
                     <Route path="/meal-plan" element={<MealPlan />} />
                     <Route path="/tags" element={<Tags />} />
                     <Route path="/saved-recipes" element={<SavedRecipes />} />
+                    <Route path="/recipe/:id" element={<RecipeDetail />} />
                 </Routes>
             </Router>
         </UserProvider>
