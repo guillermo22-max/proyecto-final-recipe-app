@@ -29,11 +29,11 @@ function Sidebar({ onSidebarClick }) {
           <li className="nav-item" onClick={() => handleNavigation('/tags')}>
             <i className="bi bi-tags me-3 fs-3"></i>Etiquetas
           </li>
+          <li className="nav-item" onClick={() => handleNavigation('/saved-recipes')}>
+            <i className="bi bi-journals me-3 fs-3"></i>Recetas guardadas
+          </li>
           <li className="nav-item" onClick={() => handleNavigation('/profile')}>
             <i className="bi bi-person me-3 fs-3"></i>Perfil
-          </li>
-          <li className="nav-item" onClick={() => handleNavigation('/add-recipe')}>
-            <i className="bi bi-plus-circle me-3 fs-3"></i>Añadir receta
           </li>
         </ul>
       </div>

@@ -34,24 +34,26 @@ function Recipes() {
 
 
   const saveRecipe = async () => {
+    console.log('parsedRecipe:', parsedRecipe);
     try {
-        
         if (!parsedRecipe) {
             alert('La receta no está disponible.');
             return;
         }
 
-        
-        const response = await api.post('/recipe/save', {
-            usuario_id: 1,  
+        const recipeData = {
             titulo: parsedRecipe.name,
+            ingredients: parsedRecipe.ingredients,
             descripcion: parsedRecipe.description,
             pasos: parsedRecipe.steps.join('\n'), 
             calorias: parsedRecipe.calories,
             nutrientes: parsedRecipe.nutritional_values.join('\n'),
             tiempo_elaboracion: parsedRecipe.prep_time,
-        });
+        };
 
+        console.log('Datos enviados:', recipeData); 
+
+        const response = await api.post('/recipe/save', recipeData);
         alert(response.data.message); 
     } catch (error) {
         console.error("Error al guardar la receta:", error);
