@@ -45,7 +45,12 @@ const RecipeDetail = () => {
                                 <li key={index}>{step}</li>
                             ))}
                         </ul>
-                        <p><strong>Ingedientes:</strong> {recipe.ingredients}</p>
+                        <p><strong>Ingedientes:</strong></p>
+                        <ul>
+                            {recipe.ingredients.split('\n').map((ingredient, index) => (
+                                <li key={index}>{ingredient}</li>
+                            ))}
+                        </ul>
                         <p><strong>Calorías:</strong> {recipe.calorias}</p>
                         <p><strong>Tiempo de elaboración:</strong> {recipe.tiempo_elaboracion}</p>
                         <button
