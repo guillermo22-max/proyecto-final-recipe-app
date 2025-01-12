@@ -43,7 +43,7 @@ function Recipes() {
 
         const recipeData = {
             titulo: parsedRecipe.name,
-            ingredients: parsedRecipe.ingredients,
+            ingredients: parsedRecipe.ingredients.join('\n'),
             descripcion: parsedRecipe.description,
             pasos: parsedRecipe.steps.join('\n'), 
             calorias: parsedRecipe.calories,

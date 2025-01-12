@@ -22,6 +22,19 @@ const RecipeDetail = () => {
         }
     };
 
+    const handleDelete = async () => {
+        const confirmDelete = window.confirm('¿Estás seguro de que deseas eliminar esta receta?');
+        if (!confirmDelete) return;
+    
+        try {
+            await api.delete(`/recipe/${id}`);
+            navigate('/saved-recipes');
+        } catch (err) {
+            console.error('Error al eliminar la receta:', err);
+            setError('Error al eliminar la receta. Intenta nuevamente.');
+        }
+    };
+
     useEffect(() => {
         fetchRecipeDetail();
     }, [id]);
@@ -36,7 +49,7 @@ const RecipeDetail = () => {
                 ) : error ? (
                     <p className="text-danger">{error}</p>
                 ) : (
-                    <div>
+                    <div className="w-100">
                         <h2>{recipe.titulo}</h2>
                         <p><strong>Descripción:</strong> {recipe.descripcion}</p>
                         <p><strong>Pasos:</strong></p>
@@ -57,6 +70,12 @@ const RecipeDetail = () => {
                             onClick={() => navigate('/saved-recipes')}
                             className="btn btn-success mt-4"
                         >Volver a recetas guardadas
+                        </button>
+                        <button
+                            onClick={handleDelete}
+                            className="btn btn-danger mt-4 me-2"
+                        >
+                            Eliminar Receta
                         </button>
                     </div>
                 )}

@@ -9,6 +9,10 @@ const getSavedRecipes = async () => {
   return response.data;
 };
 
+const deleteRecipe = async (id) => {
+  await api.delete(`/recipe/${id}`);
+};
+
 const SavedRecipes = () => {
   const [savedRecipes, setSavedRecipes] = useState([]); // Estado para las recetas
   const [loading, setLoading] = useState(true); // Estado de carga
@@ -27,6 +31,18 @@ const SavedRecipes = () => {
       console.error(err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteRecipe(id);
+      setSavedRecipes((prevRecipes) =>
+        prevRecipes.filter((recipe) => recipe.id !== id)
+      );
+      alert('Receta eliminada con exito.')
+    } catch (err) {
+      console.error('Error al eliminar la receta:', err);
     }
   };
 
@@ -49,7 +65,7 @@ const SavedRecipes = () => {
         ) : (
           <div className="recipe-list">
             {savedRecipes.map((recipe) => (
-              <div key={recipe.id} className="recipe-card">
+              <div key={recipe.id} className="recipe-card w-100">
                 <h3>{recipe.titulo}</h3>
                 <p>{recipe.descripcion}</p>
                 <p><strong>Tiempo de elaboración:</strong> {recipe.tiempo_elaboracion}</p>
@@ -59,7 +75,12 @@ const SavedRecipes = () => {
                   className="btn btn-success"
                 >Ver Detalles
                 </button>
-
+                <button
+                  onClick={() => handleDelete(recipe.id)}
+                  className="btn btn-danger"
+                >
+                  Eliminar
+                  </button>
               </div>
             ))}
           </div>

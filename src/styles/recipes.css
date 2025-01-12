@@ -1,13 +1,12 @@
 /* Contenedor principal de la ficha técnica */
 .recipe-card {
-    max-width: 600px;
+    max-width: 60%;
     margin: 20px auto;
     padding: 20px;
     border: 2px solid #198754;
     border-radius: 10px;
     background-color: #FFF8E7;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: 'Arial', sans-serif;
   }
   
   /* Esto es para mostrar la receta */

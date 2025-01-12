@@ -32,13 +32,13 @@
   height: 100vh;
   overflow: hidden;
   transition: width 0.3s ease;
-  border-right: 3px solid #855229d8;
+  filter: drop-shadow(1px 0 0.2rem rgba(0, 0, 0, 0.466));
 
 }
 
 .sidebar-container:hover {
   width: 220px;
-  border-right: 3px solid #F4A261;
+  filter: drop-shadow(2px 0 0.3rem rgba(0, 0, 0, 0.466));
 }
 
 /* Estilo del Sidebar */
