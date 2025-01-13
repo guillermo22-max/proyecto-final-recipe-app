@@ -70,17 +70,19 @@ const SavedRecipes = () => {
                 <p>{recipe.descripcion}</p>
                 <p><strong>Tiempo de elaboración:</strong> {recipe.tiempo_elaboracion}</p>
                 <p><strong>Calorías:</strong> {recipe.calorias}</p>
-                <button
-                  onClick={() => navigate(`/recipe/${recipe.id}`)}
-                  className="btn btn-success"
-                >Ver Detalles
-                </button>
-                <button
-                  onClick={() => handleDelete(recipe.id)}
-                  className="btn btn-danger"
-                >
-                  Eliminar
+                <div className="d-flex justify-content-between align-items-center">
+                  <button
+                    onClick={() => navigate(`/recipe/${recipe.id}`)}
+                    className="btn btn-success"
+                  >Ver Detalles
                   </button>
+                  <button
+                    onClick={() => handleDelete(recipe.id)}
+                    className="btn btn-danger"
+                  >
+                    Eliminar
+                  </button>
+                </div>
               </div>
             ))}
           </div>

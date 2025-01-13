@@ -25,7 +25,7 @@ const RecipeDetail = () => {
     const handleDelete = async () => {
         const confirmDelete = window.confirm('¿Estás seguro de que deseas eliminar esta receta?');
         if (!confirmDelete) return;
-    
+
         try {
             await api.delete(`/recipe/${id}`);
             navigate('/saved-recipes');
@@ -66,17 +66,19 @@ const RecipeDetail = () => {
                         </ul>
                         <p><strong>Calorías:</strong> {recipe.calorias}</p>
                         <p><strong>Tiempo de elaboración:</strong> {recipe.tiempo_elaboracion}</p>
-                        <button
-                            onClick={() => navigate('/saved-recipes')}
-                            className="btn btn-success mt-4"
-                        >Volver a recetas guardadas
-                        </button>
-                        <button
-                            onClick={handleDelete}
-                            className="btn btn-danger mt-4 me-2"
-                        >
-                            Eliminar Receta
-                        </button>
+                        <div className="d-flex justify-content-between align-items-center w-75">
+                            <button
+                                onClick={() => navigate('/saved-recipes')}
+                                className="btn btn-success mt-4"
+                            >Volver a recetas guardadas
+                            </button>
+                            <button
+                                onClick={handleDelete}
+                                className="btn btn-danger mt-4 me-2"
+                            >
+                                Eliminar Receta
+                            </button>
+                        </div>
                     </div>
                 )}
             </div>

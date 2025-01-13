@@ -4,8 +4,8 @@ import Sidebar from '../components/layout/Sidebar';
 const ShoppingList = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedIngredients, setSelectedIngredients] = useState([]);
-  const [editIndex, setEditIndex] = useState(null); // Para gestionar el índice del ingrediente que estamos editando
-  const [editQuantity, setEditQuantity] = useState(''); // Para almacenar la cantidad editada
+  const [editIndex, setEditIndex] = useState(null); 
+  const [editQuantity, setEditQuantity] = useState(''); 
 
   const [ingredients] = useState([
     'Manzana', 'Plátano', 'Naranja', 'Fresa', 'Arándanos', 'Melocotón', 'Piña', 'Sandía',
@@ -38,7 +38,7 @@ const ShoppingList = () => {
     'Merluza', 'Salmón ahumado', 'Tortilla española', 'Morcilla', 'Turrón', 'Churros', 'Migas',
     'Gazpacho', 'Bacalao', 'Piquillos', 'Pimientos de Padrón', 'Almejas a la marinera', 'Revuelto de setas',
     'Judías verdes', 'Conejo', 'Sepia', 'Patatas bravas', 'Ensaladilla rusa', 'Pulpo', 'Montaditos', 'Judiones',
-    'Longaniza', 'Cerveza', 'Vino rosado', 'Cordero lechal'
+    'Longaniza', 'Cerveza', 'Vino rosado', 'Cordero lechal', 'Pollo'
   ]);
   
 
@@ -57,7 +57,7 @@ const ShoppingList = () => {
     const updatedIngredients = [...selectedIngredients];
     updatedIngredients[index].quantity = editQuantity;
     setSelectedIngredients(updatedIngredients);
-    setEditIndex(null); // Dejar de editar una vez se haya guardado
+    setEditIndex(null);
   };
 
   const handleKeyPress = (e, index) => {
@@ -68,7 +68,7 @@ const ShoppingList = () => {
 
   const handleEditClick = (index) => {
     setEditIndex(index);
-    setEditQuantity(selectedIngredients[index].quantity); // Cargar la cantidad actual para poder editarla
+    setEditQuantity(selectedIngredients[index].quantity); 
   };
 
   const filteredIngredients = ingredients.filter((ingredient) =>
