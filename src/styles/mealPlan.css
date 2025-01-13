@@ -1,0 +1,53 @@
+
+.meal-slider {
+    padding: 20px;
+    width: 90%;
+  }
+  
+  .meal-card {
+    border: 1px solid #000000;
+    margin-right: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: grab;
+  }
+  
+  .slick-prev, .slick-next {
+    z-index: 2;
+    color: #333;
+  }
+  
+  .slick-dots li button:before {
+    color: #333;
+  }
+
+  .slick-track {
+    background-color: white;
+  }
+
+  .draggable:active {
+    cursor: grabbing;
+  }
+
+  .draggable {
+    cursor: grab;
+  }
+
+  .slick-prev::before {
+    color: #198754;
+    font-size: 20px;
+  }
+  
+  .slick-next::before {
+    color: #198754;
+    font-size: 20px;
+  }
+  
+  
+  .slick-prev:hover, .slick-next:hover {
+    background-color: #27ca7e;
+    border-radius: 50%;
+  }

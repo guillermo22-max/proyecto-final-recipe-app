@@ -16,6 +16,7 @@ export const generateRecipeWithAI = async (prompt) => {
       ingredients: response.data.ingredients || [],
       steps: response.data.steps || '',
       calories: response.data.calories || '',
+      nutritional_value: response.data.nutritional_value || '',
       prep_time: response.data.prep_time || '',
     };
   } catch (error) {

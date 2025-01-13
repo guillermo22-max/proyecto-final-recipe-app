@@ -1,6 +1,6 @@
 function Footer() {
     return (
-      <footer className="text-center py-3 bg-light">
+      <footer className="text-center">
         <p>&copy; 2024 Mama mIA. Todos los derechos reservados.</p>
       </footer>
     );

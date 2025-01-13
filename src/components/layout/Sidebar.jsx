@@ -13,31 +13,30 @@ function Sidebar({ onSidebarClick }) {
   };
 
   return (
-    <div className="sidebar d-flex flex-column bg-light vh-100 p-4 shadow-sm">
-      <h4 className="mb-4 text-center fw-bold">Mr. Cook</h4>
-      <ul className="nav flex-column">
-        <li className="nav-item" onClick={() => handleNavigation('/recipes')}>
-          <i className="bi bi-book me-2"></i>Recetas
-        </li>
-        <li className="nav-item" onClick={() => handleNavigation('/recipes/ai')}>
-          <i className="bi bi-robot me-2"></i>Buscar con IA
-        </li>
-        <li className="nav-item" onClick={() => handleNavigation('/shopping-list')}>
-          <i className="bi bi-cart me-2"></i>Lista de la compra
-        </li>
-        <li className="nav-item" onClick={() => handleNavigation('/meal-plan')}>
-          <i className="bi bi-calendar me-2"></i>Plan de comidas
-        </li>
-        <li className="nav-item" onClick={() => handleNavigation('/tags')}>
-          <i className="bi bi-tags me-2"></i>Etiquetas
-        </li>
-        <li className="nav-item" onClick={() => handleNavigation('/profile')}>
-          <i className="bi bi-person me-2"></i>Perfil
-        </li>
-        <li className="nav-item" onClick={() => handleNavigation('/add-recipe')}>
-          <i className="bi bi-plus-circle me-2"></i>Añadir receta
-        </li>
-      </ul>
+    <div className="sidebar-container">
+      <div className="sidebar d-flex flex-column vh-100 p-2 shadow-sm">
+        <h4 className="mb-4 text-center fw-bold"><img src="/logo-solo.png" alt="Logo" className="navbar-image w-75 h-100" /></h4>
+        <ul className="nav flex-column">
+          <li className="nav-item" onClick={() => handleNavigation('/recipes')}>
+            <i className="bi bi-book me-3 fs-3"></i>Generar receta
+          </li>
+          <li className="nav-item" onClick={() => handleNavigation('/shopping-list')}>
+            <i className="bi bi-cart me-3 fs-3"></i>Lista de la compra
+          </li>
+          <li className="nav-item" onClick={() => handleNavigation('/meal-plan')}>
+            <i className="bi bi-calendar me-3 fs-3"></i>Plan de comidas
+          </li>
+          <li className="nav-item" onClick={() => handleNavigation('/tags')}>
+            <i className="bi bi-tags me-3 fs-3"></i>Etiquetas
+          </li>
+          <li className="nav-item" onClick={() => handleNavigation('/saved-recipes')}>
+            <i className="bi bi-journals me-3 fs-3"></i>Recetas guardadas
+          </li>
+          <li className="nav-item" onClick={() => handleNavigation('/profile')}>
+            <i className="bi bi-person me-3 fs-3"></i>Perfil
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }
