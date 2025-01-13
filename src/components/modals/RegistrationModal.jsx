@@ -86,114 +86,111 @@ function RegistrationModal({ show, onClose }) {
 
   return (
     <div className="modal d-block bg-dark bg-opacity-50">
-      <div className="modal-dialog">
-        <div className="modal-content">
-          {/* Encabezado */}
-          <div className="modal-header">
-            <h5 className="modal-title">Registro</h5>
-            <button className="btn-close" onClick={onClose}></button>
-          </div>
+    <div className="modal-dialog"style={{ borderRadius : '15px'}}>
+      <div className="modal-content">
+        {/* Encabezado */}
+        <div className="modal-header" style={{backgroundColor : '#F4A261'}}>
+          <h5 className="modal-title text-success" >Registro</h5>
+          <button className="btn-close" onClick={onClose}></button>
+        </div>
 
-          {/* Cuerpo */}
-          <div className="modal-body">
-            {error && <p className="text-danger">{error}</p>}
-            {success && <p className="text-success">{success}</p>}
+        {/* Cuerpo */}
+        <div className="modal-body" style={{ backgroundImage: 'url("/Designer.jpg")' }}>
+          {error && <p className="text-danger">{error}</p>}
+          {success && <p className="text-success">{success}</p>}
 
-            {/* Nombre */}
+          {/* Nombre */}
+          <input
+            type="text"
+            name="nombre"
+            placeholder="Nombre"
+            className="form-control mb-2"
+            value={formData.nombre}
+            onChange={handleChange}
+          />
+
+          {/* Apellidos */}
+          <input
+            type="text"
+            name="apellidos"
+            placeholder="Apellidos"
+            className="form-control mb-2"
+            value={formData.apellidos}
+            onChange={handleChange}
+          />
+
+          {/* Nombre de Usuario */}
+          <input
+            type="text"
+            name="nombre_usuario"
+            placeholder="Nombre de Usuario"
+            className="form-control mb-2"
+            value={formData.nombre_usuario}
+            onChange={handleChange}
+          />
+
+          {/* Correo */}
+          <input
+            type="email"
+            name="email"
+            placeholder="Correo"
+            className="form-control mb-2"
+            value={formData.email}
+            onChange={handleChange}
+          />
+
+          {/* Contraseña */}
+          <div className="input-group mb-2">
             <input
-              type="text"
-              name="nombre"
-              placeholder="Nombre"
-              className="form-control mb-2"
-              value={formData.nombre}
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              placeholder="Contraseña"
+              className="form-control"
+              value={formData.password}
               onChange={handleChange}
+              autoComplete="current-password"
             />
-
-            {/* Apellidos */}
-            <input
-              type="text"
-              name="apellidos"
-              placeholder="Apellidos"
-              className="form-control mb-2"
-              value={formData.apellidos}
-              onChange={handleChange}
-            />
-
-            {/* Nombre de Usuario */}
-            <input
-              type="text"
-              name="nombre_usuario"
-              placeholder="Nombre de Usuario"
-              className="form-control mb-2"
-              value={formData.nombre_usuario}
-              onChange={handleChange}
-            />
-
-            {/* Correo */}
-            <input
-              type="email"
-              name="email"
-              placeholder="Correo"
-              className="form-control mb-2"
-              value={formData.email}
-              onChange={handleChange}
-            />
-
-            {/* Contraseña */}
-            <div className="input-group mb-2">
-              <input
-                type={showPassword ? 'text' : 'password'}
-                name="password"
-                placeholder="Contraseña"
-                className="form-control"
-                value={formData.password}
-                onChange={handleChange}
-                autoComplete="current-password"
-              />
-              <button
-                className="btn btn-outline-secondary"
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? 'Ocultar' : 'Mostrar'}
-              </button>
-            </div>
-
-            {/* Recordar */}
-            <div className="form-check mb-2">
-              <input
-                type="checkbox"
-                name="remember"
-                className="form-check-input"
-                checked={formData.remember}
-                onChange={handleChange}
-              />
-              <label className="form-check-label">Recordar contraseña</label>
-            </div>
-          </div>
-
-          {/* Pie */}
-          <div className="modal-footer">
-            <button className="btn btn-primary" onClick={handleSubmit}>
-              Registrar
+            <button
+              className="btn btn-outline-success"
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? 'Ocultar' : 'Mostrar'}
             </button>
           </div>
+
+          {/* Recordar */}
+          <div className="form-check mb-2">
+            <input
+              type="checkbox"
+              name="remember"
+              className="form-check-input"
+              checked={formData.remember}
+              onChange={handleChange}
+            />
+            <label className="form-check-label">Recordar contraseña</label>
+          </div>
+        </div>
+
+        {/* Pie */}
+        <div className="modal-footer"style={{backgroundColor : '#F4A261'}}>
+          <button className="btn btn-success "  onClick={handleSubmit}>
+            Registrar
+          </button>
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 }
 
 // Validación de Props
 RegistrationModal.propTypes = {
-  show: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
+show: PropTypes.bool.isRequired,
+onClose: PropTypes.func.isRequired,
 };
 
 export default RegistrationModal;
-
-
-
 
 
 

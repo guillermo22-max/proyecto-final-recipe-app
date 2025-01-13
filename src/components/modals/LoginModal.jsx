@@ -44,14 +44,14 @@ function LoginModal({ show, onClose, onRegisterClick }) {
   if (!show) return null;
 
   return (
-    <div className="modal d-block bg-dark bg-opacity-50">
-      <div className="modal-dialog">
+<div className="modal d-block bg-dark bg-opacity-50" >
+      <div className="modal-dialog"style={{  borderRadius: '15px' }}>
         <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title">Iniciar Sesión</h5>
+          <div className="modal-header"style={{backgroundColor : '#F4A261'}}>
+            <h5 className="modal-title text-success">Iniciar Sesión</h5>
             <button className="btn-close" onClick={onClose}></button>
           </div>
-          <div className="modal-body">
+          <div className="modal-body"style={{ backgroundImage: 'url("/Designer.jpg")' }}>
             {error && <p className="text-danger">{error}</p>}
             <input
               type="email"
@@ -71,7 +71,7 @@ function LoginModal({ show, onClose, onRegisterClick }) {
                 onChange={handleChange}
               />
               <button
-                className="btn btn-outline-secondary"
+                className="btn btn-outline-success"
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
               >
@@ -85,8 +85,8 @@ function LoginModal({ show, onClose, onRegisterClick }) {
               </a>
             </p>
           </div>
-          <div className="modal-footer">
-            <button className="btn btn-primary" onClick={handleSubmit}>
+          <div className="modal-footer"style={{backgroundColor : '#F4A261'}}>
+            <button className="btn btn-success" onClick={handleSubmit}>
               Iniciar Sesión
             </button>
           </div>
