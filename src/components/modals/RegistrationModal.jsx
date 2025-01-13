@@ -86,16 +86,16 @@ function RegistrationModal({ show, onClose }) {
 
   return (
     <div className="modal d-block bg-dark bg-opacity-50">
-      <div className="modal-dialog">
+      <div className="modal-dialog"style={{ border: '5px solid #28a745', borderRadius: '15px' ,boxShadow: '5px 5px 15px rgba(40, 167, 69, 0.5)'}}>
         <div className="modal-content">
           {/* Encabezado */}
-          <div className="modal-header">
-            <h5 className="modal-title">Registro</h5>
+          <div className="modal-header" style={{backgroundColor : '#F4A261'}}>
+            <h5 className="modal-title text-success" >Registro</h5>
             <button className="btn-close" onClick={onClose}></button>
           </div>
 
           {/* Cuerpo */}
-          <div className="modal-body">
+          <div className="modal-body" style={{ backgroundImage: 'url("/Designer.jpg")' }}>
             {error && <p className="text-danger">{error}</p>}
             {success && <p className="text-success">{success}</p>}
 
@@ -151,7 +151,7 @@ function RegistrationModal({ show, onClose }) {
                 autoComplete="current-password"
               />
               <button
-                className="btn btn-outline-secondary"
+                className="btn btn-outline-success"
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
               >
@@ -173,8 +173,8 @@ function RegistrationModal({ show, onClose }) {
           </div>
 
           {/* Pie */}
-          <div className="modal-footer">
-            <button className="btn btn-primary" onClick={handleSubmit}>
+          <div className="modal-footer"style={{backgroundColor : '#F4A261'}}>
+            <button className="btn btn-success "  onClick={handleSubmit}>
               Registrar
             </button>
           </div>

@@ -132,7 +132,7 @@ function Recipes() {
                   <p><strong>Calorías:</strong> {parsedRecipe.calories || 'No especificadas'}</p>
                   <p><strong>Tiempo de preparación:</strong> {parsedRecipe.prep_time || 'No especificado'}</p>
                 </div>
-                <button onClick={saveRecipe}>Guardar receta</button>
+                <button className='btn btn-success' onClick={saveRecipe}>Guardar receta</button>
                 <img className="img-chef me-4" src={parsedRecipe.image} alt="ai-chef" />
               </div>
             </div>
