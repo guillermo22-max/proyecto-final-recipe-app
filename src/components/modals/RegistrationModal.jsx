@@ -20,18 +20,27 @@ function RegistrationModal({ show, onClose }) {
   const { addUser } = useContext(UserContext); // Consumir el contexto
   const navigate = useNavigate();
 
-  // Manejar cambios en el formulario
+  // Expresión para validar la contraseña
+  const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/;
+
+ 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value });
   };
 
-  // Manejar el envío del formulario
+
   const handleSubmit = async () => {
     setError('');
     setSuccess('');
     try {
       if (formData.nombre && formData.email && formData.password) {
+     
+        if (!passwordRegex.test(formData.password)) {
+          setError('La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un carácter especial.');
+          return;
+        }
+
         const response = await registerUser({
           nombre: formData.nombre,
           apellidos: formData.apellidos,
@@ -42,7 +51,7 @@ function RegistrationModal({ show, onClose }) {
 
         const { access_token } = response;
 
-        // Guardar token y datos en localStorage
+       
         localStorage.setItem('token', access_token);
         localStorage.setItem('userData', JSON.stringify({
           nombre: formData.nombre,
@@ -51,7 +60,7 @@ function RegistrationModal({ show, onClose }) {
           email: formData.email,
         }));
 
-        // Actualizar el contexto global
+       
         addUser({
           nombre: formData.nombre,
           apellidos: formData.apellidos,
@@ -61,7 +70,7 @@ function RegistrationModal({ show, onClose }) {
 
         setSuccess('Usuario registrado correctamente');
 
-        // Limpiar formulario
+        
         setFormData({
           nombre: '',
           apellidos: '',
@@ -71,8 +80,8 @@ function RegistrationModal({ show, onClose }) {
           remember: false,
         });
 
-        onClose(); // Cerrar el modal
-        navigate('/profile'); // Redirigir al perfil
+        onClose(); 
+        navigate('/profile'); 
       } else {
         setError('Todos los campos son obligatorios');
       }
@@ -86,11 +95,11 @@ function RegistrationModal({ show, onClose }) {
 
   return (
     <div className="modal d-block bg-dark bg-opacity-50">
-      <div className="modal-dialog"style={{ borderRadius : '15px'}}>
+      <div className="modal-dialog" style={{ borderRadius: '15px' }}>
         <div className="modal-content">
           {/* Encabezado */}
-          <div className="modal-header" style={{backgroundColor : '#F4A261'}}>
-            <h5 className="modal-title text-success" >Registro</h5>
+          <div className="modal-header" style={{ backgroundColor: '#F4A261' }}>
+            <h5 className="modal-title text-success">Registro</h5>
             <button className="btn-close" onClick={onClose}></button>
           </div>
 
@@ -173,8 +182,8 @@ function RegistrationModal({ show, onClose }) {
           </div>
 
           {/* Pie */}
-          <div className="modal-footer"style={{backgroundColor : '#F4A261'}}>
-            <button className="btn btn-success "  onClick={handleSubmit}>
+          <div className="modal-footer" style={{ backgroundColor: '#F4A261' }}>
+            <button className="btn btn-success" onClick={handleSubmit}>
               Registrar
             </button>
           </div>
@@ -191,10 +200,3 @@ RegistrationModal.propTypes = {
 };
 
 export default RegistrationModal;
-
-
-
-
-
-
-
