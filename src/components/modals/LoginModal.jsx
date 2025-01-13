@@ -45,7 +45,7 @@ function LoginModal({ show, onClose, onRegisterClick }) {
 
   return (
     <div className="modal d-block bg-dark bg-opacity-50" >
-      <div className="modal-dialog"style={{ border: '5px solid #28a745', borderRadius: '15px' ,boxShadow: '5px 5px 15px rgba(40, 167, 69, 0.5)'}}>
+      <div className="modal-dialog"style={{  borderRadius: '15px' }}>
         <div className="modal-content">
           <div className="modal-header"style={{backgroundColor : '#F4A261'}}>
             <h5 className="modal-title text-success">Iniciar Sesión</h5>
