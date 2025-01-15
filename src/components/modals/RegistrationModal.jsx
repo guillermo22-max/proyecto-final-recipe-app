@@ -20,18 +20,27 @@ function RegistrationModal({ show, onClose }) {
   const { addUser } = useContext(UserContext); // Consumir el contexto
   const navigate = useNavigate();
 
-  // Manejar cambios en el formulario
+  // Expresión para validar la contraseña
+  const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/;
+
+ 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value });
   };
 
-  // Manejar el envío del formulario
+
   const handleSubmit = async () => {
     setError('');
     setSuccess('');
     try {
       if (formData.nombre && formData.email && formData.password) {
+     
+        if (!passwordRegex.test(formData.password)) {
+          setError('La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un carácter especial.');
+          return;
+        }
+
         const response = await registerUser({
           nombre: formData.nombre,
           apellidos: formData.apellidos,
@@ -42,7 +51,7 @@ function RegistrationModal({ show, onClose }) {
 
         const { access_token } = response;
 
-        // Guardar token y datos en localStorage
+       
         localStorage.setItem('token', access_token);
         localStorage.setItem('userData', JSON.stringify({
           nombre: formData.nombre,
@@ -51,7 +60,7 @@ function RegistrationModal({ show, onClose }) {
           email: formData.email,
         }));
 
-        // Actualizar el contexto global
+       
         addUser({
           nombre: formData.nombre,
           apellidos: formData.apellidos,
@@ -61,7 +70,7 @@ function RegistrationModal({ show, onClose }) {
 
         setSuccess('Usuario registrado correctamente');
 
-        // Limpiar formulario
+        
         setFormData({
           nombre: '',
           apellidos: '',
@@ -71,8 +80,8 @@ function RegistrationModal({ show, onClose }) {
           remember: false,
         });
 
-        onClose(); // Cerrar el modal
-        navigate('/profile'); // Redirigir al perfil
+        onClose(); 
+        navigate('/profile'); 
       } else {
         setError('Todos los campos son obligatorios');
       }
@@ -86,112 +95,108 @@ function RegistrationModal({ show, onClose }) {
 
   return (
     <div className="modal d-block bg-dark bg-opacity-50">
-    <div className="modal-dialog"style={{ borderRadius : '15px'}}>
-      <div className="modal-content">
-        {/* Encabezado */}
-        <div className="modal-header" style={{backgroundColor : '#F4A261'}}>
-          <h5 className="modal-title text-success" >Registro</h5>
-          <button className="btn-close" onClick={onClose}></button>
-        </div>
+      <div className="modal-dialog" style={{ borderRadius: '15px' }}>
+        <div className="modal-content">
+          {/* Encabezado */}
+          <div className="modal-header" style={{ backgroundColor: '#F4A261' }}>
+            <h5 className="modal-title text-success">Registro</h5>
+            <button className="btn-close" onClick={onClose}></button>
+          </div>
 
-        {/* Cuerpo */}
-        <div className="modal-body" style={{ backgroundImage: 'url("/Designer.jpg")' }}>
-          {error && <p className="text-danger">{error}</p>}
-          {success && <p className="text-success">{success}</p>}
+          {/* Cuerpo */}
+          <div className="modal-body" style={{ backgroundImage: 'url("/Designer.jpg")' }}>
+            {error && <p className="text-danger">{error}</p>}
+            {success && <p className="text-success">{success}</p>}
 
-          {/* Nombre */}
-          <input
-            type="text"
-            name="nombre"
-            placeholder="Nombre"
-            className="form-control mb-2"
-            value={formData.nombre}
-            onChange={handleChange}
-          />
-
-          {/* Apellidos */}
-          <input
-            type="text"
-            name="apellidos"
-            placeholder="Apellidos"
-            className="form-control mb-2"
-            value={formData.apellidos}
-            onChange={handleChange}
-          />
-
-          {/* Nombre de Usuario */}
-          <input
-            type="text"
-            name="nombre_usuario"
-            placeholder="Nombre de Usuario"
-            className="form-control mb-2"
-            value={formData.nombre_usuario}
-            onChange={handleChange}
-          />
-
-          {/* Correo */}
-          <input
-            type="email"
-            name="email"
-            placeholder="Correo"
-            className="form-control mb-2"
-            value={formData.email}
-            onChange={handleChange}
-          />
-
-          {/* Contraseña */}
-          <div className="input-group mb-2">
+            {/* Nombre */}
             <input
-              type={showPassword ? 'text' : 'password'}
-              name="password"
-              placeholder="Contraseña"
-              className="form-control"
-              value={formData.password}
+              type="text"
+              name="nombre"
+              placeholder="Nombre"
+              className="form-control mb-2"
+              value={formData.nombre}
               onChange={handleChange}
-              autoComplete="current-password"
             />
-            <button
-              className="btn btn-outline-success"
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? 'Ocultar' : 'Mostrar'}
+
+            {/* Apellidos */}
+            <input
+              type="text"
+              name="apellidos"
+              placeholder="Apellidos"
+              className="form-control mb-2"
+              value={formData.apellidos}
+              onChange={handleChange}
+            />
+
+            {/* Nombre de Usuario */}
+            <input
+              type="text"
+              name="nombre_usuario"
+              placeholder="Nombre de Usuario"
+              className="form-control mb-2"
+              value={formData.nombre_usuario}
+              onChange={handleChange}
+            />
+
+            {/* Correo */}
+            <input
+              type="email"
+              name="email"
+              placeholder="Correo"
+              className="form-control mb-2"
+              value={formData.email}
+              onChange={handleChange}
+            />
+
+            {/* Contraseña */}
+            <div className="input-group mb-2">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                placeholder="Contraseña"
+                className="form-control"
+                value={formData.password}
+                onChange={handleChange}
+                autoComplete="current-password"
+              />
+              <button
+                className="btn btn-outline-success"
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? 'Ocultar' : 'Mostrar'}
+              </button>
+            </div>
+
+            {/* Recordar */}
+            <div className="form-check mb-2">
+              <input
+                type="checkbox"
+                name="remember"
+                className="form-check-input"
+                checked={formData.remember}
+                onChange={handleChange}
+              />
+              <label className="form-check-label">Recordar contraseña</label>
+            </div>
+          </div>
+
+          {/* Pie */}
+          <div className="modal-footer" style={{ backgroundColor: '#F4A261' }}>
+            <button className="btn btn-success" onClick={handleSubmit}>
+              Registrar
             </button>
           </div>
-
-          {/* Recordar */}
-          <div className="form-check mb-2">
-            <input
-              type="checkbox"
-              name="remember"
-              className="form-check-input"
-              checked={formData.remember}
-              onChange={handleChange}
-            />
-            <label className="form-check-label">Recordar contraseña</label>
-          </div>
-        </div>
-
-        {/* Pie */}
-        <div className="modal-footer"style={{backgroundColor : '#F4A261'}}>
-          <button className="btn btn-success "  onClick={handleSubmit}>
-            Registrar
-          </button>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
 }
 
 // Validación de Props
 RegistrationModal.propTypes = {
-show: PropTypes.bool.isRequired,
-onClose: PropTypes.func.isRequired,
+  show: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default RegistrationModal;
-
-
-
-
