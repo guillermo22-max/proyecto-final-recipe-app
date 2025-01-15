@@ -44,7 +44,8 @@ function LoginModal({ show, onClose, onRegisterClick }) {
   if (!show) return null;
 
   return (
-<div className="modal d-block bg-dark bg-opacity-50" >
+    <div className="modal d-block bg-dark bg-opacity-50" >
+
       <div className="modal-dialog"style={{  borderRadius: '15px' }}>
         <div className="modal-content">
           <div className="modal-header"style={{backgroundColor : '#F4A261'}}>
