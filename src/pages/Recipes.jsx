@@ -13,7 +13,7 @@ function Recipes() {
   const [error, setError] = useState(''); // Estado de errores
 
 
-  
+
   const handleSearchAI = async () => {
     setLoading(true);
     setError('');
@@ -35,30 +35,32 @@ function Recipes() {
 
 
   const saveRecipe = async () => {
+    console.log('parsedRecipe:', parsedRecipe);
     try {
-        
-        if (!parsedRecipe) {
-            alert('La receta no está disponible.');
-            return;
-        }
+      if (!parsedRecipe) {
+        alert('La receta no está disponible.');
+        return;
+      }
 
-        
-        const response = await api.post('/recipe/save', {
-            usuario_id: 1,  
-            titulo: parsedRecipe.name,
-            descripcion: parsedRecipe.description,
-            pasos: parsedRecipe.steps.join('\n'), 
-            calorias: parsedRecipe.calories,
-            nutrientes: parsedRecipe.nutritional_values.join('\n'),
-            tiempo_elaboracion: parsedRecipe.prep_time,
-        });
+      const recipeData = {
+        titulo: parsedRecipe.name,
+        ingredients: parsedRecipe.ingredients.join('\n'),
+        descripcion: parsedRecipe.description,
+        pasos: parsedRecipe.steps.join('\n'),
+        calorias: parsedRecipe.calories,
+        nutrientes: parsedRecipe.nutritional_values.join('\n'),
+        tiempo_elaboracion: parsedRecipe.prep_time,
+      };
 
-        alert(response.data.message); 
+      console.log('Datos enviados:', recipeData);
+
+      const response = await api.post('/recipe/save', recipeData);
+      alert(response.data.message);
     } catch (error) {
-        console.error("Error al guardar la receta:", error);
-        alert('Error al guardar la receta.');
+      console.error("Error al guardar la receta:", error);
+      alert('Error al guardar la receta.');
     }
-};
+  };
 
   return (
     <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
@@ -132,8 +134,10 @@ function Recipes() {
                   <p><strong>Calorías:</strong> {parsedRecipe.calories || 'No especificadas'}</p>
                   <p><strong>Tiempo de preparación:</strong> {parsedRecipe.prep_time || 'No especificado'}</p>
                 </div>
+
                 <button className='btn btn-success' onClick={saveRecipe}>Guardar receta</button>
                 <img className="img-chef me-4" src={parsedRecipe.image} alt="ai-chef" />
+
               </div>
             </div>
           )}
