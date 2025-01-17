@@ -13,11 +13,6 @@ function LoginModal({ show, onClose, onRegisterClick }) {
   const { addUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
   const handleSubmit = async () => {
     setError('');
     try {
@@ -37,8 +32,8 @@ function LoginModal({ show, onClose, onRegisterClick }) {
       } else {
         throw new Error('Respuesta inválida del servidor');
       }
+
     } catch (error) {
-      console.error('Error en el inicio de sesión:', error);
       setError('Correo o contraseña incorrectos');
     }
   };
@@ -46,6 +41,7 @@ function LoginModal({ show, onClose, onRegisterClick }) {
   if (!show) return null;
 
   return (
+
     <div className="modal d-block bg-dark bg-opacity-50" >
       <div className="modal-dialog" style={{ borderRadius: '15px' }}>
         <div className="modal-content">
@@ -97,6 +93,7 @@ function LoginModal({ show, onClose, onRegisterClick }) {
       </div>
       <ForgotPasswordModal show={showForgotPassword} onClose={() => setShowForgotPassword(false)} />
     </div>
+
   );
 }
 

@@ -29,6 +29,7 @@ function Recipes() {
       setAiRecipe(recipe);
     } catch (err) {
       setError('Error al generar la receta con IA');
+      console.log(err)
     } finally {
       setLoading(false);
     }
@@ -151,6 +152,7 @@ function Recipes() {
                     <p><strong>Tiempo de preparación:</strong> {parsedRecipe.prep_time || 'No especificado'}</p>
                   </div>
                 </div>
+
               </div>
 
               <div className="recipe-footer">

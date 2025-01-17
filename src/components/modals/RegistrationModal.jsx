@@ -139,6 +139,7 @@ function RegistrationModal({ show, onClose }) {
               onChange={handleChange}
             />
 
+
             {/* Correo */}
             <input
               type="email"
@@ -150,6 +151,7 @@ function RegistrationModal({ show, onClose }) {
               autoComplete="off"
             />
 
+
             {/* Contraseña */}
             <div className="input-group mb-2">
               <input
@@ -160,6 +162,7 @@ function RegistrationModal({ show, onClose }) {
                 value={formData.password}
                 onChange={handleChange}
                 autoComplete="off"
+
               />
               <button
                 className="btn btn-outline-success"
@@ -181,6 +184,7 @@ function RegistrationModal({ show, onClose }) {
               />
               <label className="form-check-label">Recordar contraseña</label>
             </div>
+
           </div>
 
           {/* Pie */}
@@ -202,3 +206,4 @@ RegistrationModal.propTypes = {
 };
 
 export default RegistrationModal;
+
