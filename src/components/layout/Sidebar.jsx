@@ -45,8 +45,8 @@ function Sidebar({ onSidebarClick }) {
             <i className="bi bi-person me-3 fs-3 text-dark"></i>Perfil
           </li>
         </ul>
-        <button className="btn btn-danger mt-5 d-flex justify-content-center align-items-center" onClick={handleLogout}>
-          <i className="bi bi-box-arrow-right fs-3 text-dark"></i>
+        <button className="btn btn-outline-danger mt-5 d-flex justify-content-center align-items-center" onClick={handleLogout}>
+          <i className="bi bi-box-arrow-right fs-5 text-dark"></i>
         </button>
       </div>
     </div>
