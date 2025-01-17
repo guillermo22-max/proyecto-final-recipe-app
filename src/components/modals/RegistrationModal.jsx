@@ -66,6 +66,7 @@ function RegistrationModal({ show, onClose }) {
           apellidos: formData.apellidos,
           nombre_usuario: formData.nombre_usuario,
           email: formData.email,
+          token: access_token,
         });
 
         setSuccess('Usuario registrado correctamente');
@@ -146,6 +147,7 @@ function RegistrationModal({ show, onClose }) {
               className="form-control mb-2"
               value={formData.email}
               onChange={handleChange}
+              autoComplete="off"
             />
 
             {/* Contraseña */}
@@ -157,7 +159,7 @@ function RegistrationModal({ show, onClose }) {
                 className="form-control"
                 value={formData.password}
                 onChange={handleChange}
-                autoComplete="current-password"
+                autoComplete="off"
               />
               <button
                 className="btn btn-outline-success"

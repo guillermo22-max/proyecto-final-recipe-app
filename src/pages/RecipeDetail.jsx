@@ -44,44 +44,14 @@ const RecipeDetail = () => {
     return (
         <div>
             <Sidebar />
-            <div className="recipe-detail w-100 content">
+            <div className="recipe-detail content">
                 {loading ? (
                     <p>Cargando receta...</p>
                 ) : error ? (
                     <p className="text-danger">{error}</p>
                 ) : (
-                    // <div className="w-100">
-                    //     <h2>{recipe.titulo}</h2>
-                    //     <p><strong>Descripción:</strong> {recipe.descripcion}</p>
-                    //     <p><strong>Pasos:</strong></p>
-                    //     <ul>
-                    //         {recipe.pasos.split('\n').map((step, index) => (
-                    //             <li key={index}>{step}</li>
-                    //         ))}
-                    //     </ul>
-                    //     <p><strong>Ingedientes:</strong></p>
-                    //     <ul>
-                    //         {recipe.ingredients.split('\n').map((ingredient, index) => (
-                    //             <li key={index}>{ingredient}</li>
-                    //         ))}
-                    //     </ul>
-                    //     <p><strong>Calorías:</strong> {recipe.calorias}</p>
-                    //     <p><strong>Tiempo de elaboración:</strong> {recipe.tiempo_elaboracion}</p>
-                    //     <div className="d-flex justify-content-between align-items-center w-75">
-                    //         <button
-                    //             onClick={() => navigate('/saved-recipes')}
-                    //             className="btn btn-success mt-4"
-                    //         >Volver a recetas guardadas
-                    //         </button>
-                    //         <button
-                    //             onClick={handleDelete}
-                    //             className="btn btn-danger mt-4 me-2"
-                    //         >
-                    //             Eliminar Receta
-                    //         </button>
-                    //     </div>
-                    // </div>
-                    <div className="recipe-card">
+
+                    <div className="recipe-card-horizontal">
                         <h3 className="recipe-title">{recipe.titulo}</h3>
 
                         <div className="recipe-section">

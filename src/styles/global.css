@@ -15,7 +15,7 @@
     width: 10vw;
     height: 10vw;
     border-radius: 50%; 
-    border: 5px solid #198754;
+    border: 5px solid #F4A261;
     object-fit: cover;
   }
 
@@ -48,3 +48,25 @@
   .sidebar-container:hover + .content {
     margin-left: 220px; /* Cambiar margen si el sidebar crece */
   }
+
+  .alert-overlay {
+    position: fixed; /* Fija la posición en la pantalla */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    z-index: 1050; /* Asegúrate de que esté encima de todo */
+  }
+  
+  .alert {
+    padding: 20px;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    text-align: center;
+  }
+  

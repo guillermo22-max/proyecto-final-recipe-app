@@ -29,7 +29,7 @@ function LoginModal({ show, onClose, onRegisterClick }) {
         localStorage.setItem('userData', JSON.stringify(user));
 
         // Actualiza el estado global
-        addUser(user);
+        addUser({ ...user, token: access_token });
         onClose();
         navigate('/profile');
       } else {
