@@ -1,0 +1,126 @@
+  .recipe-list-saved {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .recipe-card-saved {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    /* Cuadrada */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 255, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .recipe-card-saved:hover {
+    transform: scale(1.05);
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3), -5px -5px 20px rgba(255, 255, 255, 0.7);
+  }
+
+  .recipe-content-saved {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.308);
+    color: #fff;
+    text-align: left;
+    transition: background 0.3s ease;
+    border-radius: 15px;
+  }
+
+  .recipe-card-saved:hover .recipe-content-saved {
+    background: rgba(0, 0, 0, 0.637);
+  }
+
+  .recipe-content-saved h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  }
+
+  .recipe-content-saved p {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+
+  .recipe-content-saved .btn {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .recipe-content-saved .btn-success {
+    background-color: #F4A261;
+    border: none;
+    color: #fff;
+  }
+
+  .recipe-content-saved .btn-success:hover {
+    background-color: #f88a30;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .recipe-content-saved .btn-danger {
+    background-color: #dc3545;
+    border: none;
+    color: #fff;
+  }
+
+  .recipe-content-saved .btn-danger:hover {
+    background-color: #a71d2a;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+
+  .swiper {
+    background: none !important;
+    box-shadow: none !important;
+    height: 100%;
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border-radius: 10px;
+  }
+
+  .swiper-slide {
+    margin-top: 10px;
+    background: none !important;
+    box-shadow: none !important;
+    background-position: center;
+    background-size: cover;
+    width: 300px !important;
+    height: 300px !important;
+    border-radius: 15px !important;
+  }
+
+  .swiper-slide img {
+    background: none !important;
+    box-shadow: none !important;
+
+    display: block;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .swiper {
+    background: none !important;
+    box-shadow: none !important;
+    height: 350px;
+  }
+
+  .swiper-wrapper {
+    background: none !important;
+    box-shadow: none !important;
+    height: 100%;
+  }

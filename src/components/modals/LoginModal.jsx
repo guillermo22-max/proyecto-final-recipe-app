@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../services/userService';
 import UserContext from '../../context/UserContext';
+import ForgotPasswordModal from './ForgotPasswordModal';
 
 function LoginModal({ show, onClose, onRegisterClick }) {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [error, setError] = useState('');
   const { addUser } = useContext(UserContext);
   const navigate = useNavigate();
@@ -29,7 +31,7 @@ function LoginModal({ show, onClose, onRegisterClick }) {
         localStorage.setItem('userData', JSON.stringify(user));
 
         // Actualiza el estado global
-        addUser(user);
+        addUser({ ...user, token: access_token });
         onClose();
         navigate('/profile');
       } else {
@@ -44,14 +46,14 @@ function LoginModal({ show, onClose, onRegisterClick }) {
   if (!show) return null;
 
   return (
-<div className="modal d-block bg-dark bg-opacity-50" >
-      <div className="modal-dialog"style={{  borderRadius: '15px' }}>
+    <div className="modal d-block bg-dark bg-opacity-50" >
+      <div className="modal-dialog" style={{ borderRadius: '15px' }}>
         <div className="modal-content">
-          <div className="modal-header"style={{backgroundColor : '#F4A261'}}>
+          <div className="modal-header" style={{ backgroundColor: '#F4A261' }}>
             <h5 className="modal-title text-success">Iniciar Sesión</h5>
             <button className="btn-close" onClick={onClose}></button>
           </div>
-          <div className="modal-body"style={{ backgroundImage: 'url("/Designer.jpg")' }}>
+          <div className="modal-body" style={{ backgroundImage: 'url("/Designer.jpg")' }}>
             {error && <p className="text-danger">{error}</p>}
             <input
               type="email"
@@ -84,14 +86,16 @@ function LoginModal({ show, onClose, onRegisterClick }) {
                 Regístrate aquí
               </a>
             </p>
+            <p>¿Olvidaste tu contraseña? <a href="#" onClick={() => setShowForgotPassword(true)}>Recupérala aquí</a></p>
           </div>
-          <div className="modal-footer"style={{backgroundColor : '#F4A261'}}>
+          <div className="modal-footer" style={{ backgroundColor: '#F4A261' }}>
             <button className="btn btn-success" onClick={handleSubmit}>
               Iniciar Sesión
             </button>
           </div>
         </div>
       </div>
+      <ForgotPasswordModal show={showForgotPassword} onClose={() => setShowForgotPassword(false)} />
     </div>
   );
 }
