@@ -14,7 +14,8 @@ function Profile() {
     apellidos: '',
     nombre_usuario: '',
     email: '',
-    foto_url: ''
+    foto_url: '',
+    fondo_url: ''
   });
 
   const [isEditing, setIsEditing] = useState(false);
@@ -23,7 +24,8 @@ function Profile() {
     apellidos: '',
     nombre_usuario: '',
     email: '',
-    foto_url: ''
+    foto_url: '',
+    fondo_url: ''
   });
 
   // Cargar datos de usuario desde el contexto o localStorage
@@ -55,10 +57,10 @@ function Profile() {
   const handleChange = (e) => {
     const { name, value, files } = e.target;
 
-    if (name === 'foto_url' && files.length > 0) {
+    if ((name === 'foto_url' || name === 'fondo_url') && files.length > 0) {
       const fileReader = new FileReader();
       fileReader.onload = (event) => {
-        setTempData({ ...tempData, foto_url: event.target.result });
+        setTempData({ ...tempData, [name]: event.target.result });
       };
       fileReader.readAsDataURL(files[0]);
     } else {
@@ -66,7 +68,7 @@ function Profile() {
     }
   };
 
-  //  Cerrar Sesión
+  // Cerrar Sesión
   const handleLogout = () => {
     localStorage.removeItem('userData'); // Eliminar datos de localStorage
     localStorage.removeItem('token'); // Eliminar token
@@ -83,102 +85,125 @@ function Profile() {
       <div className="d-flex flex-grow-1">
         <Sidebar onSidebarClick={() => { }} />
         <div className="w-100 content">
-          <div className="my-5">
-            {/* Botón de Cerrar Sesión */}
-            <div className="text-end mb-3">
-              <button className="btn btn-danger" onClick={handleLogout}>
-                Cerrar Sesión
-              </button>
-            </div>
+          {/* Fondo del perfil */}
+          <div
+            className="profile-background"
+            style={{
+              backgroundImage: `url(${userData.fondo_url || '/emplatado-1-1030x577.webp'})`,
+              height: "50vh",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              position: "relative"
+            }}
+          >
+            {/* Imagen de perfil */}
+            <img
+              src={userData.foto_url || '/logo-solo.png'}
+              alt="Perfil"
+              className="profile-img"
+              style={{
+                position: "absolute",
+                bottom: "-50px",
+                right: "20px",
+                borderRadius: "50%",
+                width: "200px",
+                height: "200px",
+                border: "4px solid white",
+                boxShadow: "0 4px 8px rgba(246, 120, 2, 0.5)"
+              }}
+            />
+          </div>
 
-            <div className="profile-header text-center">
-              {/* Imagen del Usuario */}
-              <img
-                src={userData.foto_url || 'https://via.placeholder.com/100'}
-                alt="Perfil"
-                className="profile-img mb-3"
+          {/* Inputs para editar imágenes */}
+          {isEditing && (
+            <div className="edit-images mx-auto text-center mt-4" style={{ maxWidth: "600px" }}>
+               <label htmlFor="fondo_url" className="form-label">
+                  Foto de portada
+               </label>
+              <input
+                type="file"
+                name="fondo_url"
+                accept="image/*"
+                className="form-control mb-3"
+                onChange={handleChange}
               />
-              {isEditing && (
-                <input
-                  type="file"
-                  name="foto_url"
-                  accept="image/*"
-                  className="form-control mb-2"
-                  onChange={handleChange}
-                />
-              )}
+              <label htmlFor="foto_url" className="form-label">
+                Foto de perfil
+              </label>
+              <input
+                type="file"
+                name="foto_url"
+                accept="image/*"
+                className="form-control mb-3"
+                onChange={handleChange}
+              />
 
-              {/* Nombre */}
-              {isEditing ? (
-                <input
-                  type="text"
-                  name="nombre"
-                  className="form-control mb-2"
-                  value={tempData.nombre}
-                  onChange={handleChange}
-                />
-              ) : (
-                <h2>{userData.nombre}</h2>
-              )}
+              <input
+                type="text"
+                name="nombre"
+                placeholder="Nombre"
+                value={tempData.nombre}
+                className="form-control mb-3"
+                onChange={handleChange}
+              />
 
-              {/* Apellidos */}
-              {isEditing ? (
-                <input
-                  type="text"
-                  name="apellidos"
-                  className="form-control mb-2"
-                  value={tempData.apellidos}
-                  onChange={handleChange}
-                />
-              ) : (
-                <h4>{userData.apellidos}</h4>
-              )}
+              {/* Input para editar los apellidos */}
+              <input
+                type="text"
+                name="apellidos"
+                placeholder="Apellidos"
+                value={tempData.apellidos}
+                className="form-control mb-3"
+                onChange={handleChange}
+              />
 
-              {/* Nombre de Usuario */}
-              {isEditing ? (
-                <input
-                  type="text"
-                  name="nombre_usuario"
-                  className="form-control mb-2"
-                  value={tempData.nombre_usuario}
-                  onChange={handleChange}
-                />
-              ) : (
-                <p className="text-muted">@{userData.nombre_usuario}</p>
-              )}
-
-              {/* Correo */}
-              <p className="text-muted">{userData.email}</p>
+              {/* Input para editar el nombre de usuario */}
+              <input
+                type="text"
+                name="nombre_usuario"
+                placeholder="Nombre de Usuario"
+                value={tempData.nombre_usuario}
+                className="form-control mb-3"
+                onChange={handleChange}
+              />
             </div>
+          )}
 
-            {/* Acciones */}
-            <div className="profile-actions text-center">
-              {isEditing ? (
-                <button className="btn btn-success me-2" onClick={handleSave}>
-                  Guardar
-                </button>
-              ) : (
-                <button className="btn btn-outline-primary me-2" onClick={handleEdit}>
-                  Editar Perfil
-                </button>
-              )}
+          <div className="profile-content px-4 py-3 text-center">
+            {/* Información del usuario */}
+            <div style={{ textAlign: "left", marginRight: "20px" }}>
+              <h3>
+                {userData.nombre} {userData.apellidos}
+              </h3>
+              <p className="text-muted">@{userData.nombre_usuario}</p>
+              <p className="text-muted"> <samp><i className="fa-regular fa-envelope me-2"></i></samp>{userData.email}</p>
             </div>
+          </div>
+
+          {/* Botones */}
+          <div className="profile-actions mt-3 text-center ">
+            {isEditing ? (
+              <button className="btn btn-success me-2" onClick={handleSave}>
+                Guardar
+              </button>
+            ) : (
+              <button className="btn btn-outline-primary me-2" onClick={handleEdit}>
+                Editar Perfil
+              </button>
+            )}
+            <button className="btn btn-danger" onClick={handleLogout}>
+              Cerrar Sesión
+            </button>
           </div>
         </div>
       </div>
-      <div className="mt-3">
-        <Footer />
-      </div>
+
+      <Footer />
     </div>
   );
 }
 
 export default Profile;
-
-
-
-
-
 
 
 
