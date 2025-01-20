@@ -30,6 +30,7 @@ function Recipes() {
       setAiRecipe(recipe);
     } catch (err) {
       setError('Error al generar la receta con IA');
+      console.log(err)
     } finally {
       setLoading(false);
     }
@@ -171,6 +172,7 @@ function Recipes() {
                     title="Guardar receta">
                     <i class="bi bi-floppy-fill"></i></button>
                 </div>
+
               </div>
             )
           )}

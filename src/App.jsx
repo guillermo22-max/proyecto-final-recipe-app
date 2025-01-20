@@ -8,6 +8,7 @@ import Tags from './pages/Tags';
 import SavedRecipes from './pages/SavedRecipes';
 import RecipeDetail from './pages/RecipeDetail';
 import { UserProvider } from './context/UserProvider';
+import ResetPassword from './pages/ResetPassword';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/recipes" element={<Recipes />} />
                     <Route path="/profile" element={<Profile />} />
+                    <Route path="/reset-password/:token" element={<ResetPassword />} />
                     <Route path="/shopping-list" element={<ShoppingList />} />
                     <Route path="/meal-plan" element={<MealPlan />} />
                     <Route path="/tags" element={<Tags />} />
