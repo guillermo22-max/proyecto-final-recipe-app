@@ -4,6 +4,7 @@ import Sidebar from '../components/layout/Sidebar';
 import UserContext from '../context/UserContext';
 import '../styles/Profile.css';
 import Footer from '../components/layout/Footer';
+import logo from '/logo-solo.png';
 
 function Profile() {
   const { user, logout } = useContext(UserContext); // Consumir el contexto
@@ -114,6 +115,7 @@ function Profile() {
             />
           </div>
 
+
           {/* Inputs para editar imágenes */}
           {isEditing && (
             <div className="edit-images mx-auto text-center mt-4" style={{ maxWidth: "600px" }}>
@@ -136,6 +138,7 @@ function Profile() {
                 accept="image/*"
                 className="form-control mb-3"
                 onChange={handleChange}
+
               />
 
               <input
