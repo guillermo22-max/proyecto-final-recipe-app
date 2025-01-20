@@ -114,14 +114,15 @@ function Profile() {
               }}
             />
           </div>
-
+              
 
           {/* Inputs para editar imágenes */}
           {isEditing && (
             <div className="edit-images mx-auto text-center mt-4" style={{ maxWidth: "600px" }}>
-               <label htmlFor="fondo_url" className="form-label">
-                  Foto de portada
-               </label>
+              
+              <label htmlFor="fondo_url" className="form-label text-start">
+                Foto de portada
+              </label>
               <input
                 type="file"
                 name="fondo_url"
@@ -150,7 +151,6 @@ function Profile() {
                 onChange={handleChange}
               />
 
-              {/* Input para editar los apellidos */}
               <input
                 type="text"
                 name="apellidos"
@@ -160,7 +160,6 @@ function Profile() {
                 onChange={handleChange}
               />
 
-              {/* Input para editar el nombre de usuario */}
               <input
                 type="text"
                 name="nombre_usuario"
