@@ -289,8 +289,9 @@ const MealPlan = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
+    // autoplay: true,
+    // autoplaySpeed: 3000,
+
     responsive: [
       {
         breakpoint: 1024,
@@ -317,6 +318,8 @@ const MealPlan = () => {
       },
     ],
   };
+
+  console.log(recipes['0']);
 
   return (
     <div>
@@ -384,30 +387,37 @@ const MealPlan = () => {
         </table>
 
         <h3 className="my-4">Recetas Guardadas</h3>
-        <div className="recipe-slider mb-5 bg-success bg-opacity-25">
-          <Slider {...settings}>
+        <div>
+          <div className="d-flex flex-row justify-content-evenly align-items-center gap-3 flex-wrap">
             {recipes.map((recipe) => (
-              <div
-                key={recipe.id}
-                className="p-3 bg-success bg-opacity-25"
-                draggable
-                onDragStart={(e) => handleDragStart(e, recipe)}>
-                <div className="card">
-                  <img src={recipe.url}
-                    alt={recipe.titulo}
-                    className="card-img-top" />
-                  <div className="card-body d-flex flex-column justify-content-between text-center">
-                    <h5 className="card-title">{recipe.titulo}</h5>
+
+              <div key={recipe.id} className="recipe-card-meal-plan" style={{ backgroundImage: `url(${recipe.foto_url})`, width: '200px', height: '200px' }}>
+                <div className="recipe-content-meal-plan h-100 d-flex flex-column justify-content-between"
+                  onDragStart={(e) => handleDragStart(e, recipe)}
+                  draggable="true">
+                  <h3 className="text-center w-100">{recipe.titulo}</h3>
+                  <div className="m-0">
+                    <p><strong>Calorías:</strong> {recipe.calorias}</p>
+                  </div>
+                  <div className="d-flex justify-content-end align-items-center w-100">
                     <button
                       onClick={() => navigate(`/recipe/${recipe.id}`)}
                       className="btn btn-success"
-                    >Ver Detalles
+                      title="Ver receta completa"
+                    ><i className="bi bi-eye-fill"></i>
+                    </button>
+                    <button
+                      onClick={() => handleDelete(recipe.id)}
+                      className="btn btn-danger"
+                      title="Eliminar receta"
+                    ><i className="bi bi-trash3-fill"></i>
                     </button>
                   </div>
                 </div>
               </div>
+
             ))}
-          </Slider>
+          </div>
         </div>
       </div>
     </div>

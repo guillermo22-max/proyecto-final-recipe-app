@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import '../../styles/navbar.css'
 
 function Navbar({ onRegisterClick }) {
   return (

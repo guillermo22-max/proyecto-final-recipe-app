@@ -1,5 +1,150 @@
-
 .recipe-card-horizontal {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 255, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recipe-card-horizontal:hover {
+  transform: scale(1.02);
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3), -5px -5px 20px rgba(255, 255, 255, 0.7);
+}
+
+.recipe-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.recipe-image {
+  width: 90%;
+  height: 90%;
+  max-height: 200px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.recipe-info {
+  flex-grow: 1;
+}
+
+.recipe-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.recipe-section {
+  flex: 1 1 calc(50% - 10px);
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f4a3612c;
+}
+
+.recipe-details {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.recipe-title {
+  font-size: 1.5rem;
+  color: #F4A261;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.recipe-section ul,
+.recipe-section ol {
+  margin: 5px 0;
+  padding-left: 15px;
+}
+
+.recipe-section ul li,
+.recipe-section ol li {
+  line-height: 1.4;
+}
+
+.recipe-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  justify-content: flex-end;
+}
+
+.recipe-actions .btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recipe-generate-button .btn-primary {
+  background-color: #F4A261;
+  color: #fff;
+  border: none;
+}
+
+.recipe-generate-button .btn-primary:disabled {
+  background-color: #F4A261;
+  color: #fff;
+  border: none;
+}
+
+.recipe-generate-button .btn-primary:hover {
+  background-color: #f4a36170;
+  color: #fff;
+  border: none;
+}
+
+.recipe-actions .btn-primary {
+  background-color: #F4A261;
+  color: #fff;
+}
+
+.recipe-actions .btn-primary:hover {
+  background-color: #f4a36170;
+}
+
+.recipe-actions .btn-secondary {
+  background-color: #F4A261;
+  color: #fff;
+}
+
+.recipe-actions .btn-secondary:hover {
+  background-color: #f4a36170;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .recipe-card-horizontal,
+  .recipe-card-horizontal * {
+    visibility: visible;
+  }
+
+  .recipe-card-horizontal {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+
+
+/* .recipe-card-horizontal {
   display: flex;
   flex-direction: column;
   max-width: 90%;
@@ -82,7 +227,6 @@
   font-weight: bold;
 }
 
-/* Pie de la receta */
 .recipe-footer {
   display: flex;
   justify-content: center;
@@ -102,25 +246,25 @@
 .recipe-footer .btn-success:hover {
   background-color: #145c41;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
+} */
 
 .img-chef {
   object-position: top;
   width: 10vw;
   height: 10vw;
-  border-radius: 50%; 
+  border-radius: 50%;
   border: 5px solid #F4A261;
   object-fit: cover;
 }
 
-  .conversation {
-    padding: 5px;
-    background-color: white;
-    width: 60%;
-    border-radius: 5px;
-    border: 1px solid rgba(187, 187, 187, 0.521)
-  }
+.conversation {
+  padding: 5px;
+  background-color: white;
+  width: 60%;
+  border-radius: 5px;
+  border: 1px solid rgba(187, 187, 187, 0.521)
+}
 
-  .own-conversation {
-    width: 60%;
-  }
+.own-conversation {
+  width: 60%;
+}
