@@ -228,8 +228,8 @@ const MealPlan = () => {
   const [expandedColumns, setExpandedColumns] = useState({});  // Estado para controlar las columnas expandidas
   const navigate = useNavigate();
 
-  const daysOfWeek = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
-  const meals = ['Desayuno', 'Almuerzo', 'Comida', 'Merienda', 'Cena'];
+  const daysOfWeek = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
+  const meals = ['Desayuno', 'Comida', 'Cena'];
 
   const fetchSavedRecipes = async () => {
     try {
@@ -336,7 +336,7 @@ const MealPlan = () => {
                   key={day}
                   className="text-center"
                   onClick={() => toggleColumn(day)} // Alternar expansión
-                  style={{ cursor: 'pointer', textDecoration: 'underline' }}
+                  style={{ cursor: 'pointer' }}
                 >
                   {day}
                 </th>
@@ -363,15 +363,26 @@ const MealPlan = () => {
                   >
                     {mealPlan[`${day}-${meal}`] ? (
                       <div
-                        className="meal-item d-flex flex-column justify-content-between text-center"
+                        className="d-flex flex-column justify-content-between text-center"
                         draggable
                         onDragStart={(e) => handleDragStart(e, mealPlan[`${day}-${meal}`], `${day}-${meal}`)}
                       >
+                        <div
+                          className="recipe-card-meal-plan"
+                          style={{
+                            backgroundImage: `url(${mealPlan[`${day}-${meal}`].foto_url})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            height: '200px', // Ajusta la altura según sea necesario
+                          }}
+                        ></div>
                         <strong>{mealPlan[`${day}-${meal}`].titulo}</strong>
                         <div className="d-flex justify-content-between align-items-center">
                           <p className="my-auto">{mealPlan[`${day}-${meal}`].calorias} Calorías</p>
-                          <i className="trash-icon bi bi-trash my-auto text-light bg-danger rounded h6 p-1 ms-2"
-                            onClick={() => handleRemove(day, meal)}></i>
+                          <i
+                            className="trash-icon bi bi-trash my-auto text-light bg-danger rounded h6 p-1 ms-2"
+                            onClick={() => handleRemove(day, meal)}
+                          ></i>
                         </div>
                       </div>
                     ) : (
@@ -395,6 +406,7 @@ const MealPlan = () => {
                 <div className="recipe-content-meal-plan h-100 d-flex flex-column justify-content-between"
                   onDragStart={(e) => handleDragStart(e, recipe)}
                   draggable="true">
+                    <div className="recipe-content-meal-plan">
                   <h3 className="text-center w-100">{recipe.titulo}</h3>
                   <div className="m-0">
                     <p><strong>Calorías:</strong> {recipe.calorias}</p>
@@ -412,6 +424,7 @@ const MealPlan = () => {
                       title="Eliminar receta"
                     ><i className="bi bi-trash3-fill"></i>
                     </button>
+                    </div>
                   </div>
                 </div>
               </div>

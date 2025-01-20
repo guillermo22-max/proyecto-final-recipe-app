@@ -23,7 +23,7 @@ function ResetPassword() {
       setSuccess(response.message);
       console.log('Respuesta:', response);
   
-      setTimeout(() => navigate('/login'), 3000);
+      setTimeout(() => navigate('/'), 3000);
     } catch (err) {
       setError(err.response?.data?.error || 'Error al restablecer la contraseña');
     }

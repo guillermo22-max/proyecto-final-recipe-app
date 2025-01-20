@@ -1,5 +1,5 @@
 
-.table {
+/* .table {
   width: 100%;
   margin: 20px auto;
   border-radius: 15px;
@@ -38,7 +38,7 @@
 }
 
 .table .meal-cell {
-  background-color: #f4a3611e; /* Fondo semitransparente */
+  background-color: #f4a3611e; 
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -77,13 +77,13 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Añadir un borde y color diferente cuando las celdas están activadas (expandidas) */
+
 .table .meal-cell.expanded {
   background-color: #F4A261;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Estilo de las celdas del día */
+
 .table .day-cell {
   background-color: #F4A261;
   color: white;
@@ -98,6 +98,68 @@
   align-items: center;
   height: 100%;
   font-size: 1.1rem;
+} */
+
+/* Estilos generales */
+.table {
+  width: 100%;
+  margin: 20px auto;
+  border-radius: 15px;
+  background-color: #FFF8E7;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-collapse: collapse;
+}
+
+/* Mejorar el hover y la interacción de las celdas */
+.table td:hover, .table th:hover {
+  background-color: #F4A261;
+  color: white;
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.table .meal-cell:hover {
+  background-color: #F4A261;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.table .meal-item {
+  padding: 5px;
+  background-color: #F4A261;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.table .meal-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table .meal-item .trash-icon {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.table .meal-item .trash-icon:hover {
+  background-color: #d9534f;
+}
+
+.table .meal-cell.expanded {
+  background-color: #F4A261;
+  border: 2px solid #F4A261;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Mejora visual para botones */
+.btn {
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  background-color: #1e7e34;
 }
 
 
@@ -111,7 +173,7 @@
 .recipe-card-meal-plan {
   position: relative;
   width: 200px;
-  height: 200px; /* Cuadrada */
+  height: 200px; 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -132,14 +194,14 @@
   left: 0;
   right: 0;
   padding: 15px;
-  background: rgba(0, 0, 0, 0.404); /* Fondo oscuro translúcido */
+  background: rgba(0, 0, 0, 0.404); 
   color: #fff;
   text-align: left;
   transition: background 0.3s ease;
 }
 
 .recipe-card-meal-plan:hover .recipe-content-meal-plan {
-  background: rgba(0, 0, 0, 0.8); /* Más oscuro al pasar el mouse */
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .recipe-content-meal-plan h3 {

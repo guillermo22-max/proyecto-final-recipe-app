@@ -14,7 +14,7 @@ export const requestPasswordReset = async (email) => {
 //  Restablecer contraseña (Enviando ambos campos)
 export const resetPassword = async (token, newPassword, confirmPassword) => {
   try {
-    const response = await api.post('/password/reset-password',{password: newPassword,confirm_password: confirmPassword},
+    const response = await api.put('/password/reset-password',{password: newPassword,confirm_password: confirmPassword},
       {
         headers: {
           Authorization: `Bearer ${token}`,
