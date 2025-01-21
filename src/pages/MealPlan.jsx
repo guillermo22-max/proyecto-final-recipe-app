@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/layout/Sidebar';
 import api from '../services/api.js';
+import Footer from '../components/layout/Footer.jsx';
 
 import '../styles/mealPlan.css';
 import { useNavigate } from 'react-router-dom';
@@ -70,7 +71,7 @@ const MealPlan = () => {
   console.log(recipes['0']);
 
   return (
-    <div>
+    <div className="full-content">
       <Sidebar />
       <div className="meal-plan content">
         <h2 className="text-center my-4">Plan Semanal de Comidas</h2>
@@ -144,83 +145,7 @@ const MealPlan = () => {
           </tbody>
         </table>
 
-
-        {/* <table className="table">
-          <thead>
-            <tr>
-              <th></th>
-              {daysOfWeek.map((day) => (
-                <th
-                  key={day}
-                  className="text-center"
-                  onClick={() => toggleColumn(day)}
-                  style={{ cursor: 'pointer' }}
-                >
-                  {day}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {meals.map((meal) => (
-              <tr key={meal}>
-                <td className="day-cell text-center"><strong className="day-text">{meal}</strong></td>
-                {daysOfWeek.map((day) => (
-                  <td
-                    key={`${day}-${meal}`}
-                    className="meal-cell"
-                    style={{
-                      // visibility: expandedColumns[day] ? 'visible' : 'collapse',
-                      display: expandedColumns[day] ? 'table-cell' : 'none',
-                    }}
-                    onDrop={(e) => {
-                      const recipe = JSON.parse(e.dataTransfer.getData('recipe'));
-                      const sourceKey = e.dataTransfer.getData('sourceKey');
-                      handleDrop(day, meal, recipe, sourceKey);
-                    }}
-                    onDragOver={(e) => e.preventDefault()}
-                  >
-                    {mealPlan[`${day}-${meal}`] ? (
-                      <div
-                        className="d-flex flex-column justify-content-between align-items-center text-center"
-                        draggable
-                        onDragStart={(e) => handleDragStart(e, mealPlan[`${day}-${meal}`], `${day}-${meal}`)}
-                      >
-                        <div
-                          className="recipe-card-meal-plan text-light"
-                          style={{
-                            backgroundImage: `url(${mealPlan[`${day}-${meal}`].foto_url})`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                            height: '200px', // Ajusta la altura según sea necesario
-                          }}
-                        >
-                          <div className="content-meal-table d-flex flex-column justify-content-between h-100 p-2">
-                            <strong>{mealPlan[`${day}-${meal}`].titulo}</strong>
-                            <div className="d-flex justify-content-between align-items-center">
-                              <p className="my-auto">{mealPlan[`${day}-${meal}`].calorias} Calorías</p>
-                              <i
-                                className="trash-icon bi bi-trash my-auto text-light bg-danger rounded h6 p-1 ms-2"
-                                onClick={() => handleRemove(day, meal)}
-                              ></i>
-                            </div>
-                          </div>
-                        </div>
-
-                      </div>
-                    ) : (
-                      <p className="text-muted text-center h-100 m-0 d-flex justify-content-center align-items-center">
-                        <i className="bi bi-plus-square-dotted"></i>
-                      </p>
-                    )}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table> */}
-
-        <h3 className="my-4">Recetas Guardadas</h3>
+        <h3 className="my-5 text-center">Recetas Guardadas</h3>
         <div>
           <div className="d-flex flex-row justify-content-evenly align-items-center gap-3 flex-wrap">
             {recipes.map((recipe) => (
@@ -254,8 +179,10 @@ const MealPlan = () => {
 
             ))}
           </div>
+          <Footer />
         </div>
       </div>
+      
     </div>
   );
 };
