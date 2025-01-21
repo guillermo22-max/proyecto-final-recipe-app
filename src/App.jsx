@@ -19,7 +19,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/recipes" element={<Recipes />} />
                     <Route path="/profile" element={<Profile />} />
-                    <Route path="/reset-password/:token" element={<ResetPassword />} />
+                    <Route path="/password/reset-password/:token" element={<ResetPassword />} />
                     <Route path="/shopping-list" element={<ShoppingList />} />
                     <Route path="/meal-plan" element={<MealPlan />} />
                     <Route path="/tags" element={<Tags />} />

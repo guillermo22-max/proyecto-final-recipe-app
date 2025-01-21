@@ -7,7 +7,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
-import { Autoplay } from 'swiper/modules';
+import { Autoplay, Scrollbar } from 'swiper/modules';
+import 'swiper/css/scrollbar';
+import Footer from '../components/layout/Footer.jsx';
 
 import { EffectCoverflow, Pagination } from 'swiper/modules';
 
@@ -66,107 +68,109 @@ const SavedRecipes = () => {
   }, []);
 
   return (
-    <div>
+    <div className="saved-recipes-container">
       <Sidebar />
-
-      <div className="saved-recipes content">
-        {alert.show && (
-          <div className="alert-overlay"
-            onClick={() => setAlert({ show: false, type: '', message: '' })}>
-            <div className={`alert alert-${alert.type}`} role="alert">
-              {alert.message}
+ 
+        <div className="saved-recipes content">
+          {alert.show && (
+            <div className="alert-overlay"
+              onClick={() => setAlert({ show: false, type: '', message: '' })}>
+              <div className={`alert alert-${alert.type}`} role="alert">
+                {alert.message}
+              </div>
             </div>
-          </div>
-        )}
-        <h2 className="text-center my-4">Recetas Guardadas</h2>
-        {loading ? (
-          <p>Cargando recetas...</p>
-        ) : error ? (
-          <p className="text-danger">{error}</p>
-        ) : savedRecipes.length === 0 ? (
-          <p>No tienes recetas guardadas aún.</p>
-        ) : (
-          <Swiper
-            autoplay={{
-              delay: 5000, 
-              disableOnInteraction: false, 
-            }}
-            // centeredSlides={true}
-            spaceBetween={30}
-            effect={'coverflow'}
-            grabCursor={true}
-            slidesPerView={'2'}
-            coverflowEffect={{
-              rotate: 50,
-              stretch: 20,
-              depth: 120,
-              modifier: 1,
-              slideShadows: true,
-            }}
-            pagination={{ clickable: true }}
-            modules={[EffectCoverflow, Pagination, Autoplay]}
-            className="mySwiper"
-          >
-            {savedRecipes.map((recipe) => (
-              <SwiperSlide key={recipe.id}>
-                <div
-                  className="recipe-card-saved"
-                  style={{ backgroundImage: `url(${recipe.foto_url})` }}
-                >
-                  <div className="recipe-content-saved h-100 d-flex flex-column justify-content-between">
-                    <h3 className="text-center w-100">{recipe.titulo}</h3>
-                    <p>{recipe.descripcion}</p>
-                    <p><strong>Tiempo:</strong> {recipe.tiempo_elaboracion}</p>
-                    <p><strong>Calorías:</strong> {recipe.calorias}</p>
-                    <div className="d-flex justify-content-end align-items-center w-100">
-                      <button
-                        onClick={() => navigate(`/recipe/${recipe.id}`)}
-                        className="btn btn-success"
-                        title="Ver receta completa"
-                      >
-                        <i className="bi bi-eye-fill"></i>
-                      </button>
-                      <button
-                        onClick={() => handleDelete(recipe.id)}
-                        className="btn btn-danger"
-                        title="Eliminar receta"
-                      >
-                        <i className="bi bi-trash3-fill"></i>
-                      </button>
+          )}
+          <h2 className="text-center my-4">Recetas Guardadas</h2>
+          {loading ? (
+            <p>Cargando recetas...</p>
+          ) : error ? (
+            <p className="text-danger">{error}</p>
+          ) : savedRecipes.length === 0 ? (
+            <p>No tienes recetas guardadas aún.</p>
+          ) : (
+            <Swiper
+              scrollbar={{
+                hide: true,
+              }}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+              }}
+              loop={false}
+              centeredSlides={true}
+              spaceBetween={30}
+              effect={'coverflow'}
+              grabCursor={true}
+              slidesPerView={'1'}
+              slidesPerGroup={'1'}
+              coverflowEffect={{
+                rotate: 30,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: false,
+              }}
+              modules={[EffectCoverflow, Autoplay, Scrollbar]}
+              className="mySwiper"
+              breakpoints={{
+                // Pantallas pequeñas
+                480: {
+                  slidesPerView: 2,
+                  slidesPerGroup: 1,
+                  spaceBetween: 20,
+                },
+                // Tablets
+                768: {
+                  slidesPerView: 3,
+                  slidesPerGroup: 1,
+                  spaceBetween: 30,
+                },
+                // Pantallas grandes
+                1024: {
+                  slidesPerView: 4,
+                  slidesPerGroup: 1,
+                  spaceBetween: 20,
+                },
+              }}
+            >
+              {savedRecipes.map((recipe) => (
+                <SwiperSlide key={recipe.id}>
+                  <div
+                    className="recipe-card-saved"
+                    style={{ backgroundImage: `url(${recipe.foto_url})` }}
+                  >
+                    <div className="recipe-content-saved h-100 d-flex flex-column justify-content-between">
+                      <h3 className="text-center w-100">{recipe.titulo}</h3>
+                      <p>{recipe.descripcion}</p>
+                      <p><strong>Tiempo:</strong> {recipe.tiempo_elaboracion}</p>
+                      <p><strong>Calorías:</strong> {recipe.calorias}</p>
+                      <div className="d-flex justify-content-end align-items-center w-100">
+                        <button
+                          onClick={() => navigate(`/recipe/${recipe.id}`)}
+                          className="btn btn-success"
+                          title="Ver receta completa"
+                        >
+                          <i className="bi bi-eye-fill"></i>
+                        </button>
+                        <button
+                          onClick={() => handleDelete(recipe.id)}
+                          className="btn btn-danger"
+                          title="Eliminar receta"
+                        >
+                          <i className="bi bi-trash3-fill"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          // <div className="recipe-list-saved">
-          //   {savedRecipes.map((recipe) => (
-          //     <div key={recipe.id} className="recipe-card-saved" style={{ backgroundImage: `url(${recipe.foto_url})` }}>
-          //       <div className="recipe-content-saved h-100 d-flex flex-column justify-content-between">
-          //         <h3 className="text-center w-100">{recipe.titulo}</h3>
-          //         <p>{recipe.descripcion}</p>
-          //         <p><strong>Tiempo:</strong> {recipe.tiempo_elaboracion}</p>
-          //         <p><strong>Calorías:</strong> {recipe.calorias}</p>
-          //         <div className="d-flex justify-content-end align-items-center w-100">
-          //           <button
-          //             onClick={() => navigate(`/recipe/${recipe.id}`)}
-          //             className="btn btn-success"
-          //             title="Ver receta completa"
-          //           ><i className="bi bi-eye-fill"></i>
-          //           </button>
-          //           <button
-          //             onClick={() => handleDelete(recipe.id)}
-          //             className="btn btn-danger"
-          //             title="Eliminar receta"
-          //           ><i className="bi bi-trash3-fill"></i>
-          //           </button>
-          //         </div>
-          //       </div>
-          //     </div>
-          //   ))}
-          // </div>
-        )}
-      </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
+        </div>
+        <div>
+          <Footer />
+        </div>
+
     </div>
   );
 };

@@ -6,6 +6,7 @@
   }
 
   .recipe-card-saved {
+    margin-top: 10px;
     position: relative;
     width: 300px;
     height: 300px;
@@ -84,43 +85,29 @@
 
 
   .swiper {
-    background: none !important;
-    box-shadow: none !important;
-    height: 100%;
+    height: 340px;
+    padding: 10px;
     width: 100%;
     padding-top: 50px;
     padding-bottom: 50px;
-    border-radius: 10px;
   }
-
+  
   .swiper-slide {
-    margin-top: 10px;
-    background: none !important;
-    box-shadow: none !important;
     background-position: center;
     background-size: cover;
-    width: 300px !important;
-    height: 300px !important;
-    border-radius: 15px !important;
+    width: 300px;
+    height: 300px;
   }
-
+  
   .swiper-slide img {
-    background: none !important;
-    box-shadow: none !important;
-
     display: block;
     width: 100%;
-    border-radius: 10px;
   }
 
-  .swiper {
-    background: none !important;
-    box-shadow: none !important;
-    height: 350px;
-  }
 
-  .swiper-wrapper {
-    background: none !important;
-    box-shadow: none !important;
-    height: 100%;
+  .saved-recipes-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Empuja el footer hacia la parte inferior */
+    min-height: 100vh; /* La altura mínima será la de la ventana */
   }

@@ -198,6 +198,7 @@
   color: #fff;
   text-align: left;
   transition: background 0.3s ease;
+  height: 100%;
 }
 
 .recipe-card-meal-plan:hover .recipe-content-meal-plan {

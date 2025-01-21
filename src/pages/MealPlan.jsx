@@ -406,7 +406,7 @@ const MealPlan = () => {
                 <div className="recipe-content-meal-plan h-100 d-flex flex-column justify-content-between"
                   onDragStart={(e) => handleDragStart(e, recipe)}
                   draggable="true">
-                    <div className="recipe-content-meal-plan">
+                    <div className="recipe-content-meal-plan d-flex flex-column justify-content-between">
                   <h3 className="text-center w-100">{recipe.titulo}</h3>
                   <div className="m-0">
                     <p><strong>Calorías:</strong> {recipe.calorias}</p>
