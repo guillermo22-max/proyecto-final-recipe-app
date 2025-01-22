@@ -1,0 +1,104 @@
+
+  
+  .shopping-list h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .shopping-list .ingredient-list h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .content-shopping-list {
+    max-width: 1200px;
+    margin: 20px auto;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .shopping-list,
+  .ingredients-list {
+    background: #eecfb6;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .shopping-list {
+    padding: 20px;
+  }
+  
+  .ingredients-list {
+    padding: 20px;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+  }
+  
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .shopping-list li {
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  li:hover {
+    background: #e9ecef;
+  }
+  
+  .text-muted {
+    color: #6c757d;
+  }
+  
+
+  .cursor-pointer {
+    cursor: pointer;
+    color: #007bff;
+  }
+  
+  .cursor-pointer:hover {
+    text-decoration: underline;
+  }
+  
+
+  input[type="text"] {
+    width: 60%;
+    padding: 6px 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+  
+  input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+  }
+  

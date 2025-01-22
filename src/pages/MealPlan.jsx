@@ -25,7 +25,7 @@ const MealPlan = () => {
     }
   };
 
-  const handleDrop = (day, meal, recipe, sourceKey) => {
+  const handleDrop = (day, meal, recipe, sourceKey) => { 
     setMealPlan((prev) => {
       const updatedPlan = { ...prev };
       if (sourceKey) {

@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/layout/Sidebar';
+import Footer from '../components/layout/Footer';
+import '../styles/shoppingList.css';
+import api from '../services/api';
 
 const ShoppingList = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedIngredients, setSelectedIngredients] = useState([]);
-  const [editIndex, setEditIndex] = useState(null); 
-  const [editQuantity, setEditQuantity] = useState(''); 
+  const [editIndex, setEditIndex] = useState(null);
+  const [editQuantity, setEditQuantity] = useState('');
+  const [recipes, setRecipes] = useState([]);
 
   const [ingredients] = useState([
     'Manzana', 'Plátano', 'Naranja', 'Fresa', 'Arándanos', 'Melocotón', 'Piña', 'Sandía',
@@ -38,14 +43,36 @@ const ShoppingList = () => {
     'Merluza', 'Salmón ahumado', 'Tortilla española', 'Morcilla', 'Turrón', 'Churros', 'Migas',
     'Gazpacho', 'Bacalao', 'Piquillos', 'Pimientos de Padrón', 'Almejas a la marinera', 'Revuelto de setas',
     'Judías verdes', 'Conejo', 'Sepia', 'Patatas bravas', 'Ensaladilla rusa', 'Pulpo', 'Montaditos', 'Judiones',
-    'Longaniza', 'Cerveza', 'Vino rosado', 'Cordero lechal', 'Pollo'
+    'Longaniza', 'Cerveza', 'Vino rosado', 'Cordero lechal', 'Pollo', 'Jamón serrano', 'Salchichas'
   ]);
-  
+
+
+  const fetchSavedRecipes = async () => {
+    try {
+      const response = await api.get('/recipe/saved');
+      setRecipes(response.data);
+    } catch (err) {
+      console.error('Error al cargar recetas:', err);
+    }
+  };
+
+  useEffect(() => {
+    fetchSavedRecipes();
+    const storedIngredients = localStorage.getItem('selectedIngredients');
+    if (storedIngredients) {
+      setSelectedIngredients(JSON.parse(storedIngredients));
+    }
+  }, []);
+
+  // Guardar lista en localStorage cada vez que cambie
+  useEffect(() => {
+    localStorage.setItem('selectedIngredients', JSON.stringify(selectedIngredients));
+  }, [selectedIngredients]);
 
   const handleAddIngredient = (ingredient) => {
     setSelectedIngredients((prev) => [
       ...prev,
-      { name: ingredient, quantity: '' }
+      { name: ingredient, quantity: '' },
     ]);
   };
 
@@ -68,7 +95,19 @@ const ShoppingList = () => {
 
   const handleEditClick = (index) => {
     setEditIndex(index);
-    setEditQuantity(selectedIngredients[index].quantity); 
+    setEditQuantity(selectedIngredients[index].quantity);
+  };
+
+  const handlePrint = () => {
+    const list = selectedIngredients.map((item) =>
+      `${item.name}: ${item.quantity || 'sin cantidad especificada'}`
+    ).join('\n');
+    console.log('Lista de Ingredientes:\n' + list);
+    window.print();
+  };
+
+  const handleRemoveIngredient = (index) => {
+    setSelectedIngredients((prev) => prev.filter((_, i) => i !== index));
   };
 
   const filteredIngredients = ingredients.filter((ingredient) =>
@@ -76,68 +115,106 @@ const ShoppingList = () => {
   );
 
   return (
-    <div>
-      <Sidebar />
-      <h1 className="text-center">Lista de la Compra</h1>
-      <div className="d-flex justify-content-between content">
+    <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
+      <div className="d-flex flex-grow-1">
+        <Sidebar />
+        <div className="content w-100 d-flex flex-column">
+          <div className="flex-grow-1">
+            <h1 className="text-center my-4">Lista de la Compra</h1>
+            <div className="d-flex justify-content-between content-shopping-list">
 
-        <div className="shopping-list w-50 p-4 border">
-          <h3>Lista de ingredientes seleccionados</h3>
-          {selectedIngredients.length === 0 ? (
-            <p className="text-muted">Añade ingredientes a tu lista.</p>
-          ) : (
-            <ul>
-              {selectedIngredients.map((item, index) => (
-                <li key={index} className="mb-2">
-                  <strong>{item.name}</strong>
-                  {editIndex === index ? (
-                    <input
-                      type="text"
-                      value={editQuantity}
-                      onChange={handleQuantityChange}
-                      onKeyDown={(e) => handleKeyPress(e, index)}
-                      className="ms-2"
-                    />
-                  ) : (
-                    <span
-                      className="ms-2"
-                      onClick={() => handleEditClick(index)}
-                    >
-                      {item.quantity === '' ? 'Añadir cantidad' : item.quantity}
-                    </span>
-                  )}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+              <div className="shopping-list w-50 p-4 border">
+                <h3 className="text-center">Lista de ingredientes</h3>
+                {selectedIngredients.length === 0 ? (
+                  <p className="text-muted">Añade ingredientes a tu lista.</p>
+                ) : (
+                  <ul>
+                    {selectedIngredients.map((item, index) => (
+                      <li key={index} className="mb-2">
+                        <strong>{item.name}</strong>
+                        {editIndex === index ? (
+                          <input
+                            type="text"
+                            value={editQuantity}
+                            onChange={handleQuantityChange}
+                            onKeyDown={(e) => handleKeyPress(e, index)}
+                            className="ms-2"
+                          />
+                        ) : (
+                          <div className="d-flex align-items-center ms-2">
+                            <span
+                              onClick={() => handleEditClick(index)}
+                              className="me-2 cursor-pointer"
+                              style={{ color: 'inherit' }}
+                            >
+                              {item.quantity === '' ? 'Añadir cantidad' : item.quantity}
+                            </span>
+                            <i
+                              className="bi bi-trash-fill text-danger cursor-pointer"
+                              onClick={() => handleRemoveIngredient(index)}
+                            ></i>
+                          </div>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <button className="btn me-2 mt-2"
+                  onClick={handlePrint}
+                  style={{ backgroundColor: '#F4A261', borderColor: '#F4A261', color: 'white' }}>
+                  <i className="bi bi-printer-fill"></i>
+                </button>
+              </div>
 
-        <div className="ingredients-list w-50 p-4 border">
-          <h3>Ingredientes</h3>
-          <input
-            type="text"
-            placeholder="Buscar ingredientes..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="form-control mb-3"
-          />
-          {searchTerm.trim() && (
-            <ul style={{ listStyleType: 'none', paddingLeft: '0' }}>
-              {filteredIngredients.length > 0 ? (
-                filteredIngredients.map((ingredient, index) => (
-                  <li
-                    key={index}
-                    className="cursor-pointer"
-                    onClick={() => handleAddIngredient(ingredient)}
-                  >
-                    {ingredient}
-                  </li>
-                ))
-              ) : (
-                <p className="text-muted">No se encontraron ingredientes.</p>
-              )}
-            </ul>
-          )}
+              <div className="ingredients-list w-50 p-4 border">
+                <h3 className="text-center">Ingredientes</h3>
+                <input
+                  type="text"
+                  placeholder="Buscar ingredientes..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="form-control my-3 w-100"
+                />
+                {searchTerm.trim() && (
+                  <ul style={{ listStyleType: 'none', paddingLeft: '0' }}>
+                    {filteredIngredients.length > 0 ? (
+                      filteredIngredients.map((ingredient, index) => (
+                        <li
+                          key={index}
+                          className="cursor-pointer"
+                          onClick={() => handleAddIngredient(ingredient)}
+                        >
+                          {ingredient}
+                        </li>
+                      ))
+                    ) : (
+                      <p className="text-muted">No se encontraron ingredientes.</p>
+                    )}
+                  </ul>
+                )}
+              </div>
+            </div>
+          </div>
+          <h4 className="text-center mb-4">Elige tu receta para guardar los ingredientes</h4>
+          <div className="d-flex flex-row justify-content-evenly align-items-center gap-3 flex-wrap">
+            
+            {recipes.map((recipe) => (
+
+              <div key={recipe.id} className="recipe-card-meal-plan" style={{ backgroundImage: `url(${recipe.foto_url})`, width: '200px', height: '200px' }}>
+                <div className="recipe-content-meal-plan h-100 d-flex flex-column justify-content-between">
+                  <div className="recipe-content-meal-plan d-flex flex-column justify-content-between">
+                    <h3 className="text-center w-100">{recipe.titulo}</h3>
+                    <div className="m-0">
+                      <p><strong>Calorías:</strong> {recipe.calorias}</p>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            ))}
+          </div>
+          <Footer />
         </div>
       </div>
     </div>
