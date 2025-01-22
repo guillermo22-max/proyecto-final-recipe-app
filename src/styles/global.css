@@ -64,7 +64,23 @@
     height: 50px;
   }
 
-
+  .button-login {
+    height: 40px;
+    padding: 5px 20px;
+    background-color: #F4A261;
+    color: #FFFFFF;
+    border: 1px solid white;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .button-login:hover {
+    background-color: #e76f515d;
+    transform: translateY(-2px);
+  }
 
 
 
@@ -152,7 +168,7 @@ h1 {
   transform: scale(1.1);
 }
 
-.start-button {
+.button-login {
   height: 40px;
   padding: 5px 20px;
   background-color: #E76F51;
@@ -165,7 +181,7 @@ h1 {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.start-button:hover {
+.button-login:hover {
   background-color: #D65A38;
   transform: translateY(-2px);
 }

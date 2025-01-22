@@ -8,10 +8,10 @@ import RandomIcon from '../components/RandomIcon.jsx';
 
 
 function Recipes() {
-  const [searchQuery, setSearchQuery] = useState(''); // Estado para el texto del buscador
-  const [aiRecipe, setAiRecipe] = useState(''); // Estado para la receta generada por IA
-  const [loading, setLoading] = useState(false); // Estado de carga
-  const [error, setError] = useState(''); // Estado de errores
+  const [searchQuery, setSearchQuery] = useState('');
+  const [aiRecipe, setAiRecipe] = useState('');
+  const [loading, setLoading] = useState(false); 
+  const [error, setError] = useState(''); 
   const [alert, setAlert] = useState({ show: false, type: '', message: '' });
 
   const showAlert = (type, message) => {

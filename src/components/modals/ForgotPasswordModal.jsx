@@ -24,11 +24,11 @@ function ForgotPasswordModal({ show, onClose }) {
     <div className="modal d-block bg-dark bg-opacity-50">
       <div className="modal-dialog">
         <div className="modal-content">
-          <div className="modal-header">
+          <div className="modal-header" style={{ backgroundColor: '#F4A261' }}>
             <h5>Recuperar Contraseña</h5>
             <button className="btn-close" onClick={onClose}></button>
           </div>
-          <div className="modal-body">
+          <div className="modal-body" style={{ backgroundImage: 'url("/Designer.jpg")' }}>
             {message && <p className="text-success">{message}</p>}
             {error && <p className="text-danger">{error}</p>}
             <input
@@ -39,8 +39,8 @@ function ForgotPasswordModal({ show, onClose }) {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="modal-footer">
-            <button className="btn btn-primary" onClick={handleSubmit}>Enviar</button>
+          <div className="modal-footer" style={{ backgroundColor: '#F4A261' }}>
+            <button className="button-login" onClick={handleSubmit}>Enviar</button>
           </div>
         </div>
       </div>

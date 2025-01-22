@@ -50,7 +50,7 @@ function LoginModal({ show, onClose, onRegisterClick }) {
       <div className="modal-dialog" style={{ borderRadius: '15px' }}>
         <div className="modal-content">
           <div className="modal-header" style={{ backgroundColor: '#F4A261' }}>
-            <h5 className="modal-title text-success">Iniciar Sesión</h5>
+            <h5 className="modal-title text-dark text-center">INICIAR SESIÓN</h5>
             <button className="btn-close" onClick={onClose}></button>
           </div>
           <div className="modal-body" style={{ backgroundImage: 'url("/Designer.jpg")' }}>
@@ -63,7 +63,7 @@ function LoginModal({ show, onClose, onRegisterClick }) {
               value={formData.email}
               onChange={handleChange}
             />
-            <div className="input-group mb-2">
+            <div className="input-group mb-4">
               <input
                 type={showPassword ? 'text' : 'password'}
                 name="password"
@@ -73,11 +73,13 @@ function LoginModal({ show, onClose, onRegisterClick }) {
                 onChange={handleChange}
               />
               <button
-                className="btn btn-outline-success"
+                className="btn"
+                style={{ backgroundColor: '#F4A261', borderColor: '#F4A261', color: 'white' }}
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
+                title="Mostrar/Ocultar"
               >
-                {showPassword ? 'Ocultar' : 'Mostrar'}
+                {showPassword ? <i class="bi bi-eye-slash-fill"></i> : <i class="bi bi-eye-fill"></i>}
               </button>
             </div>
             <p>
@@ -89,7 +91,9 @@ function LoginModal({ show, onClose, onRegisterClick }) {
             <p>¿Olvidaste tu contraseña? <a href="#" onClick={() => setShowForgotPassword(true)}>Recupérala aquí</a></p>
           </div>
           <div className="modal-footer" style={{ backgroundColor: '#F4A261' }}>
-            <button className="btn btn-success" onClick={handleSubmit}>
+            <button className="button-login"
+              onClick={handleSubmit}
+              >
               Iniciar Sesión
             </button>
           </div>

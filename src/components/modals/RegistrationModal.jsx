@@ -100,7 +100,7 @@ function RegistrationModal({ show, onClose }) {
         <div className="modal-content">
           {/* Encabezado */}
           <div className="modal-header" style={{ backgroundColor: '#F4A261' }}>
-            <h5 className="modal-title text-success">Registro</h5>
+            <h5 className="modal-title text-black">REGISTRO</h5>
             <button className="btn-close" onClick={onClose}></button>
           </div>
 
@@ -165,11 +165,12 @@ function RegistrationModal({ show, onClose }) {
 
               />
               <button
-                className="btn btn-outline-success"
+                className="btn"
+                style={{ backgroundColor: '#F4A261', borderColor: '#F4A261', color: 'white' }}
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? 'Ocultar' : 'Mostrar'}
+                {showPassword ? <i class="bi bi-eye-slash-fill"></i> : <i class="bi bi-eye-fill"></i>}
               </button>
             </div>
 
@@ -189,7 +190,7 @@ function RegistrationModal({ show, onClose }) {
 
           {/* Pie */}
           <div className="modal-footer" style={{ backgroundColor: '#F4A261' }}>
-            <button className="btn btn-success" onClick={handleSubmit}>
+            <button className="button-login" onClick={handleSubmit}>
               Registrar
             </button>
           </div>
