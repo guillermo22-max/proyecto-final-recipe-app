@@ -20,6 +20,7 @@ function Sidebar({ onSidebarClick }) {
     localStorage.removeItem('token');
     logout();
     navigate('/');
+    console.log('Logout ejecutado');
   };
 
   return (
@@ -44,11 +45,14 @@ function Sidebar({ onSidebarClick }) {
           <li className="nav-item" onClick={() => handleNavigation('/profile')}>
             <i className="bi bi-person me-3 fs-3 text-dark"></i>Perfil
           </li>
-          <li className="nav-item">
-            <i className="bi bi-box-arrow-right me-3 fs-3 text-danger" onClick={handleLogout}></i>Cerrar sesión
+          <li className="nav-item mt-4">
+            <div className="d-flex align-items-center" onClick={handleLogout} style={{ cursor: 'pointer' }}>
+              <i className="bi bi-box-arrow-right me-3 fs-3 text-danger"></i>
+              Cerrar sesión
+            </div>
           </li>
           <li className="nav-item mt-3">
-            <i class="bi bi-facebook fs-5 text-primary me-4"></i><i class="bi bi-instagram fs-5 text-danger me-4"></i> <i class="bi bi-threads-fill fs-5 text-dark me-4"></i><i class="bi bi-twitter-x fs-5 text-light me-4"></i>
+            <i className="bi bi-facebook fs-5 text-primary me-4"></i><i className="bi bi-instagram fs-5 text-danger me-4"></i> <i className="bi bi-threads-fill fs-5 text-dark me-4"></i><i className="bi bi-twitter-x fs-5 text-light me-4"></i>
           </li>
         </ul>
       </div>
