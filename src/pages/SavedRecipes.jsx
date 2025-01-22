@@ -36,7 +36,6 @@ const SavedRecipes = () => {
   };
 
 
-  // Función para cargar recetas guardadas
   const fetchSavedRecipes = async () => {
     try {
       setLoading(true);

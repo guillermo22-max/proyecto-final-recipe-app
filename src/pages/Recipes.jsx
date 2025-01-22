@@ -22,7 +22,7 @@ function Recipes() {
   const handleSearchAI = async () => {
     setLoading(true);
     setError('');
-    setAiRecipe(''); // Limpiar la receta anterior
+    setAiRecipe(''); // Limpiar la receta anterior cada vez que se da a buscar, solo se guarda con el boton en la bd
     setSearchQuery('');
 
     try {
@@ -112,9 +112,7 @@ function Recipes() {
               </div>
             </div>
           </div>
-          {/* Resultado de la receta */}
-
-          {/* Resultado de la receta o icono aleatorio */}
+  
           {loading ? (
             <div className="loading-container text-center">
               <RandomIcon />

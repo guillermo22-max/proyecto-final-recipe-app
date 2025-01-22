@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 const MealPlan = () => {
   const [recipes, setRecipes] = useState([]);
   const [mealPlan, setMealPlan] = useState({});
-  const [expandedColumns, setExpandedColumns] = useState({});  // Estado para controlar las columnas expandidas
+  const [expandedColumns, setExpandedColumns] = useState({});  // Este useState es para controlar las columnas expandidas
   const navigate = useNavigate();
 
   const daysOfWeek = ['Lunes ▼', 'Martes ▼', 'Miércoles ▼', 'Jueves ▼', 'Viernes ▼'];

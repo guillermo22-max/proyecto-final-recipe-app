@@ -1,5 +1,5 @@
 .meal-plan.content {
-  flex-grow: 1; /* El contenido ocupa el espacio restante */
+  flex-grow: 1; 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -61,14 +61,14 @@ footer {
 
 th, td {
   height: 100%;
-  vertical-align: middle; /* Asegura que el contenido dentro de la celda se alinee verticalmente */
+  vertical-align: middle; 
   font-size: 1.2rem;
 }
 
-/* Celdas de días de la semana */
+
 th {
-  background-color: #F4A261 !important; /* Color de fondo para los días */
-  color: #fff; /* Color del texto */
+  background-color: #F4A261 !important; 
+  color: #fff; 
   padding: 10px;
   font-size: 1.2rem;
   text-align: center;
@@ -76,7 +76,7 @@ th {
 }
 
 th:hover {
-  background-color: #e07b31 !important; /* Color cuando pasas el cursor */
+  background-color: #e07b31 !important; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -84,11 +84,10 @@ td.day-cell {
   background-color: #F4A261 !important;
 }
 
-/* Celdas para las comidas (Desayuno, Comida, Cena) */
 td.meal-cell {
   display: table-cell; 
-  background-color: #FFF8E7; /* Color de fondo de las celdas de comida */
-  color: #333; /* Color del texto */
+  background-color: #FFF8E7;
+  color: #333; 
   padding: 20px;
   text-align: center;
   vertical-align: middle;

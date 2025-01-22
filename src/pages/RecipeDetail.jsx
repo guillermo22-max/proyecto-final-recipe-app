@@ -134,6 +134,7 @@ const RecipeDetail = () => {
                     </div>
                 )}
             </div>
+            <Footer />
         </div>
     );
 };
