@@ -100,7 +100,7 @@ const RecipeDetail = () => {
                                 <button className="btn btn-primary"
                                     onClick={() => window.print()}
                                     title="Imprimir receta">
-                                    <i class="bi bi-printer-fill"></i>
+                                    <i className="bi bi-printer-fill"></i>
                                 </button>
                                 <a
                                     className="btn btn-secondary"
@@ -112,21 +112,21 @@ const RecipeDetail = () => {
                                     rel="noopener noreferrer"
                                     title="Enviar receta por email"
                                 >
-                                    <i class="bi bi-envelope-fill"></i>
+                                    <i className="bi bi-envelope-fill"></i>
                                 </a>
                                 <button
                                     onClick={() => handleDelete(recipe.id)}
                                     className="btn btn-danger"
                                     title="Eliminar receta"
                                 >
-                                    <i class="bi bi-trash3-fill"></i>
+                                    <i className="bi bi-trash3-fill"></i>
                                 </button>
                                 <button
                                     onClick={() => navigate(`/saved-recipes`)}
                                     className="btn btn-success"
                                     title="Volver a recetas guardadas"
                                 >
-                                    <i class="bi bi-arrow-return-left"></i>
+                                    <i className="bi bi-arrow-return-left"></i>
                                 </button>
                             </div>
 

@@ -168,7 +168,7 @@ function Recipes() {
                   <button className="btn btn-primary"
                     onClick={saveRecipe}
                     title="Guardar receta">
-                    <i class="bi bi-floppy-fill"></i></button>
+                    <i className="bi bi-floppy-fill"></i></button>
                 </div>
 
               </div>

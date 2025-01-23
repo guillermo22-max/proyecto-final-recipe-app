@@ -1,8 +1,106 @@
-.card {
+/* .card {
     height: 350px;
 }
 
 .card-img-top {
     height: 200px;
     object-fit: cover;
+} */
+
+.slick-dots{
+    margin-top: 10px;
 }
+.button-home {
+    height: 40px;
+    padding: 5px 20px;
+    background-color: #F4A261;
+    color: #FFFFFF;
+    border: 1px solid white;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  .button-home:hover {
+    background-color: #e76f51;
+    transform: translateY(-2px);
+  }
+
+.recipe-card-home {
+    position: relative;
+    width: 250px !important;
+    height: 250px !important; 
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 255, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .recipe-card-home:hover {
+    transform: scale(1.05);
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3), -5px -5px 20px rgba(255, 255, 255, 0.7);
+  }
+  
+  .recipe-content-home {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.164); 
+    color: #fff;
+    text-align: left;
+    transition: background 0.3s ease;
+    height: 100%;
+  }
+  
+  .recipe-card-home:hover .recipe-content-home {
+    background: rgba(0, 0, 0, 0.514);
+  }
+  
+  .recipe-content-home h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  
+  .recipe-content-home p {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+  
+  .recipe-content-home .btn {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .recipe-content-home .btn-success {
+    background-color: #F4A261;
+    border: none;
+    color: #fff;
+  }
+  
+  .recipe-content-home .btn-success:hover {
+    background-color: #f88a30;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .recipe-content-home .btn-danger {
+    background-color: #dc3545;
+    border: none;
+    color: #fff;
+  }
+  
+  .recipe-content-home .btn-danger:hover {
+    background-color: #a71d2a;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  
