@@ -79,7 +79,7 @@ const SavedRecipes = () => {
               </div>
             </div>
           )}
-          <h2 className="text-center my-4">Recetas Guardadas</h2>
+          <h1 className="text-center my-4">Recetas Guardadas</h1>
           {loading ? (
             <p>Cargando recetas...</p>
           ) : error ? (

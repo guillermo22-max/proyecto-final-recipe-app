@@ -81,7 +81,7 @@ function Recipes() {
               </div>
             </div>
           )}
-          <h2 className="mt-2 mb-4 text-center">¿Qué cocinamos hoy?</h2>
+          <h1 className="mt-2 mb-4 text-center">¿Qué cocinamos hoy?</h1>
           {/* Buscador */}
           <div>
             <div className="d-flex justify-content-end align-items-center mb-4">

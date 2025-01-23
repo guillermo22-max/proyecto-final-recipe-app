@@ -74,7 +74,7 @@ const MealPlan = () => {
     <div className="full-content">
       <Sidebar />
       <div className="meal-plan content">
-        <h2 className="text-center my-4">Plan Semanal de Comidas</h2>
+        <h1 className="text-center my-4">Plan Semanal de Comidas</h1>
         <table className="table">
           <thead>
             <tr>
