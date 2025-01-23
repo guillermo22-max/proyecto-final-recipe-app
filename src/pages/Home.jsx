@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/layout/Navbar';
 import SearchSection from '../components/recipes/SearchSection';
 import RecipeCards from '../components/recipes/RecipeCards';
@@ -6,28 +7,58 @@ import Footer from '../components/layout/Footer';
 import LoginModal from '../components/modals/LoginModal';
 import RegistrationModal from '../components/modals/RegistrationModal';
 import RandomIcon from '../components/RandomIcon';
+import UserContext from '../context/UserContext';
 
 function Home() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegistrationModal, setShowRegistrationModal] = useState(false);
-
+  const { user } = useContext(UserContext);
   const handleOpenLoginModal = () => setShowLoginModal(true);
   const handleCloseLoginModal = () => setShowLoginModal(false);
 
+  const navigate = useNavigate();
+
+  const [hasSearchedOnce, setHasSearchedOnce] = useState(false);
+
   const handleOpenRegistrationModal = () => {
-    setShowLoginModal(false); 
-    setShowRegistrationModal(true); 
+    setShowLoginModal(false);
+    setShowRegistrationModal(true);
   };
 
   const handleCloseRegistrationModal = () => setShowRegistrationModal(false);
 
+  const handleClick = () => {
+    if (!user) {
+
+      if (hasSearchedOnce) {
+        setShowLoginModal(true);  // Si ya se hizo una búsqueda, abrir el modal de login
+      } else {
+        // Si no se ha hecho una búsqueda, permitir la búsqueda y cambiar el estado
+        setHasSearchedOnce(true);
+        navigate('/recipes');
+      }
+    } else {
+      navigate('/recipes'); // Si el usuario está logueado, navegar directamente
+    }
+  };
   return (
     <div>
       <Navbar onRegisterClick={handleOpenLoginModal} />
       <div className="text-center my-4">
         <RandomIcon />
       </div>
-      <SearchSection onSearchClick={handleOpenLoginModal} />
+      <div className="text-center my-5">
+        <h1>Encuentra tu receta perfecta</h1>
+        <p>Busca recetas personalizadas con nuestra IA</p>
+        <div className="d-flex justify-content-center">
+          <input
+            type="text"
+            className="form-control w-50"
+            placeholder="Ingresa un ingrediente o plato"
+          />
+          <button className="btn btn-success ms-2" onClick={handleClick}>Buscar</button>
+        </div>
+      </div>
       <RecipeCards />
       <Footer />
 
@@ -35,7 +66,7 @@ function Home() {
       <LoginModal
         show={showLoginModal}
         onClose={handleCloseLoginModal}
-        onRegisterClick={handleOpenRegistrationModal} 
+        onRegisterClick={handleOpenRegistrationModal}
       />
 
       {/* Modal de Registro */}

@@ -43,7 +43,7 @@ function Navbar({ onRegisterClick }) {
             className="btn btn-success d-none d-lg-inline me-2"
             onClick={onRegisterClick}
           >
-            Empiece gratis
+            Registrate
           </button>
 
           {/* Opciones para el menú hamburguesa */}

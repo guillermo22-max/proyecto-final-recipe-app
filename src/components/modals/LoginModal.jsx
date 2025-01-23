@@ -79,7 +79,7 @@ function LoginModal({ show, onClose, onRegisterClick }) {
                 onClick={() => setShowPassword(!showPassword)}
                 title="Mostrar/Ocultar"
               >
-                {showPassword ? <i class="bi bi-eye-slash-fill"></i> : <i class="bi bi-eye-fill"></i>}
+                {showPassword ? <i className="bi bi-eye-slash-fill"></i> : <i className="bi bi-eye-fill"></i>}
               </button>
             </div>
             <p>
