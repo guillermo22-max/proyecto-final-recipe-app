@@ -114,6 +114,20 @@ const ShoppingList = () => {
     ingredient.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const handleAddRecipeIngredients = (recipeIngredients) => {
+    setSelectedIngredients((prev) => {
+      // Evitar duplicados
+      const newIngredients = recipeIngredients.filter((ingredient) =>
+        !prev.some((item) => item.name === ingredient)
+      );
+      return [
+        ...prev,
+        ...newIngredients.map((ingredient) => ({ name: ingredient, quantity: '' })),
+      ];
+    });
+    console.log(selectedIngredients)
+  };
+
   return (
     <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
       <div className="d-flex flex-grow-1">
@@ -197,7 +211,7 @@ const ShoppingList = () => {
           </div>
           <h4 className="text-center mb-4">Elige tu receta para guardar los ingredientes</h4>
           <div className="d-flex flex-row justify-content-evenly align-items-center gap-3 flex-wrap">
-            
+
             {recipes.map((recipe) => (
 
               <div key={recipe.id} className="recipe-card-meal-plan" style={{ backgroundImage: `url(${recipe.foto_url})`, width: '200px', height: '200px' }}>
@@ -206,6 +220,12 @@ const ShoppingList = () => {
                     <h3 className="text-center w-100">{recipe.titulo}</h3>
                     <div className="m-0">
                       <p><strong>Calorías:</strong> {recipe.calorias}</p>
+                      <button
+                        className="btn btn-primary mt-2"
+                        onClick={() => handleAddRecipeIngredients(recipe.ingredients)}
+                      >
+                        Agregar ingredientes
+                      </button>
                     </div>
 
                   </div>
@@ -214,7 +234,7 @@ const ShoppingList = () => {
 
             ))}
           </div>
-          <Footer />
+
         </div>
       </div>
     </div>

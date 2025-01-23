@@ -167,7 +167,7 @@ const SavedRecipes = () => {
           )}
         </div>
         <div>
-          <Footer />
+
         </div>
 
     </div>

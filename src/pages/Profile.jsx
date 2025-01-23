@@ -189,7 +189,7 @@ function Profile() {
                 Guardar
               </button>
             ) : (
-              <button className="btn btn-outline-primary me-2" onClick={handleEdit}>
+              <button className="btn btn-success me-2" onClick={handleEdit}>
                 Editar Perfil
               </button>
             )}
@@ -200,7 +200,6 @@ function Profile() {
         </div>
       </div>
 
-      <Footer />
     </div>
   );
 }

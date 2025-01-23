@@ -11,13 +11,12 @@ function Home() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegistrationModal, setShowRegistrationModal] = useState(false);
 
-  // Funciones para abrir/cerrar modales
   const handleOpenLoginModal = () => setShowLoginModal(true);
   const handleCloseLoginModal = () => setShowLoginModal(false);
 
   const handleOpenRegistrationModal = () => {
-    setShowLoginModal(false); // Cierra el modal de login
-    setShowRegistrationModal(true); // Abre el modal de registro
+    setShowLoginModal(false); 
+    setShowRegistrationModal(true); 
   };
 
   const handleCloseRegistrationModal = () => setShowRegistrationModal(false);
@@ -36,7 +35,7 @@ function Home() {
       <LoginModal
         show={showLoginModal}
         onClose={handleCloseLoginModal}
-        onRegisterClick={handleOpenRegistrationModal} // Llama al modal de registro
+        onRegisterClick={handleOpenRegistrationModal} 
       />
 
       {/* Modal de Registro */}

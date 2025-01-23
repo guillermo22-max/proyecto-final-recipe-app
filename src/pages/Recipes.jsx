@@ -177,7 +177,7 @@ function Recipes() {
         </div>
       </div>
       <div>
-        <Footer />
+
       </div>
     </div>
 

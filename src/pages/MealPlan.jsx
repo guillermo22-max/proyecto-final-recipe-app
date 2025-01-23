@@ -179,7 +179,7 @@ const MealPlan = () => {
 
             ))}
           </div>
-          <Footer />
+
         </div>
       </div>
       
