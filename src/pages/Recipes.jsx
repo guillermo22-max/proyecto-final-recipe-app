@@ -138,7 +138,7 @@ function Recipes() {
                     disabled={loading || !searchQuery.trim()}
                     title="Generar receta"
                   >
-                    {loading ? '🤔👩‍🍳' : '👩‍🍳'}
+                    {loading ? <i class="bi bi-send-fill"></i> : <i class="bi bi-send-check-fill"></i>}
                   </button>
                   {error && <p className="text-danger mt-2">{error}</p>}
                 </div>
