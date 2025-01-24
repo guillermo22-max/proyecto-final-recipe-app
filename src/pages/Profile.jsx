@@ -91,6 +91,7 @@ function Profile() {
             className="profile-background"
             style={{
               backgroundImage: `url(${userData.fondo_url || '/emplatado-1-1030x577.webp'})`,
+              widht: "100%",
               height: "50vh",
               backgroundSize: "cover",
               backgroundPosition: "center",
@@ -107,19 +108,20 @@ function Profile() {
                 bottom: "-50px",
                 right: "20px",
                 borderRadius: "50%",
-                width: "200px",
-                height: "200px",
+                width: "15vw",
+                height: "15vw",
+                minWidth: "100px",
+                minHeight: "100px",
                 border: "4px solid white",
                 boxShadow: "0 4px 8px rgba(246, 120, 2, 0.5)"
               }}
             />
           </div>
-              
 
           {/* Inputs para editar imágenes */}
           {isEditing && (
             <div className="edit-images mx-auto text-center mt-4" style={{ maxWidth: "600px" }}>
-              
+
               <label htmlFor="fondo_url" className="form-label text-start">
                 Foto de portada
               </label>
@@ -173,12 +175,21 @@ function Profile() {
 
           <div className="profile-content px-4 py-3 text-center">
             {/* Información del usuario */}
-            <div style={{ textAlign: "left", marginRight: "20px" }}>
-              <h3>
-                {userData.nombre} {userData.apellidos}
-              </h3>
-              <p className="text-muted">@{userData.nombre_usuario}</p>
-              <p className="text-muted"> <samp><i className="fa-regular fa-envelope me-2"></i></samp>{userData.email}</p>
+            <div style={{ textAlign: "left", marginRight: "20px", maxWidth: "200px" }}>
+              <div className="d-flex align-items-center justify-content-start">
+                <h3><i className="bi bi-person-fill me-3"></i></h3>
+                <h3>
+                  {userData.nombre} {userData.apellidos}
+                </h3>
+              </div>
+              <div className="d-flex align-items-center justify-content-start">
+                <h3><i className="bi bi-at me-3"></i></h3>
+                <p className="text-muted">{userData.nombre_usuario}</p>
+              </div>
+              <div className="d-flex align-items-center justify-content-start">
+                <h3><i className="fa-regular fa-envelope me-3"></i></h3>
+                <p className="text-muted"> {userData.email}</p>
+              </div>
             </div>
           </div>
 
