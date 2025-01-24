@@ -27,9 +27,14 @@ function Sidebar({ onSidebarClick }) {
   return (
     <div className="sidebar-container">
       <div className="sidebar d-flex flex-column vh-100 p-2 shadow-sm">
-        <h4 className="mb-4 text-center fw-bold">
-          <img src="/logo-solo.png" alt="Logo" className="navbar-image w-75 h-100" />
-        </h4>
+        <div className="sidebar-img-container"
+        onClick={() => handleNavigation('/')} 
+        style={{cursor: "pointer"}}
+        title="Home">
+          <h4 className="mb-4 text-center fw-bold">
+            <img src="/logo-solo.png" alt="Logo" className="sidebar-image w-75 h-100 ms-1" />
+          </h4>
+        </div>
         <ul className="nav flex-column">
           <li className="nav-item" onClick={() => handleNavigation('/recipes')}>
             <i className="bi bi-book me-3 fs-3 text-dark"></i>Generar receta

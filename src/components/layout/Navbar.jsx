@@ -10,7 +10,7 @@ function Navbar({ onRegisterClick }) {
       style={{ backgroundColor: '#F4A261' }}
     >
       {/* Logo */}
-      <a className="navbar-brand" href="#">
+      <a className="navbar-brand" href="#" style={{pointer: "cursor"}}>
         <img src="/logo-horizontal.png" alt="Logo" className="navbar-image" />
       </a>
 

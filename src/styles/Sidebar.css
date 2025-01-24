@@ -86,3 +86,18 @@
   overflow: visible;
   text-overflow: clip;
 }
+
+.sidebar-image {
+  height: 100px;
+  width: auto;
+  
+}
+
+.sidebar-img-container{
+  transition: transform 0.3s ease;
+  margin: 0;
+  padding: 0;
+}
+.sidebar-img-container:hover {
+  transform: scale(1.02);
+}
