@@ -120,7 +120,7 @@ function Recipes() {
             <div className="d-flex justify-content-start align-items-center mb-4">
               <img
                 className="img-chef mx-4"
-                src="https://cdn.pixabay.com/photo/2024/08/20/13/12/ai-generated-8983262_960_720.jpg"
+                src="https://images.pexels.com/photos/3814446/pexels-photo-3814446.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                 alt="ai-chef"
               />
               <div className="mb-4 own-conversation">
@@ -138,7 +138,7 @@ function Recipes() {
                     disabled={loading || !searchQuery.trim()}
                     title="Generar receta"
                   >
-                    {loading ? <i class="bi bi-send-fill"></i> : <i class="bi bi-send-check-fill"></i>}
+                    {loading ? <i class="bi bi-send-check-fill"></i> : <i class="bi bi-send-fill"></i>}
                   </button>
                   {error && <p className="text-danger mt-2">{error}</p>}
                 </div>
