@@ -166,12 +166,6 @@ const MealPlan = () => {
                         title="Ver receta completa"
                       ><i className="bi bi-eye-fill"></i>
                       </button>
-                      <button
-                        onClick={() => handleDelete(recipe.id)}
-                        className="btn btn-danger"
-                        title="Eliminar receta"
-                      ><i className="bi bi-trash3-fill"></i>
-                      </button>
                     </div>
                   </div>
                 </div>
