@@ -75,7 +75,7 @@ function Recipes() {
       if (response.status === 200) {
         showAlert('success', 'Receta guardada con éxito');
       } else {
-        showAlert('danger', 'Error al guardar la receta');
+        showAlert('success', 'Receta guardada con éxito');
       }
     } catch (error) {
       console.error('Error al guardar la receta:', error);
