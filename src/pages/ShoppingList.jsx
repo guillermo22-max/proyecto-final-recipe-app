@@ -100,10 +100,19 @@ const ShoppingList = () => {
 
   const handlePrint = () => {
     const list = selectedIngredients.map((item) =>
-      `${item.name}: ${item.quantity || 'sin cantidad especificada'}`
+      `${item.name} ${item.quantity}`
     ).join('\n');
-    console.log('Lista de Ingredientes:\n' + list);
-    window.print();
+
+    const printWindow = window.open('', '', 'height=600,width=800');
+    printWindow.document.write('<html><head><title>Lista de Ingredientes</title></head><body>');
+    printWindow.document.write('<h1>Lista de Ingredientes</h1>');
+    printWindow.document.write('<pre>' + list + '</pre>');
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+
+    setTimeout(() => {
+      printWindow.print();
+    }, 1000);
   };
 
   const handleRemoveIngredient = (index) => {
@@ -115,6 +124,17 @@ const ShoppingList = () => {
   );
 
   const handleAddRecipeIngredients = (recipeIngredients) => {
+    console.log(recipeIngredients);
+    if (typeof recipeIngredients === 'string') {
+
+      recipeIngredients = recipeIngredients.split('\n').map((ing) => ing.trim());
+    }
+
+    if (!Array.isArray(recipeIngredients)) {
+      console.error('Los ingredientes de la receta no son válidos:', recipeIngredients);
+      return;
+    }
+    console.log(recipeIngredients);
     setSelectedIngredients((prev) => {
       // Evitar duplicados
       const newIngredients = recipeIngredients.filter((ingredient) =>
@@ -122,10 +142,11 @@ const ShoppingList = () => {
       );
       return [
         ...prev,
-        ...newIngredients.map((ingredient) => ({ name: ingredient, quantity: '' })),
+        ...newIngredients.map((ingredient) => ({ name: ingredient, quantity: '', fromRecipe: true })),
       ];
+
     });
-    console.log(selectedIngredients)
+
   };
 
   return (
@@ -135,7 +156,7 @@ const ShoppingList = () => {
         <div className="content w-100 d-flex flex-column">
           <div className="flex-grow-1">
             <h1 className="text-center my-4">Lista de la Compra</h1>
-            <div className="d-flex justify-content-between content-shopping-list">
+            <div className="d-flex justify-content-between content-shopping-list ">
 
               <div className="shopping-list w-50 p-4 border">
                 <h3 className="text-center">Lista de ingredientes</h3>
@@ -146,32 +167,42 @@ const ShoppingList = () => {
                     {selectedIngredients.map((item, index) => (
                       <li key={index} className="mb-2">
                         <strong>{item.name}</strong>
-                        {editIndex === index ? (
-                          <input
-                            type="text"
-                            value={editQuantity}
-                            onChange={handleQuantityChange}
-                            onKeyDown={(e) => handleKeyPress(e, index)}
-                            className="ms-2"
-                          />
+                        {item.fromRecipe ? (
+
+                          <i
+                            className="bi bi-trash-fill text-danger cursor-pointer"
+                            onClick={() => handleRemoveIngredient(index)}
+                          ></i>
                         ) : (
-                          <div className="d-flex align-items-center ms-2">
-                            <span
-                              onClick={() => handleEditClick(index)}
-                              className="me-2 cursor-pointer"
-                              style={{ color: 'inherit' }}
-                            >
-                              {item.quantity === '' ? 'Añadir cantidad' : item.quantity}
-                            </span>
-                            <i
-                              className="bi bi-trash-fill text-danger cursor-pointer"
-                              onClick={() => handleRemoveIngredient(index)}
-                            ></i>
-                          </div>
+
+                          editIndex === index ? (
+                            <input
+                              type="text"
+                              value={editQuantity}
+                              onChange={handleQuantityChange}
+                              onKeyDown={(e) => handleKeyPress(e, index)}
+                              className="ms-2"
+                            />
+                          ) : (
+                            <div className="d-flex align-items-center ms-2">
+                              <span
+                                onClick={() => handleEditClick(index)}
+                                className="me-2 cursor-pointer"
+                                style={{ color: 'inherit' }}
+                              >
+                                {item.quantity === '' ? 'Añadir cantidad' : item.quantity}
+                              </span>
+                              <i
+                                className="bi bi-trash-fill text-danger cursor-pointer"
+                                onClick={() => handleRemoveIngredient(index)}
+                              ></i>
+                            </div>
+                          )
                         )}
                       </li>
                     ))}
                   </ul>
+
                 )}
                 <button className="btn me-2 mt-2"
                   onClick={handlePrint}
@@ -220,12 +251,15 @@ const ShoppingList = () => {
                     <h3 className="text-center w-100">{recipe.titulo}</h3>
                     <div className="m-0">
                       <p><strong>Calorías:</strong> {recipe.calorias}</p>
-                      <button
-                        className="btn btn-primary mt-2"
-                        onClick={() => handleAddRecipeIngredients(recipe.ingredients)}
-                      >
-                        Agregar ingredientes
-                      </button>
+                      <div className="d-flex justify-content-end">
+                        <button
+                          className="btn btn-success mt-2"
+                          title="Añadir ingredientes a la lista"
+                          onClick={() => handleAddRecipeIngredients(recipe.ingredients)}
+                        >
+                          <i className="bi bi-file-earmark-plus-fill"></i>
+                        </button>
+                      </div>
                     </div>
 
                   </div>
