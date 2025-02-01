@@ -31,14 +31,14 @@ function Home() {
     if (!user) {
 
       if (hasSearchedOnce) {
-        setShowLoginModal(true);  // Si ya se hizo una búsqueda, abrir el modal de login
+        setShowLoginModal(true);
       } else {
-        // Si no se ha hecho una búsqueda, permitir la búsqueda y cambiar el estado
+        
         setHasSearchedOnce(true);
         navigate('/recipes');
       }
     } else {
-      navigate('/recipes'); // Si el usuario está logueado, navegar directamente
+      navigate('/recipes'); 
     }
   };
   return (
