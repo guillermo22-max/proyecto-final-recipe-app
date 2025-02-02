@@ -1,24 +1,25 @@
 import { useState, useEffect, useContext } from 'react';
 import Sidebar from '../components/layout/Sidebar';
-import { generateRecipeWithAI } from '../services/aiService';
+import { generateRecipeWithAI, chatWithAI } from '../services/aiService';
 import '../styles/recipes.css';
 import Footer from '../components/layout/Footer';
 import RandomIcon from '../components/RandomIcon.jsx';
 import api from '../services/api';
-import UserContext from '../context/UserContext'; 
-import LoginModal from '../components/modals/LoginModal'; 
-import RegistrationModal from '../components/modals/RegistrationModal'; 
+import UserContext from '../context/UserContext';
+import LoginModal from '../components/modals/LoginModal';
+import RegistrationModal from '../components/modals/RegistrationModal';
 
 function Recipes() {
-  const { user } = useContext(UserContext); 
+  const { user } = useContext(UserContext);
   const [searchQuery, setSearchQuery] = useState('');
   const [aiRecipe, setAiRecipe] = useState('');
+  const [chatHistory, setChatHistory] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [alert, setAlert] = useState({ show: false, type: '', message: '' });
-  const [showLoginModal, setShowLoginModal] = useState(false); 
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegistrationModal, setShowRegistrationModal] = useState(false);
-  const [hasSearchedOnce, setHasSearchedOnce] = useState(false); 
+  const [hasSearchedOnce, setHasSearchedOnce] = useState(false);
 
   const showAlert = (type, message) => {
     setAlert({ show: true, type, message });
@@ -84,8 +85,31 @@ function Recipes() {
   };
 
   const handleRegisterClick = () => {
-    setShowLoginModal(false); 
+    setShowLoginModal(false);
     setShowRegistrationModal(true);
+  };
+
+  const handleChatWithAI = async () => {
+    console.log("Valor de searchQuery antes de enviar:", searchQuery);
+    console.log("Chat history antes de enviar:", chatHistory);
+    if (!searchQuery.trim()) return;
+
+    setLoading(true);
+    setError('');
+
+    try {
+      const newMessage = { role: 'user', content: searchQuery };
+      const updatedChatHistory = [...chatHistory, newMessage];
+      const response = await chatWithAI(updatedChatHistory, searchQuery.trim());
+
+      const aiMessage = { role: 'assistant', content: response };
+      setChatHistory([...updatedChatHistory, aiMessage]);
+    } catch (err) {
+      setError('Error al obtener respuesta de la IA');
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -117,6 +141,28 @@ function Recipes() {
                 alt="ai-chef"
               />
             </div>
+            <div className="chat-history px-3 pb-3">
+              {chatHistory.map((msg, index) => (
+                <div
+                  key={index}
+                  className={`d-flex align-items-center mb-2 ${msg.role === 'user' ? 'justify-content-start' : 'justify-content-end'}`}
+                >
+                  {msg.role === 'user' && (
+                    <img className="img-chef me-4" src="https://images.pexels.com/photos/3814446/pexels-photo-3814446.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+                  )}
+
+                  <p className={`conversation my-4 ${msg.role === 'user' ? 'text-primary' : 'me-3 my-auto text-dark'}`}>
+                    <strong>{msg.role === 'user' ? 'Tú' : 'Asistente de cocina'}</strong>
+                    <br />
+                    {msg.content}
+                  </p>
+
+                  {msg.role !== 'user' && (
+                    <img className="img-chef ms-4" src="https://cdn.pixabay.com/photo/2024/08/20/13/12/ai-generated-8983262_960_720.jpg" />
+                  )}
+                </div>
+              ))}
+            </div>
             <div className="d-flex justify-content-start align-items-center mb-4">
               <img
                 className="img-chef mx-4"
@@ -138,7 +184,15 @@ function Recipes() {
                     disabled={loading || !searchQuery.trim()}
                     title="Generar receta"
                   >
-                    {loading ? <i class="bi bi-send-check-fill"></i> : <i class="bi bi-send-fill"></i>}
+                    {loading ? <div className="spinner-border" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                      <span role="status">👩‍🍳</span>
+                    </div> : '👩‍🍳'}
+                  </button>
+                  <button className="btn btn-secondary ms-2"
+                    onClick={handleChatWithAI} disabled={loading || !searchQuery.trim()}
+                    title="Preguntar a la IA">
+                    {loading ? <span>🤖 Cargando...</span> : '🤖 Preguntar'}
                   </button>
                   {error && <p className="text-danger mt-2">{error}</p>}
                 </div>
