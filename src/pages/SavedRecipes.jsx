@@ -27,6 +27,7 @@ const SavedRecipes = () => {
   const [savedRecipes, setSavedRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedRecipe, setSelectedRecipe] = useState(null);
   const navigate = useNavigate();
   const [alert, setAlert] = useState({ show: false, type: '', message: '' });
 
@@ -56,6 +57,7 @@ const SavedRecipes = () => {
       setSavedRecipes((prevRecipes) =>
         prevRecipes.filter((recipe) => recipe.id !== id)
       );
+      setSelectedRecipe(null);
       showAlert('success', 'Receta eliminada con éxito');
     } catch (err) {
       console.error('Error al eliminar la receta:', err);
@@ -69,106 +71,199 @@ const SavedRecipes = () => {
   return (
     <div className="saved-recipes-container">
       <Sidebar />
- 
-        <div className="saved-recipes content">
-          {alert.show && (
-            <div className="alert-overlay"
-              onClick={() => setAlert({ show: false, type: '', message: '' })}>
-              <div className={`alert alert-${alert.type}`} role="alert">
-                {alert.message}
-              </div>
+
+      <div className="saved-recipes content">
+        {alert.show && (
+          <div className="alert-overlay"
+            onClick={() => setAlert({ show: false, type: '', message: '' })}>
+            <div className={`alert alert-${alert.type}`} role="alert">
+              {alert.message}
             </div>
-          )}
-          <h1 className="text-center my-4">Recetas Guardadas</h1>
-          {loading ? (
-            <p>Cargando recetas...</p>
-          ) : error ? (
-            <p className="text-danger">{error}</p>
-          ) : savedRecipes.length === 0 ? (
-            <p>No tienes recetas guardadas aún.</p>
-          ) : (
-            <Swiper
-              scrollbar={{
-                hide: true,
-              }}
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-              }}
-              loop={false}
-              centeredSlides={true}
-              spaceBetween={30}
-              effect={'coverflow'}
-              grabCursor={true}
-              slidesPerView={'1'}
-              slidesPerGroup={'1'}
-              coverflowEffect={{
-                rotate: 30,
-                stretch: 0,
-                depth: 100,
-                modifier: 1,
-                slideShadows: false,
-              }}
-              modules={[EffectCoverflow, Autoplay, Scrollbar]}
-              className="mySwiper"
-              breakpoints={{
-                // Pantallas pequeñas
-                480: {
-                  slidesPerView: 2,
-                  slidesPerGroup: 1,
-                  spaceBetween: 20,
-                },
-                // Tablets
-                768: {
-                  slidesPerView: 3,
-                  slidesPerGroup: 1,
-                  spaceBetween: 30,
-                },
-                // Pantallas grandes
-                1024: {
-                  slidesPerView: 4,
-                  slidesPerGroup: 1,
-                  spaceBetween: 20,
-                },
-              }}
-            >
-              {savedRecipes.map((recipe) => (
-                <SwiperSlide key={recipe.id}>
-                  <div
-                    className="recipe-card-saved"
-                    style={{ backgroundImage: `url(${recipe.foto_url})` }}
-                  >
-                    <div className="recipe-content-saved h-100 d-flex flex-column justify-content-between">
-                      <h3 className="text-center w-100">{recipe.titulo}</h3>
-                      <p>{recipe.descripcion}</p>
-                      <p><strong>Tiempo:</strong> {recipe.tiempo_elaboracion}</p>
-                      <p><strong>Calorías:</strong> {recipe.calorias}</p>
-                      <div className="d-flex justify-content-end align-items-center w-100">
-                        <button
-                          onClick={() => navigate(`/recipe/${recipe.id}`)}
-                          className="btn btn-success"
-                          title="Ver receta completa"
-                        >
-                          <i className="bi bi-eye-fill"></i>
-                        </button>
-                        <button
-                          onClick={() => handleDelete(recipe.id)}
-                          className="btn btn-danger"
-                          title="Eliminar receta"
-                        >
-                          <i className="bi bi-trash3-fill"></i>
-                        </button>
-                      </div>
+          </div>
+        )}
+        <h1 className="text-center my-4">Recetas Guardadas</h1>
+        {loading ? (
+          <p>Cargando recetas...</p>
+        ) : error ? (
+          <p className="text-danger">{error}</p>
+        ) : savedRecipes.length === 0 ? (
+          <p>No tienes recetas guardadas aún.</p>
+        ) : (
+          <Swiper
+            scrollbar={{
+              hide: true,
+            }}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
+            loop={false}
+            centeredSlides={true}
+            spaceBetween={30}
+            effect={'coverflow'}
+            grabCursor={true}
+            slidesPerView={'1'}
+            slidesPerGroup={'1'}
+            coverflowEffect={{
+              rotate: 30,
+              stretch: 0,
+              depth: 100,
+              modifier: 1,
+              slideShadows: false,
+            }}
+            modules={[EffectCoverflow, Autoplay, Scrollbar]}
+            className="mySwiper"
+            breakpoints={{
+              // Pantallas pequeñas
+              480: {
+                slidesPerView: 2,
+                slidesPerGroup: 1,
+                spaceBetween: 20,
+              },
+              // Tablets
+              768: {
+                slidesPerView: 3,
+                slidesPerGroup: 1,
+                spaceBetween: 30,
+              },
+              // Pantallas grandes
+              1024: {
+                slidesPerView: 4,
+                slidesPerGroup: 1,
+                spaceBetween: 20,
+              },
+            }}
+          >
+            {savedRecipes.map((recipe) => (
+              <SwiperSlide key={recipe.id}>
+                <div
+                  className="recipe-card-saved"
+                  style={{ backgroundImage: `url(${recipe.foto_url})` }}
+                >
+                  <div className="recipe-content-saved h-100 d-flex flex-column justify-content-between">
+                    <h3 className="text-center w-100">{recipe.titulo}</h3>
+                    <p>{recipe.descripcion}</p>
+                    <p><strong>Tiempo:</strong> {recipe.tiempo_elaboracion}</p>
+                    <p><strong>Calorías:</strong> {recipe.calorias}</p>
+                    <div className="d-flex justify-content-end align-items-center w-100">
+                      <button
+                        onClick={() => setSelectedRecipe(recipe)}
+                        // {() => navigate(`/recipe/${recipe.id}`)}
+                        className="btn btn-success"
+                        title="Ver receta completa"
+                      >
+                        <i className="bi bi-eye-fill"></i>
+                      </button>
+                      <button
+                        onClick={() => handleDelete(recipe.id)}
+                        className="btn btn-danger"
+                        title="Eliminar receta"
+                      >
+                        <i className="bi bi-trash3-fill"></i>
+                      </button>
                     </div>
                   </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          )}
-        </div>
-        <div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
+      </div>
 
+      {selectedRecipe && (
+        <div className="recipe-detail content mt-5">
+          <div>
+            <div className="recipe-card-horizontal">
+              <div className="recipe-title">
+                <h1 className="recipe-title fs-1 text-center">
+                  {selectedRecipe.titulo}
+                </h1>
+              </div>
+              <div className="recipe-header">
+                <div className="d-flex flex-column w-50">
+                  <img
+                    className="recipe-image mb-4"
+                    src={selectedRecipe.foto_url}
+                    alt="foto-receta"
+                  />
+                </div>
+                <div className="recipe-info w-50 my-auto">
+                  <p>{selectedRecipe.descripcion}</p>
+                </div>
+              </div>
+              <div className="recipe-header flex-wrap">
+                <div>
+                  <p>
+                    <strong>Valores nutricionales:</strong>
+                  </p>
+                  <ul>
+                    {selectedRecipe.nutrientes.split('\n').map((e, index) => (
+                      <li key={index}>{e}</li>
+                    ))}
+                  </ul>
+                </div>
+                <p>
+                  <strong>Calorías:</strong>{' '}
+                  {selectedRecipe.calorias || 'No especificadas'}
+                </p>
+                <p>
+                  <strong>Tiempo de preparación:</strong>{' '}
+                  {selectedRecipe.tiempo_elaboracion || 'No especificado'}
+                </p>
+              </div>
+              <div className="recipe-content">
+                <div className="recipe-section">
+                  <p>
+                    <strong>Ingredientes:</strong>
+                  </p>
+                  <ul>
+                    {selectedRecipe.ingredients.split('\n').map((ingredient, index) => (
+                      <li key={index}>{ingredient}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="recipe-section">
+                  <p>
+                    <strong>Pasos:</strong>
+                  </p>
+                  <ol>
+                    {selectedRecipe.pasos.split('\n').map((step, index) => (
+                      <li key={index}>{step}</li>
+                    ))}
+                  </ol>
+                </div>
+              </div>
+              <div className="recipe-actions">
+                <button className="btn btn-primary"
+                  onClick={() => window.print()}
+                  title="Imprimir receta">
+                  <i className="bi bi-printer-fill"></i>
+                </button>
+                <a
+                  className="btn btn-secondary"
+                  href={`mailto:?subject=Receta: ${selectedRecipe.titulo}&body=Hola,%0D%0A%0D%0ATe comparto esta receta que creé con la aplicación mamma mIA:%0D%0A%0D%0ATítulo: ${selectedRecipe.titulo}%0D%0ADescripción: ${selectedRecipe.descripcion}%0D%0AIngredientes:%0D%0A${selectedRecipe.ingredients.replace(
+                    /\n/g,
+                    '%0D%0A'
+                  )}%0D%0APasos:%0D%0A${selectedRecipe.pasos.replace(/\n/g, '%0D%0A')}%0D%0ADisfruta la receta!`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Enviar receta por email"
+                >
+                  <i className="bi bi-envelope-fill"></i>
+                </a>
+                <button
+                  onClick={() => handleDelete(selectedRecipe.id)}
+                  className="btn btn-danger"
+                  title="Eliminar receta"
+                >
+                  <i className="bi bi-trash3-fill"></i>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
+      )}
 
     </div>
   );
