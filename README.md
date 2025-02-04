@@ -9,3 +9,4 @@ Currently, two official plugins are available:
 
 El despliegue está realizado en 2 repositorios. Este mismo pertenece al frontend, mientras que la URL del back esta en el siguiente enlace.
 URL DEL BACKEND: https://flask-rest-hello-2pl3.onrender.com/
+REPOSITORIO DEL BACKEND: https://github.com/rubpercas/proyecto-final-backend
