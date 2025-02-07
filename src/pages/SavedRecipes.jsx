@@ -73,19 +73,7 @@ const SavedRecipes = () => {
   return (
     <div className="saved-recipes-container">
       <Sidebar />
-      <div className="d-flex flex justify-content-end align-items-center mt-2 pe-2 w-100">
-        <label className="me-2"><i className="bi bi-search-heart fs-2"></i>
-        </label>
-        <input
-          type="text"
-          className="form-control w-25"
-          placeholder="Busca tu receta guardada"
-          value={searchInput}
-          onChange={(e) => {
-            setSearchInput(e.target.value);
-          }}
-        />
-      </div>
+
       <div className="saved-recipes content">
         {alert.show && (
           <div className="alert-overlay"
@@ -95,7 +83,22 @@ const SavedRecipes = () => {
             </div>
           </div>
         )}
-        <h1 className="text-center my-4">Recetas Guardadas</h1>
+        <div className="d-flex justify-content-between">
+          <h1 className="text-start my-4 w-50">Recetas Guardadas</h1>
+          <div className="d-flex flex justify-content-end align-items-center w-50">
+            <label className="me-2"><i className="bi bi-search-heart fs-2"></i>
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Busca tu receta guardada"
+              value={searchInput}
+              onChange={(e) => {
+                setSearchInput(e.target.value);
+              }}
+            />
+          </div>
+        </div>
         {loading ? (
           <p>Cargando recetas...</p>
         ) : error ? (
@@ -151,40 +154,40 @@ const SavedRecipes = () => {
 
           >
             {savedRecipes.filter((recipe) =>
-            recipe.titulo.toLowerCase().includes(searchInput.toLowerCase())
-          )
-            .map((recipe) => (
-              <SwiperSlide key={recipe.id}>
-                <div
-                  className="recipe-card-saved"
-                  style={{ backgroundImage: `url(${recipe.foto_url})` }}
-                >
-                  <div className="recipe-content-saved h-100 d-flex flex-column justify-content-between">
-                    <h3 className="text-center w-100">{recipe.titulo}</h3>
-                    <p>{recipe.descripcion}</p>
-                    <p><strong>Tiempo:</strong> {recipe.tiempo_elaboracion}</p>
-                    <p><strong>Calorías:</strong> {recipe.calorias}</p>
-                    <div className="d-flex justify-content-end align-items-center w-100">
-                      <button
-                        onClick={() => setSelectedRecipe(recipe)}
-                        // {() => navigate(`/recipe/${recipe.id}`)}
-                        className="btn btn-success"
-                        title="Ver receta completa"
-                      >
-                        <i className="bi bi-eye-fill"></i>
-                      </button>
-                      <button
-                        onClick={() => handleDelete(recipe.id)}
-                        className="btn btn-danger"
-                        title="Eliminar receta"
-                      >
-                        <i className="bi bi-trash3-fill"></i>
-                      </button>
+              recipe.titulo.toLowerCase().includes(searchInput.toLowerCase())
+            )
+              .map((recipe) => (
+                <SwiperSlide key={recipe.id}>
+                  <div
+                    className="recipe-card-saved"
+                    style={{ backgroundImage: `url(${recipe.foto_url})` }}
+                  >
+                    <div className="recipe-content-saved h-100 d-flex flex-column justify-content-between">
+                      <h3 className="text-center w-100">{recipe.titulo}</h3>
+                      <p>{recipe.descripcion}</p>
+                      <p><strong>Tiempo:</strong> {recipe.tiempo_elaboracion}</p>
+                      <p><strong>Calorías:</strong> {recipe.calorias}</p>
+                      <div className="d-flex justify-content-end align-items-center w-100">
+                        <button
+                          onClick={() => setSelectedRecipe(recipe)}
+                          // {() => navigate(`/recipe/${recipe.id}`)}
+                          className="btn btn-success"
+                          title="Ver receta completa"
+                        >
+                          <i className="bi bi-eye-fill"></i>
+                        </button>
+                        <button
+                          onClick={() => handleDelete(recipe.id)}
+                          className="btn btn-danger"
+                          title="Eliminar receta"
+                        >
+                          <i className="bi bi-trash3-fill"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
+                </SwiperSlide>
+              ))}
           </Swiper>
         )}
       </div>
