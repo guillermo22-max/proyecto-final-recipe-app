@@ -90,8 +90,17 @@ function Recipes() {
   };
 
   const handleChatWithAI = async () => {
-    console.log("Valor de searchQuery antes de enviar:", searchQuery);
-    console.log("Chat history antes de enviar:", chatHistory);
+    if (!user) {
+      if (!hasSearchedOnce) {
+        setHasSearchedOnce(true);
+      } else {
+        showAlert('warning', 'Inicia sesión o registrate para continuar utilizando la app');
+        setTimeout(() => {
+          setShowLoginModal(true);
+        },1500);       
+        return;
+      }
+    }
     if (!searchQuery.trim()) return;
 
     setLoading(true);
@@ -185,14 +194,17 @@ function Recipes() {
                     title="Generar receta"
                   >
                     {loading ? <div className="spinner-border" role="status">
-                      <span className="visually-hidden">Loading...</span>
+                      <span className="visually-hidden">Cargando...</span>
                       <span role="status">👩‍🍳</span>
                     </div> : '👩‍🍳'}
                   </button>
                   <button className="btn btn-secondary ms-2"
                     onClick={handleChatWithAI} disabled={loading || !searchQuery.trim()}
                     title="Preguntar a la IA">
-                    {loading ? <span>🤖 Cargando...</span> : '🤖 Preguntar'}
+                    {loading ? <div className="spinner-border" role="status">
+                      <span className="visually-hidden">Cargando...</span>
+                      <span role="status">🤖</span>
+                    </div> : '🤖'}
                   </button>
                   {error && <p className="text-danger mt-2">{error}</p>}
                 </div>
