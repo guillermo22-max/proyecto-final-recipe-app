@@ -100,7 +100,7 @@ function Profile() {
           >
             {/* Imagen de perfil */}
             <img
-              src={userData.foto_url || '/logo-solo.png'}
+              src={userData.foto_url || '/foto-perfil-prueba.jpg'}
               alt="Perfil"
               className="profile-img"
               style={{
@@ -119,78 +119,73 @@ function Profile() {
           </div>
 
           {/* Inputs para editar imágenes */}
-          {isEditing && (
-            <div className="edit-images mx-auto text-center mt-4" style={{ maxWidth: "600px" }}>
-
-              <label htmlFor="fondo_url" className="form-label text-start">
-                Foto de portada
-              </label>
-              <input
-                type="file"
-                name="fondo_url"
-                accept="image/*"
-                className="form-control mb-3"
-                onChange={handleChange}
-              />
-              <label htmlFor="foto_url" className="form-label">
-                Foto de perfil
-              </label>
-              <input
-                type="file"
-                name="foto_url"
-                accept="image/*"
-                className="form-control mb-3"
-                onChange={handleChange}
-
-              />
-
-              <input
-                type="text"
-                name="nombre"
-                placeholder="Nombre"
-                value={tempData.nombre}
-                className="form-control mb-3"
-                onChange={handleChange}
-              />
-
-              <input
-                type="text"
-                name="apellidos"
-                placeholder="Apellidos"
-                value={tempData.apellidos}
-                className="form-control mb-3"
-                onChange={handleChange}
-              />
-
-              <input
-                type="text"
-                name="nombre_usuario"
-                placeholder="Nombre de Usuario"
-                value={tempData.nombre_usuario}
-                className="form-control mb-3"
-                onChange={handleChange}
-              />
-            </div>
-          )}
-
-          <div className="profile-content px-4 py-3 text-center">
-            {/* Información del usuario */}
-            <div style={{ textAlign: "left", marginRight: "20px", maxWidth: "200px" }}>
-              <div className="d-flex align-items-center justify-content-start">
-                <h3><i className="bi bi-person-fill me-3"></i></h3>
-                <h3>
-                  {userData.nombre} {userData.apellidos}
-                </h3>
-              </div>
-              <div className="d-flex align-items-center justify-content-start">
-                <h3><i className="bi bi-at me-3"></i></h3>
-                <p className="text-muted">{userData.nombre_usuario}</p>
-              </div>
-              <div className="d-flex align-items-center justify-content-start">
-                <h3><i className="fa-regular fa-envelope me-3"></i></h3>
-                <p className="text-muted"> {userData.email}</p>
+          <div className="d-flex flex-wrap">
+            <div className="profile-content px-4 py-3 text-center">
+              {/* Información del usuario */}
+              <div style={{ textAlign: "left", marginRight: "20px", maxWidth: "200px" }}>
+                <div className="d-flex align-items-center justify-content-start">
+                  <h3><i className="bi bi-person-fill me-3"></i></h3>
+                  <h3>
+                    {userData.nombre} {userData.apellidos}
+                  </h3>
+                </div>
+                <div className="d-flex align-items-center justify-content-start">
+                  <h3><i className="bi bi-at me-3"></i></h3>
+                  <p className="text-muted">{userData.nombre_usuario}</p>
+                </div>
+                <div className="d-flex align-items-center justify-content-start">
+                  <h3><i className="fa-regular fa-envelope me-3"></i></h3>
+                  <p className="text-muted"> {userData.email}</p>
+                </div>
               </div>
             </div>
+            {isEditing && (
+              <div className="edit-images mx-auto flex-wrap mt-4 w-75" style={{ maxWidth: "600px" }}>
+                <label htmlFor="fondo_url"><strong>Foto de portada</strong></label>
+                <input
+                  type="file"
+                  name="fondo_url"
+                  accept="image/*"
+                  className="form-control text-start mb-3 mt-1"
+                  onChange={handleChange}                 
+                />
+                <label htmlFor="fondo_url"><strong>Foto de perfil</strong></label>
+                <input
+                  type="file"
+                  name="foto_url"
+                  accept="image/*"
+                  className="form-control mb-3 mt-1"
+                  onChange={handleChange}
+                />
+                <input
+                  type="text"
+                  name="nombre"
+                  placeholder="Nombre"
+                  value={tempData.nombre}
+                  className="form-control mb-3"
+                  onChange={handleChange}
+                />
+                <input
+                  type="text"
+                  name="apellidos"
+                  placeholder="Apellidos"
+                  value={tempData.apellidos}
+                  className="form-control mb-3"
+                  onChange={handleChange}
+                />
+
+                <input
+                  type="text"
+                  name="nombre_usuario"
+                  placeholder="Nombre de Usuario"
+                  value={tempData.nombre_usuario}
+                  className="form-control mb-3"
+                  onChange={handleChange}
+                />
+              </div>
+            )}
+
+
           </div>
 
           {/* Botones */}

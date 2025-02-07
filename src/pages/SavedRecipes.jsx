@@ -30,6 +30,8 @@ const SavedRecipes = () => {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const navigate = useNavigate();
   const [alert, setAlert] = useState({ show: false, type: '', message: '' });
+  const [searchInput, setSearchInput] = useState('');
+
 
   const showAlert = (type, message) => {
     setAlert({ show: true, type, message });
@@ -71,7 +73,19 @@ const SavedRecipes = () => {
   return (
     <div className="saved-recipes-container">
       <Sidebar />
-
+      <div className="d-flex flex justify-content-end align-items-center mt-2 pe-2 w-100">
+        <label className="me-2"><i className="bi bi-search-heart fs-2"></i>
+        </label>
+        <input
+          type="text"
+          className="form-control w-25"
+          placeholder="Busca tu receta guardada"
+          value={searchInput}
+          onChange={(e) => {
+            setSearchInput(e.target.value);
+          }}
+        />
+      </div>
       <div className="saved-recipes content">
         {alert.show && (
           <div className="alert-overlay"
@@ -95,11 +109,11 @@ const SavedRecipes = () => {
             }}
             autoplay={{
               delay: 3000,
-              disableOnInteraction: false,
+              disableOnInteraction: true,
             }}
-            loop={false}
+            loop={true}
             centeredSlides={true}
-            spaceBetween={30}
+            spaceBetween={50}
             effect={'coverflow'}
             grabCursor={true}
             slidesPerView={'1'}
@@ -115,6 +129,7 @@ const SavedRecipes = () => {
             className="mySwiper"
             breakpoints={{
               // Pantallas pequeñas
+
               480: {
                 slidesPerView: 2,
                 slidesPerGroup: 1,
@@ -133,8 +148,12 @@ const SavedRecipes = () => {
                 spaceBetween: 20,
               },
             }}
+
           >
-            {savedRecipes.map((recipe) => (
+            {savedRecipes.filter((recipe) =>
+            recipe.titulo.toLowerCase().includes(searchInput.toLowerCase())
+          )
+            .map((recipe) => (
               <SwiperSlide key={recipe.id}>
                 <div
                   className="recipe-card-saved"
