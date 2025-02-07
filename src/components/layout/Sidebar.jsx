@@ -52,9 +52,7 @@ function Sidebar({ onSidebarClick }) {
             <i className="bi bi-person me-3 fs-3 text-dark"></i>Perfil
           </li>
           <li className="nav-item my-3" onClick={handleLogout}>
-            <i
-              className="bi bi-exclamation-circle-fill me-3 fs-3 text-danger"
-            ></i>
+            <i className="bi bi-exclamation-circle-fill me-3 fs-3 text-danger"></i>
             Cerrar sesión
           </li>
           <li className="nav-item my-3 align-self-end">

@@ -147,7 +147,7 @@ function Profile() {
                   name="fondo_url"
                   accept="image/*"
                   className="form-control text-start mb-3 mt-1"
-                  onChange={handleChange}                 
+                  onChange={handleChange}
                 />
                 <label htmlFor="fondo_url"><strong>Foto de perfil</strong></label>
                 <input
@@ -191,16 +191,16 @@ function Profile() {
           {/* Botones */}
           <div className="profile-actions mt-3 text-center ">
             {isEditing ? (
-              <button className="btn btn-success me-2" onClick={handleSave}>
-                Guardar
+              <button className="btn btn-success me-2" title="Guardar cambios" onClick={handleSave}>
+                <i class="bi bi-floppy-fill"></i>
               </button>
             ) : (
-              <button className="btn btn-success me-2" onClick={handleEdit}>
-                Editar Perfil
+              <button className="btn btn-success me-2" title="Editar perfil" onClick={handleEdit}>
+                <i class="bi bi-pencil-fill"></i>
               </button>
             )}
-            <button className="btn btn-danger" onClick={handleLogout}>
-              Cerrar Sesión
+            <button className="btn btn-danger" title="Cerrar sesión" onClick={handleLogout}>
+              <i className="bi bi-exclamation-circle-fill"></i>
             </button>
           </div>
         </div>
