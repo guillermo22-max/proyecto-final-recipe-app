@@ -92,9 +92,10 @@ function Profile() {
             style={{
               backgroundImage: `url(${userData.fondo_url || '/emplatado-1-1030x577.webp'})`,
               widht: "100%",
-              height: "50vh",
+              height: "40vh",
               backgroundSize: "cover",
               backgroundPosition: "center",
+              border: "4px solid #F4A261",
               position: "relative"
             }}
           >
@@ -112,7 +113,7 @@ function Profile() {
                 height: "15vw",
                 minWidth: "100px",
                 minHeight: "100px",
-                border: "4px solid white",
+                border: "4px solid #F4A261",
                 boxShadow: "0 4px 8px rgba(246, 120, 2, 0.5)"
               }}
             />

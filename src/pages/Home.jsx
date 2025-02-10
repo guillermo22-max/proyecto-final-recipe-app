@@ -54,7 +54,7 @@ function Home() {
           <input
             type="text"
             className="form-control w-50"
-            placeholder="Ingresa un ingrediente o plato"
+            placeholder="Ingresa tus ingredientes o un plato"
           />
           <button className="button-green ms-2" onClick={handleClick}>Buscar</button>
         </div>

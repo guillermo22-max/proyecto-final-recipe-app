@@ -177,7 +177,7 @@ function RecipeCards() {
                   <p>Calorias: {recipe.calories}</p>
                   <button
                     onClick={() => setSelectedRecipe(recipe)} // Cambiar receta seleccionada
-                    className="button-green"
+                    className="button-peach"
                     title="Ver receta completa"
                   >
                     <i className="bi bi-eye-fill"></i>

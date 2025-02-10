@@ -136,8 +136,8 @@ function Recipes() {
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      if(showChef) handleSearchAI();
-      if(showChat) handleChatWithAI();
+      if (showChef) handleSearchAI();
+      if (showChat) handleChatWithAI();
       setSearchQuery('');
     }
   };
@@ -192,7 +192,7 @@ function Recipes() {
                 </div>
                 <div className="d-flex justify-content-start align-items-center mb-4">
                   <img
-                    className="img-chef mx-4"
+                    className="img-usuario mx-4"
                     src="/usuario.png"
                     alt="ai-chef"
                   />
@@ -200,7 +200,7 @@ function Recipes() {
                     <textarea
                       type="text"
                       className="form-control mb-4"
-                      placeholder="Ejemplo: pollo, zanahorias y patatas"
+                      placeholder="Ingresa tus ingredientes o un plato"
                       value={searchQuery}
                       onKeyDown={handleKeyPress}
                       onChange={(e) => setSearchQuery(e.target.value)}
@@ -242,7 +242,7 @@ function Recipes() {
                       className={`d-flex align-items-center mb-2 ${msg.role === 'user' ? 'justify-content-start' : 'justify-content-end'}`}
                     >
                       {msg.role === 'user' && (
-                        <img className="img-chef me-4" src="/usuario.png" />
+                        <img className="img-usuario me-4" src="/usuario.png" />
                       )}
 
                       <p className={`conversation my-4 ${msg.role === 'user' ? 'text-primary' : 'me-3 my-auto text-dark'}`}>
@@ -252,14 +252,14 @@ function Recipes() {
                       </p>
 
                       {msg.role !== 'user' && (
-                        <img className="img-chef ms-4" src="/usuario.png" />
+                        <img className="img-chef ms-4" src="/asistente.png" />
                       )}
                     </div>
                   ))}
                 </div>
                 <div className="d-flex justify-content-start align-items-center mb-4">
                   <img
-                    className="img-chef mx-4"
+                    className="img-usuario mx-4"
                     src="/usuario.png"
                     alt="ai-chef"
                   />
@@ -267,14 +267,14 @@ function Recipes() {
                     <textarea
                       type="text"
                       className="form-control mb-4"
-                      placeholder="Ejemplo: pollo, zanahorias y patatas"
+                      placeholder="Ejemplo: ¿Qué es un sifón de cocina?"
                       value={searchQuery}
                       onKeyDown={handleKeyPress}
                       onChange={(e) => setSearchQuery(e.target.value)}
                     ></textarea>
                     <div className="recipe-generate-button">
                       <button className="button-green w-25"
-                        
+
                         onClick={handleChatWithAI} disabled={loading || !searchQuery.trim()}
                         title="Preguntar a la IA">
 
@@ -284,6 +284,11 @@ function Recipes() {
                         </div> : <i className="bi bi-send-fill"></i>}
                       </button>
                       {error && <p className="text-danger mt-2">{error}</p>}
+                      <button className="button-red ms-1"
+                      title="Borrar chat"
+                      onClick={() => setChatHistory([])}>
+                      <i className="bi bi-eraser-fill"></i>
+                      </button>
                     </div>
                   </div>
                 </div>

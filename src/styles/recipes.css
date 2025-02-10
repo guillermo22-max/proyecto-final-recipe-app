@@ -152,6 +152,15 @@
   object-fit: cover;
 }
 
+.img-usuario {
+  object-position: top;
+  width: 7vw;
+  height: 7vw;
+  border-radius: 50%;
+  border: 5px solid #168100;
+  object-fit: cover;
+}
+
 .conversation {
   padding: 5px;
   background-color: white;
