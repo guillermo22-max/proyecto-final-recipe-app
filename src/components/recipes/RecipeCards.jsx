@@ -161,7 +161,7 @@ function RecipeCards() {
   };
 
   return (
-    <div className="content mb-5">
+    <div className="content mb-5 oswald-text-light">
       {/* Slider de recetas */}
       <Slider {...settings}>
         {recipes.map((recipe) => (
@@ -177,7 +177,7 @@ function RecipeCards() {
                   <p>Calorias: {recipe.calories}</p>
                   <button
                     onClick={() => setSelectedRecipe(recipe)} // Cambiar receta seleccionada
-                    className="btn btn-success"
+                    className="button-peach"
                     title="Ver receta completa"
                   >
                     <i className="bi bi-eye-fill"></i>
@@ -256,7 +256,7 @@ function RecipeCards() {
               </div>
               <div className="recipe-actions">
                 <button
-                  className="btn btn-primary"
+                  className="button-peach"
                   onClick={() => window.print()}
                   title="Imprimir receta"
                 >

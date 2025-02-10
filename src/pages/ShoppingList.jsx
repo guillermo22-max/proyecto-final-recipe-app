@@ -153,7 +153,7 @@ const ShoppingList = () => {
     <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
       <div className="d-flex flex-grow-1">
         <Sidebar />
-        <div className="content w-100 d-flex flex-column">
+        <div className="content oswald-text w-100 d-flex flex-column">
           <div className="flex-grow-1">
             <h1 className="text-center my-4">Lista de la Compra</h1>
             <div className="d-flex justify-content-between content-shopping-list ">
@@ -168,7 +168,6 @@ const ShoppingList = () => {
                       <li key={index} className="mb-2">
                         <strong>{item.name}</strong>
                         {item.fromRecipe ? (
-
                           <i
                             className="bi bi-trash-fill text-danger cursor-pointer"
                             onClick={() => handleRemoveIngredient(index)}
@@ -204,10 +203,18 @@ const ShoppingList = () => {
                   </ul>
 
                 )}
-                <button className="btn me-2 mt-2"
+                <button className="button-peach me-2 mt-2"
                   onClick={handlePrint}
+                  title="Imprime tu lista de la compra"
                   style={{ backgroundColor: '#F4A261', borderColor: '#F4A261', color: 'white' }}>
                   <i className="bi bi-printer-fill"></i>
+                </button>
+                <button
+                  className="button-red mt-2"
+                  title="Borrar lista de ingredientes"
+                  onClick={() => setSelectedIngredients([])}
+                >
+                  <i className="trash-icon bi bi-trash-fill"></i>
                 </button>
               </div>
 
@@ -226,7 +233,7 @@ const ShoppingList = () => {
                       filteredIngredients.map((ingredient, index) => (
                         <li
                           key={index}
-                          className="cursor-pointer"
+                          className="cursor-pointer text-dark"
                           onClick={() => handleAddIngredient(ingredient)}
                         >
                           {ingredient}
@@ -240,7 +247,12 @@ const ShoppingList = () => {
               </div>
             </div>
           </div>
-          <h4 className="text-center mb-4">Elige tu receta para guardar los ingredientes</h4>
+          {recipes.length > 0 ? (<h4 className="text-center mb-4">Elige tu receta para guardar los ingredientes</h4>
+          ) : (
+            <h4 className="text-danger text-center mb-4">No tienes recetas guardadas</h4>
+          )
+          }
+
           <div className="d-flex flex-row justify-content-evenly align-items-center gap-3 flex-wrap">
 
             {recipes.map((recipe) => (
@@ -253,7 +265,7 @@ const ShoppingList = () => {
                       <p><strong>Calorías:</strong> {recipe.calorias}</p>
                       <div className="d-flex justify-content-end">
                         <button
-                          className="btn btn-success mt-2"
+                          className="button-peach mt-2"
                           title="Añadir ingredientes a la lista"
                           onClick={() => handleAddRecipeIngredients(recipe.ingredients)}
                         >

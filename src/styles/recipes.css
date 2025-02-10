@@ -145,10 +145,19 @@
 
 .img-chef {
   object-position: top;
-  width: 10vw;
-  height: 10vw;
+  width: 7vw;
+  height: 7vw;
   border-radius: 50%;
   border: 5px solid #F4A261;
+  object-fit: cover;
+}
+
+.img-usuario {
+  object-position: top;
+  width: 7vw;
+  height: 7vw;
+  border-radius: 50%;
+  border: 5px solid #168100;
   object-fit: cover;
 }
 

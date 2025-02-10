@@ -23,6 +23,8 @@ footer {
   border-collapse: collapse;
   border: 1px solid rgba(0, 0, 0, 0.164) !important;
   table-layout: fixed;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 
@@ -207,4 +209,11 @@ td.meal-cell:hover {
 
 .content-meal-table:hover {
   background: rgba(0, 0, 0, 0.514);
+}
+
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    font-size: 12px; 
+  }
 }

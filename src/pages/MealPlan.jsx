@@ -25,7 +25,7 @@ const MealPlan = () => {
     }
   };
 
-  const handleDrop = (day, meal, recipe, sourceKey) => { 
+  const handleDrop = (day, meal, recipe, sourceKey) => {
     setMealPlan((prev) => {
       const updatedPlan = { ...prev };
       if (sourceKey) {
@@ -73,7 +73,7 @@ const MealPlan = () => {
   return (
     <div className="full-content">
       <Sidebar />
-      <div className="meal-plan content">
+      <div className="meal-plan oswald-text content">
         <h1 className="text-center my-4">Plan Semanal de Comidas</h1>
         <table className="table">
           <thead>
@@ -126,8 +126,9 @@ const MealPlan = () => {
                             <div className="d-flex justify-content-between align-items-center">
                               <p className="my-auto">{mealPlan[`${day}-${meal}`].calorias} Calorías</p>
                               <i
-                                className="trash-icon bi bi-trash my-auto text-light bg-danger rounded h6 p-1 ms-2"
+                                className="trash-icon bi bi-trash-fill my-auto text-light bg-danger rounded h6 p-1 ms-2"
                                 onClick={() => handleRemove(day, meal)}
+                                title="Quitar receta del menú"
                               ></i>
                             </div>
                           </div>
@@ -144,8 +145,12 @@ const MealPlan = () => {
             ))}
           </tbody>
         </table>
+        {recipes.length > 0 ? (
+          <h3 className="my-5 text-center">Recetas Guardadas</h3>
+        ) : (
+          <h4 className="text-danger my-5 text-center">No tienes recetas guardadas</h4>
+        )}
 
-        <h3 className="my-5 text-center">Recetas Guardadas</h3>
         <div>
           <div className="d-flex flex-row justify-content-evenly align-items-center gap-3 flex-wrap">
             {recipes.map((recipe) => (
@@ -156,16 +161,18 @@ const MealPlan = () => {
                   draggable="true">
                   <div className="recipe-content-meal-plan d-flex flex-column justify-content-between">
                     <h3 className="text-center w-100">{recipe.titulo}</h3>
-                    <div className="m-0">
-                      <p><strong>Calorías:</strong> {recipe.calorias}</p>
-                    </div>
-                    <div className="d-flex justify-content-end align-items-center w-100">
-                      <button
-                        onClick={() => navigate(`/recipe/${recipe.id}`)}
-                        className="btn btn-success"
-                        title="Ver receta completa"
-                      ><i className="bi bi-eye-fill"></i>
-                      </button>
+                    <div className="d-flex">
+                      <div className="m-0">
+                        <p>{recipe.calorias} calorías</p>
+                      </div>
+                      <div className="d-flex justify-content-end align-items-center w-100">
+                        <button
+                          onClick={() => navigate(`/recipe/${recipe.id}`)}
+                          className="button-peach"
+                          title="Ver receta completa"
+                        ><i className="bi bi-eye-fill"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -176,7 +183,7 @@ const MealPlan = () => {
 
         </div>
       </div>
-      
+
     </div>
   );
 };

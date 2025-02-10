@@ -82,7 +82,7 @@ function Profile() {
   }
 
   return (
-    <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
+    <div className="d-flex flex-column oswald-text" style={{ minHeight: "100vh" }}>
       <div className="d-flex flex-grow-1">
         <Sidebar onSidebarClick={() => { }} />
         <div className="w-100 content">
@@ -92,15 +92,16 @@ function Profile() {
             style={{
               backgroundImage: `url(${userData.fondo_url || '/emplatado-1-1030x577.webp'})`,
               widht: "100%",
-              height: "50vh",
+              height: "40vh",
               backgroundSize: "cover",
               backgroundPosition: "center",
+              border: "4px solid #F4A261",
               position: "relative"
             }}
           >
             {/* Imagen de perfil */}
             <img
-              src={userData.foto_url || '/logo-solo.png'}
+              src={userData.foto_url || '/foto-perfil-prueba.jpg'}
               alt="Perfil"
               className="profile-img"
               style={{
@@ -112,104 +113,100 @@ function Profile() {
                 height: "15vw",
                 minWidth: "100px",
                 minHeight: "100px",
-                border: "4px solid white",
+                border: "4px solid #F4A261",
                 boxShadow: "0 4px 8px rgba(246, 120, 2, 0.5)"
               }}
             />
           </div>
 
           {/* Inputs para editar imágenes */}
-          {isEditing && (
-            <div className="edit-images mx-auto text-center mt-4" style={{ maxWidth: "600px" }}>
-
-              <label htmlFor="fondo_url" className="form-label text-start">
-                Foto de portada
-              </label>
-              <input
-                type="file"
-                name="fondo_url"
-                accept="image/*"
-                className="form-control mb-3"
-                onChange={handleChange}
-              />
-              <label htmlFor="foto_url" className="form-label">
-                Foto de perfil
-              </label>
-              <input
-                type="file"
-                name="foto_url"
-                accept="image/*"
-                className="form-control mb-3"
-                onChange={handleChange}
-
-              />
-
-              <input
-                type="text"
-                name="nombre"
-                placeholder="Nombre"
-                value={tempData.nombre}
-                className="form-control mb-3"
-                onChange={handleChange}
-              />
-
-              <input
-                type="text"
-                name="apellidos"
-                placeholder="Apellidos"
-                value={tempData.apellidos}
-                className="form-control mb-3"
-                onChange={handleChange}
-              />
-
-              <input
-                type="text"
-                name="nombre_usuario"
-                placeholder="Nombre de Usuario"
-                value={tempData.nombre_usuario}
-                className="form-control mb-3"
-                onChange={handleChange}
-              />
-            </div>
-          )}
-
-          <div className="profile-content px-4 py-3 text-center">
-            {/* Información del usuario */}
-            <div style={{ textAlign: "left", marginRight: "20px", maxWidth: "200px" }}>
-              <div className="d-flex align-items-center justify-content-start">
-                <h3><i className="bi bi-person-fill me-3"></i></h3>
-                <h3>
-                  {userData.nombre} {userData.apellidos}
-                </h3>
-              </div>
-              <div className="d-flex align-items-center justify-content-start">
-                <h3><i className="bi bi-at me-3"></i></h3>
-                <p className="text-muted">{userData.nombre_usuario}</p>
-              </div>
-              <div className="d-flex align-items-center justify-content-start">
-                <h3><i className="fa-regular fa-envelope me-3"></i></h3>
-                <p className="text-muted"> {userData.email}</p>
+          <div className="d-flex flex-wrap">
+            <div className="profile-content px-4 py-3 text-center">
+              {/* Información del usuario */}
+              <div style={{ textAlign: "left", marginRight: "20px", maxWidth: "200px" }}>
+                <div className="d-flex align-items-center justify-content-start">
+                  <h3><i className="bi bi-person-fill me-3"></i></h3>
+                  <h3>
+                    {userData.nombre} {userData.apellidos}
+                  </h3>
+                </div>
+                <div className="d-flex align-items-center justify-content-start">
+                  <h3><i className="bi bi-at me-3"></i></h3>
+                  <p className="text-muted">{userData.nombre_usuario}</p>
+                </div>
+                <div className="d-flex align-items-center justify-content-start">
+                  <h3><i className="fa-regular fa-envelope me-3"></i></h3>
+                  <p className="text-muted"> {userData.email}</p>
+                </div>
               </div>
             </div>
+            {isEditing && (
+              <div className="edit-images mx-auto flex-wrap mt-4 w-75" style={{ maxWidth: "600px" }}>
+                <label htmlFor="fondo_url"><strong>Foto de portada</strong></label>
+                <input
+                  type="file"
+                  name="fondo_url"
+                  accept="image/*"
+                  className="form-control text-start mb-3 mt-1"
+                  onChange={handleChange}
+                />
+                <label htmlFor="fondo_url"><strong>Foto de perfil</strong></label>
+                <input
+                  type="file"
+                  name="foto_url"
+                  accept="image/*"
+                  className="form-control mb-3 mt-1"
+                  onChange={handleChange}
+                />
+                <input
+                  type="text"
+                  name="nombre"
+                  placeholder="Nombre"
+                  value={tempData.nombre}
+                  className="form-control mb-3"
+                  onChange={handleChange}
+                />
+                <input
+                  type="text"
+                  name="apellidos"
+                  placeholder="Apellidos"
+                  value={tempData.apellidos}
+                  className="form-control mb-3"
+                  onChange={handleChange}
+                />
+
+                <input
+                  type="text"
+                  name="nombre_usuario"
+                  placeholder="Nombre de Usuario"
+                  value={tempData.nombre_usuario}
+                  className="form-control mb-3"
+                  onChange={handleChange}
+                />
+              </div>
+            )}
+
+
           </div>
 
           {/* Botones */}
           <div className="profile-actions mt-3 text-center ">
             {isEditing ? (
-              <button className="btn btn-success me-2" onClick={handleSave}>
-                Guardar
+              <button className="button-green me-2" title="Guardar cambios" onClick={handleSave}>
+                <i className="bi bi-floppy-fill"></i>
               </button>
             ) : (
-              <button className="btn btn-success me-2" onClick={handleEdit}>
-                Editar Perfil
+              <button className="button-green me-2" title="Editar perfil" onClick={handleEdit}>
+                <i className="bi bi-pencil-fill"></i>
               </button>
             )}
-            <button className="btn btn-danger" onClick={handleLogout}>
-              Cerrar Sesión
+            <button className="button-red" title="Cerrar sesión" onClick={handleLogout}>
+              <i className="bi bi-exclamation-circle-fill"></i>
             </button>
           </div>
         </div>
       </div>
+      .
 
     </div>
   );

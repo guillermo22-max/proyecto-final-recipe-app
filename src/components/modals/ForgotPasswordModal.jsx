@@ -28,9 +28,10 @@ function ForgotPasswordModal({ show, onClose }) {
             <h5>Recuperar Contraseña</h5>
             <button className="btn-close" onClick={onClose}></button>
           </div>
-          <div className="modal-body" style={{ backgroundImage: 'url("/Designer.jpg")' }}>
+          <div className="modal-body d-flex justify-content-start align-items-center" style={{ backgroundImage: 'url("/Designer.jpg")' }}>
             {message && <p className="text-success">{message}</p>}
             {error && <p className="text-danger">{error}</p>}
+            <h2 className="m-0"><i className="bi bi-at"></i></h2>
             <input
               type='email'
               placeholder="Ingresa tu correo"

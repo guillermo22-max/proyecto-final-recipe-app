@@ -34,12 +34,15 @@
   transition: width 0.3s ease;
   filter: drop-shadow(1px 0 0.2rem rgba(0, 0, 0, 0.466));
   color: #F4A261;
+  opacity: 0.5;
+  z-index: 1000;
 }
 
 .sidebar-container:hover {
   width: 220px;
   filter: drop-shadow(2px 0 0.3rem rgba(0, 0, 0, 0.466));
   color: black;
+  opacity: 1;
 }
 
 /* Estilo del Sidebar */

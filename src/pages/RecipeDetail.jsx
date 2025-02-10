@@ -44,7 +44,7 @@ const RecipeDetail = () => {
     return (
         <div>
             <Sidebar />
-            <div className="recipe-detail content">
+            <div className="recipe-detail content oswald-text">
                 {loading ? (
                     <p>Cargando receta...</p>
                 ) : error ? (
@@ -122,9 +122,9 @@ const RecipeDetail = () => {
                                     <i className="bi bi-trash3-fill"></i>
                                 </button>
                                 <button
-                                    onClick={() => navigate(`/saved-recipes`)}
+                                    onClick={() => navigate(-1)}
                                     className="btn btn-success"
-                                    title="Volver a recetas guardadas"
+                                    title="Volver"
                                 >
                                     <i className="bi bi-arrow-return-left"></i>
                                 </button>
