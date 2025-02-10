@@ -5,7 +5,7 @@ function Footer() {
     >
       <div className="row text-center">
       <div className="col-12">
-        <p className="mb-0">
+        <p className="oswald-text mb-0">
           &copy; 2024 <strong>Mamma mIA</strong>. Todos los derechos
           reservados.
         </p>

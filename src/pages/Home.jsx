@@ -44,10 +44,10 @@ function Home() {
   return (
     <div>
       <Navbar onRegisterClick={handleOpenLoginModal} />
-      <div className="text-center my-4">
+      <div className="oswald-text text-center my-4">
         <RandomIcon />
       </div>
-      <div className="text-center my-5">
+      <div className="oswald-text text-center my-5">
         <h1>Encuentra tu receta perfecta</h1>
         <p>Busca recetas personalizadas con nuestra IA</p>
         <div className="d-flex justify-content-center">
@@ -56,7 +56,7 @@ function Home() {
             className="form-control w-50"
             placeholder="Ingresa un ingrediente o plato"
           />
-          <button className="btn btn-success ms-2" onClick={handleClick}>Buscar</button>
+          <button className="button-green ms-2" onClick={handleClick}>Buscar</button>
         </div>
       </div>
       <RecipeCards />

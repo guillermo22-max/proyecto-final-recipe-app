@@ -6,7 +6,7 @@ function Navbar({ onRegisterClick }) {
 
   return (
     <nav
-      className="navbar navbar-expand-lg px-3"
+      className="navbar navbar-expand-lg px-3 oswald-text"
       style={{ backgroundColor: '#F4A261' }}
     >
       {/* Logo */}
@@ -16,7 +16,7 @@ function Navbar({ onRegisterClick }) {
 
       {/* Menú hamburguesa */}
       <button
-        className="btn btn-success navbar-toggler d-lg-none"
+        className="button-login navbar-toggler d-lg-none"
         type="button"
         aria-controls="navbarMenu"
         aria-expanded={menuOpen ? 'true' : 'false'}
@@ -40,20 +40,20 @@ function Navbar({ onRegisterClick }) {
         <div className="ms-auto">
           {/* Botón grande para dispositivos grandes */}
           <button
-            className="btn btn-success d-none d-lg-inline me-2"
+            className="button-login d-none d-lg-inline me-2"
             onClick={onRegisterClick}
           >
-            Registrate
+            Inicia sesión o registrate
           </button>
 
           {/* Opciones para el menú hamburguesa */}
           {menuOpen && (
-            <div className="d-lg-none">
+            <div className="d-lg-none text-center">
               <button
-                className="btn btn-success w-100 mb-2"
+                className="button-login mb-2"
                 onClick={onRegisterClick}
               >
-                Iniciar Sesión
+                Iniciar Sesión o registrate
               </button>
               
             </div>

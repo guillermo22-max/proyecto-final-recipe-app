@@ -74,7 +74,7 @@ const SavedRecipes = () => {
     <div className="saved-recipes-container">
       <Sidebar />
 
-      <div className="saved-recipes content">
+      <div className="saved-recipes content oswald-text">
         {alert.show && (
           <div className="alert-overlay"
             onClick={() => setAlert({ show: false, type: '', message: '' })}>
@@ -104,7 +104,7 @@ const SavedRecipes = () => {
         ) : error ? (
           <p className="text-danger">{error}</p>
         ) : savedRecipes.length === 0 ? (
-          <p>No tienes recetas guardadas aún.</p>
+          <h4 className="text-danger text-center mt-5">No tienes recetas guardadas.</h4>
         ) : (
           <Swiper
             scrollbar={{

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 function SearchSection({ onSearchClick }) {
   return (
-    <div className="text-center my-5">
+    <div className="text-center my-5 oswald-text">
       <h1>Encuentra tu receta perfecta</h1>
       <p>Busca recetas personalizadas con nuestra IA</p>
       <div className="d-flex justify-content-center">

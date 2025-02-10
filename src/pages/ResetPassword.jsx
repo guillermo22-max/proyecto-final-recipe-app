@@ -31,7 +31,7 @@ function ResetPassword() {
   
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 oswald-text">
       <h2>Restablecer Contraseña</h2>
       {success ? (
         <p className="text-success">{success}</p>

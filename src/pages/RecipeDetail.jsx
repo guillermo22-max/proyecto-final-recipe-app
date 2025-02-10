@@ -44,7 +44,7 @@ const RecipeDetail = () => {
     return (
         <div>
             <Sidebar />
-            <div className="recipe-detail content">
+            <div className="recipe-detail content oswald-text">
                 {loading ? (
                     <p>Cargando receta...</p>
                 ) : error ? (

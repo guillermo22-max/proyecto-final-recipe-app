@@ -26,7 +26,7 @@ function Sidebar({ onSidebarClick }) {
 
   return (
     <div className="sidebar-container">
-      <div className="sidebar d-flex flex-column vh-100 p-2 shadow-sm">
+      <div className="sidebar oswald-text d-flex flex-column vh-100 p-2 shadow-sm">
         <div className="sidebar-img-container"
         onClick={() => handleNavigation('/')} 
         style={{cursor: "pointer"}}

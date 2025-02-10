@@ -9,6 +9,7 @@ import SavedRecipes from './pages/SavedRecipes';
 import RecipeDetail from './pages/RecipeDetail';
 import { UserProvider } from './context/UserProvider';
 import ResetPassword from './pages/ResetPassword';
+import './App.css'
 
 
 function App() {

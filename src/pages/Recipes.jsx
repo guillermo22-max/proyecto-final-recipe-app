@@ -146,7 +146,7 @@ function Recipes() {
     <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
       <div className="d-flex flex-grow-1">
         <Sidebar />
-        <div className="w-100 content">
+        <div className="w-100 content oswald-text">
 
 
           <div className="d-flex flex-column">
@@ -165,14 +165,14 @@ function Recipes() {
             <div className="d-flex justify-content-center gap-2 my-3">
               <div className="d-flex flex-column align-items-center gap-2">
                 <img className="img-chef" src="/chef.png" alt="chef-avatar" />
-                <button className="btn btn-warning"
+                <button className="button-yellow"
                   onClick={showGenerateRecipe}
                 >Generar receta
                 </button>
               </div>
               <div className="d-flex flex-column align-items-center gap-2">
                 <img className="img-chef" src="/asistente.png" alt="asistant-avatar" />
-                <button className="btn btn-warning"
+                <button className="button-yellow"
                   onClick={showChatWithAssistant}
                 >Asistente
                 </button>
@@ -182,7 +182,7 @@ function Recipes() {
               <div>
                 <div className="d-flex justify-content-end align-items-center mb-4">
                   <p className="conversation me-3 my-auto">
-                    ¡Hola! Dime que tienes en la nevera o que quieres que te prepare. Puedo generarte una receta genial en segundos. ¡Haz la prueba!
+                    ¡Hola! Dime que tienes en la nevera o que plato tienes en mente. Puedo generarte una receta genial en segundos. ¡Haz la prueba!
                   </p>
                   <img
                     className="img-chef me-4"
@@ -207,15 +207,15 @@ function Recipes() {
                     ></textarea>
                     <div className="recipe-generate-button">
                       <button
-                        className="btn btn-primary w-25"
+                        className="button-green w-25"
                         onClick={handleSearchAI}
                         disabled={loading || !searchQuery.trim()}
                         title="Generar receta"
                       >
                         {loading ? <div className="spinner-border" role="status">
-                          <span className="visually-hidden">Cargando...</span>
+                          <span className="oswald-text visually-hidden">Cargando...</span>
                           <span role="status"></span>
-                        </div> : <i class="bi bi-send-fill"></i>}
+                        </div> : <i className="bi bi-send-fill"></i>}
                       </button>
                       {error && <p className="text-danger mt-2">{error}</p>}
                     </div>
@@ -226,7 +226,7 @@ function Recipes() {
             {showChat && (
               <div>
                 <div className="d-flex justify-content-end align-items-center mb-4">
-                  <p className="conversation me-3 my-auto">
+                  <p className="oswald-text conversation me-3 my-auto">
                     ¿Tienes alguna duda sobre técnicas de cocina, utensilios, cortes, o cualquier tema relacionado con la cocina? ¡No dudes en preguntarme, estaré encantado de ayudarte!
                   </p>
                   <img
@@ -273,7 +273,7 @@ function Recipes() {
                       onChange={(e) => setSearchQuery(e.target.value)}
                     ></textarea>
                     <div className="recipe-generate-button">
-                      <button className="btn btn-primary w-25"
+                      <button className="button-green w-25"
                         
                         onClick={handleChatWithAI} disabled={loading || !searchQuery.trim()}
                         title="Preguntar a la IA">
@@ -281,7 +281,7 @@ function Recipes() {
                         {loading ? <div className="spinner-border" role="status">
                           <span className="visually-hidden">Cargando...</span>
                           <span role="status"></span>
-                        </div> : <i class="bi bi-send-fill"></i>}
+                        </div> : <i className="bi bi-send-fill"></i>}
                       </button>
                       {error && <p className="text-danger mt-2">{error}</p>}
                     </div>
@@ -290,93 +290,6 @@ function Recipes() {
               </div>
             )}
           </div>
-
-          {/* {alert.show && (
-            <div
-              className="alert-overlay"
-              onClick={() => setAlert({ show: false, type: '', message: '' })}
-            >
-              <div className={`alert alert-${alert.type}`} role="alert">
-                {alert.message}
-              </div>
-            </div>
-          )}
-
-          <h1 className="my-4 text-center">¿Qué cocinamos hoy?</h1>
-
-          <div>
-            <div className="d-flex justify-content-end align-items-center mb-4">
-              <p className="conversation me-3 my-auto">
-                ¡Hola! ¿Con qué ingredientes cocinamos hoy? Puedo prepararte una receta genial en segundos. ¡Haz la prueba!
-              </p>
-              <img
-                className="img-chef me-4"
-                src="https://cdn.pixabay.com/photo/2024/08/20/13/12/ai-generated-8983262_960_720.jpg"
-                alt="ai-chef"
-              />
-            </div>
-            <div className="chat-history px-3 pb-3">
-              {chatHistory.map((msg, index) => (
-                <div
-                  key={index}
-                  className={`d-flex align-items-center mb-2 ${msg.role === 'user' ? 'justify-content-start' : 'justify-content-end'}`}
-                >
-                  {msg.role === 'user' && (
-                    <img className="img-chef me-4" src="https://images.pexels.com/photos/3814446/pexels-photo-3814446.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-                  )}
-
-                  <p className={`conversation my-4 ${msg.role === 'user' ? 'text-primary' : 'me-3 my-auto text-dark'}`}>
-                    <strong>{msg.role === 'user' ? 'Tú' : 'Asistente de cocina'}</strong>
-                    <br />
-                    {msg.content}
-                  </p>
-
-                  {msg.role !== 'user' && (
-                    <img className="img-chef ms-4" src="https://cdn.pixabay.com/photo/2024/08/20/13/12/ai-generated-8983262_960_720.jpg" />
-                  )}
-                </div>
-              ))}
-            </div>
-            <div className="d-flex justify-content-start align-items-center mb-4">
-              <img
-                className="img-chef mx-4"
-                src="https://images.pexels.com/photos/3814446/pexels-photo-3814446.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="ai-chef"
-              />
-              <div className="mb-4 own-conversation">
-                <textarea
-                  type="text"
-                  className="form-control mb-4"
-                  placeholder="Ejemplo: pollo, zanahorias y patatas"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                ></textarea>
-                <div className="recipe-generate-button">
-                  <button
-                    className="btn btn-primary w-25"
-                    onClick={handleSearchAI}
-                    disabled={loading || !searchQuery.trim()}
-                    title="Generar receta"
-                  >
-                    {loading ? <div className="spinner-border" role="status">
-                      <span className="visually-hidden">Cargando...</span>
-                      <span role="status">👩‍🍳</span>
-                    </div> : '👩‍🍳'}
-                  </button>
-                  <button className="btn btn-secondary ms-2"
-                    onClick={handleChatWithAI} disabled={loading || !searchQuery.trim()}
-                    title="Preguntar a la IA">
-                    {loading ? <div className="spinner-border" role="status">
-                      <span className="visually-hidden">Cargando...</span>
-                      <span role="status">🤖</span>
-                    </div> : '🤖'}
-                  </button>
-                  {error && <p className="text-danger mt-2">{error}</p>}
-                </div>
-              </div>
-            </div>
-          </div> */}
-
           {loading ? (
             <div className="loading-container text-center">
               <RandomIcon />
@@ -439,7 +352,7 @@ function Recipes() {
                 </div>
                 <div className="recipe-actions d-flex justify-content-end mt-2">
                   <button
-                    className="btn btn-primary"
+                    className="button-peach"
                     onClick={saveRecipe}
                     title="Guardar receta"
                   >

@@ -161,7 +161,7 @@ function RecipeCards() {
   };
 
   return (
-    <div className="content mb-5">
+    <div className="content mb-5 oswald-text-light">
       {/* Slider de recetas */}
       <Slider {...settings}>
         {recipes.map((recipe) => (

@@ -6,9 +6,9 @@ import UserContext from '../../context/UserContext';
 
 function RegistrationModal({ show, onClose }) {
   const [formData, setFormData] = useState({
-    nombre: '',
-    apellidos: '',
-    nombre_usuario: '',
+    // nombre: '',
+    // apellidos: '',
+    // nombre_usuario: '',
     email: '',
     password: '',
     remember: false,
@@ -23,7 +23,7 @@ function RegistrationModal({ show, onClose }) {
   // Expresión para validar la contraseña
   const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/;
 
- 
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value });
@@ -34,55 +34,55 @@ function RegistrationModal({ show, onClose }) {
     setError('');
     setSuccess('');
     try {
-      if (formData.nombre && formData.email && formData.password) {
-     
+      if (formData.email && formData.password) {
+
         if (!passwordRegex.test(formData.password)) {
           setError('La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un carácter especial.');
           return;
         }
 
         const response = await registerUser({
-          nombre: formData.nombre,
-          apellidos: formData.apellidos,
-          nombre_usuario: formData.nombre_usuario,
+          // nombre: formData.nombre,
+          // apellidos: formData.apellidos,
+          // nombre_usuario: formData.nombre_usuario,
           email: formData.email,
           password: formData.password,
         });
 
         const { access_token } = response;
 
-       
+
         localStorage.setItem('token', access_token);
         localStorage.setItem('userData', JSON.stringify({
-          nombre: formData.nombre,
-          apellidos: formData.apellidos,
-          nombre_usuario: formData.nombre_usuario,
+          // nombre: formData.nombre,
+          // apellidos: formData.apellidos,
+          // nombre_usuario: formData.nombre_usuario,
           email: formData.email,
         }));
 
-       
+
         addUser({
-          nombre: formData.nombre,
-          apellidos: formData.apellidos,
-          nombre_usuario: formData.nombre_usuario,
+          // nombre: formData.nombre,
+          // apellidos: formData.apellidos,
+          // nombre_usuario: formData.nombre_usuario,
           email: formData.email,
           token: access_token,
         });
 
         setSuccess('Usuario registrado correctamente');
 
-        
+
         setFormData({
-          nombre: '',
-          apellidos: '',
-          nombre_usuario: '',
+          // nombre: '',
+          // apellidos: '',
+          // nombre_usuario: '',
           email: '',
           password: '',
           remember: false,
         });
 
-        onClose(); 
-        navigate('/profile'); 
+        onClose();
+        navigate('/profile');
       } else {
         setError('Todos los campos son obligatorios');
       }
@@ -95,7 +95,7 @@ function RegistrationModal({ show, onClose }) {
   if (!show) return null;
 
   return (
-    <div className="modal d-block bg-dark bg-opacity-50">
+    <div className="modal d-block bg-dark bg-opacity-50 oswald-text">
       <div className="modal-dialog" style={{ borderRadius: '15px' }}>
         <div className="modal-content">
           {/* Encabezado */}
@@ -109,73 +109,46 @@ function RegistrationModal({ show, onClose }) {
             {error && <p className="text-danger">{error}</p>}
             {success && <p className="text-success">{success}</p>}
 
-            {/* Nombre */}
-            <input
-              type="text"
-              name="nombre"
-              placeholder="Nombre"
-              className="form-control mb-2"
-              value={formData.nombre}
-              onChange={handleChange}
-            />
-
-            {/* Apellidos */}
-            <input
-              type="text"
-              name="apellidos"
-              placeholder="Apellidos"
-              className="form-control mb-2"
-              value={formData.apellidos}
-              onChange={handleChange}
-            />
-
-            {/* Nombre de Usuario */}
-            <input
-              type="text"
-              name="nombre_usuario"
-              placeholder="Nombre de Usuario"
-              className="form-control mb-2"
-              value={formData.nombre_usuario}
-              onChange={handleChange}
-            />
-
-
             {/* Correo */}
-            <input
-              type="email"
-              name="email"
-              placeholder="Correo"
-              className="form-control mb-2"
-              value={formData.email}
-              onChange={handleChange}
-              autoComplete="off"
-            />
-
+            <div className="d-flex gap-1">
+              <h3 className="m-0"><i className="bi bi-at"></i></h3>
+              <input
+                type="email"
+                name="email"
+                placeholder="Correo"
+                className="form-control mb-2"
+                value={formData.email}
+                onChange={handleChange}
+                autoComplete="off"
+              />
+            </div>
 
             {/* Contraseña */}
             <div className="input-group mb-2">
-              <input
-                type={showPassword ? 'text' : 'password'}
-                name="password"
-                placeholder="Contraseña"
-                className="form-control"
-                value={formData.password}
-                onChange={handleChange}
-                autoComplete="off"
-
-              />
-              <button
-                className="btn"
-                style={{ backgroundColor: '#F4A261', borderColor: '#F4A261', color: 'white' }}
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? <i className="bi bi-eye-slash-fill"></i> : <i className="bi bi-eye-fill"></i>}
-              </button>
+              <div className="d-flex w-100 gap-1">
+                <h3><i className="bi bi-key-fill"></i></h3>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  name="password"
+                  placeholder="Contraseña"
+                  className="form-control"
+                  value={formData.password}
+                  onChange={handleChange}
+                  autoComplete="off"
+                />
+                <button
+                  className="btn"
+                  style={{ backgroundColor: '#F4A261', borderColor: '#F4A261', color: 'white' }}
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <i className="bi bi-eye-slash-fill"></i> : <i className="bi bi-eye-fill"></i>}
+                </button>
+              </div>
             </div>
 
             {/* Recordar */}
-            <div className="form-check mb-2">
+            <div className="form-check my-2 text-start">
               <input
                 type="checkbox"
                 name="remember"

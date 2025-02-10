@@ -1,36 +1,36 @@
   body {
     background-color: #BFD7EA;
-    background-image:url("/Designer.jpg");
+    background-image: url("/Designer.jpg");
     background-repeat: repeat;
     background-position: center;
-    background-size: 100%; 
+    background-size: 100%;
   }
-  
+
   h1 {
     color: #333;
   }
 
   @media (max-width: 768px) {
     .img-chef {
-        width: 80px; 
-        height: 80px;
+      width: 80px;
+      height: 80px;
     }
 
-}
-
-  .content {
-    margin-left: 65px; 
-    padding: 20px; 
-    transition: margin-left 0.3s ease; 
   }
 
-  .sidebar-container:hover + .content {
-    margin-left: 220px; 
+  .content {
+    margin-left: 65px;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+  }
+
+  .sidebar-container:hover+.content {
+    margin-left: 220px;
   }
 
 
   .alert-overlay {
-    position: fixed; 
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
@@ -38,10 +38,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5); 
-    z-index: 1050; 
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1050;
   }
-  
+
   .alert {
     padding: 20px;
     font-size: 1.2rem;
@@ -49,26 +49,26 @@
     max-width: 400px;
     text-align: center;
   }
-  
+
   .navbar {
     background-color: #F4A261;
     padding: 0;
   }
-  
+
   .navbar-image {
     height: 100px;
     width: auto;
   }
-  
+
   .start-button {
     height: 50px;
   }
 
-  .button-login {
+  .button-peach {
     height: 40px;
     padding: 5px 20px;
     background-color: #F4A261;
-    color: #FFFFFF;
+    color: #000000;
     border: 1px solid white;
     border-radius: 20px;
     font-size: 1rem;
@@ -76,16 +76,137 @@
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
   }
-  
-  .button-login:hover {
-    background-color: #e76f515d;
-    transform: translateY(-2px);
+
+  .button-login {
+    height: 40px;
+    padding: 5px 20px;
+    background-color: #168100;
+    color: #ffffff;
+    border: 1px solid #168100;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
   }
 
-.navbar-brand {
-  transition: transform 0.3s ease;
-}
-.navbar-brand:hover {
-  transform: scale(1.02);
-}
+  .button-peach {
+    height: 40px;
+    padding: 5px 20px;
+    background-color: #F4A261;
+    color: #ffffff;
+    border: 1px solid #F4A261;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
 
+  .button-green {
+    height: 40px;
+    padding: 5px 20px;
+    background-color: #168100;
+    color: #ffffff;
+    border: 1px solid white;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .button-green:disabled {
+    height: 40px;
+    padding: 5px 20px;
+    background-color: #16810060;
+    color: #ffffff;
+    border: 1px solid white;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: not-allowed;
+  }
+
+  .button-greed:disabled:hover {
+    height: 40px;
+    padding: 5px 20px;
+    background-color: #16810060;
+    color: #ffffff;
+    border: 1px solid white;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .button-red {
+    height: 40px;
+    padding: 5px 20px;
+    background-color: #c00000;
+    color: #ffffff;
+    border: 1px solid #c00000;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .button-yellow {
+    height: 40px;
+    padding: 5px 20px;
+    background-color: #f0c400;
+    color: #000000;
+    border: 1px solid white;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+
+  .button-peach:hover {
+    background-color: #e76f515d;
+    transform: translateY(-2px);
+    color:#fff;
+  }
+
+  .button-login:hover {
+    background-color: #0c4600;
+    transform: translateY(-2px);
+    color:#fff;
+  }
+
+  .button-login-darker:hover {
+    background-color: #e76f51;
+    transform: translateY(-2px);
+    color:#fff;
+  }
+
+  .button-green:hover {
+    background-color: #0c4600;
+    transform: translateY(-2px);
+    color:#fff;
+  }
+
+  .button-red:hover {
+    background-color: #9b0000;
+    transform: translateY(-2px);
+    color:#fff;
+  }
+
+  .button-yellow:hover {
+    background-color: #c5a100;
+    transform: translateY(-2px);
+    color:#fff;
+  }
+
+  .navbar-brand {
+    transition: transform 0.3s ease;
+  }
+
+  .navbar-brand:hover {
+    transform: scale(1.02);
+  }

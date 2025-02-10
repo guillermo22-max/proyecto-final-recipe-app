@@ -46,7 +46,7 @@ function LoginModal({ show, onClose, onRegisterClick }) {
   if (!show) return null;
 
   return (
-    <div className="modal d-block bg-dark bg-opacity-50" >
+    <div className="modal d-block bg-dark bg-opacity-50 oswald-text" >
       <div className="modal-dialog" style={{ borderRadius: '15px' }}>
         <div className="modal-content">
           <div className="modal-header" style={{ backgroundColor: '#F4A261' }}>
@@ -55,32 +55,38 @@ function LoginModal({ show, onClose, onRegisterClick }) {
           </div>
           <div className="modal-body" style={{ backgroundImage: 'url("/Designer.jpg")' }}>
             {error && <p className="text-danger">{error}</p>}
-            <input
-              type="email"
-              name="email"
-              placeholder="Correo"
-              className="form-control mb-2"
-              value={formData.email}
-              onChange={handleChange}
-            />
-            <div className="input-group mb-4">
+            <div className="d-flex gap-1">
+              <h3 className="m-0"><i className="bi bi-at"></i></h3>
               <input
-                type={showPassword ? 'text' : 'password'}
-                name="password"
-                placeholder="Contraseña"
-                className="form-control"
-                value={formData.password}
+                type="email"
+                name="email"
+                placeholder="Correo"
+                className="form-control mb-2"
+                value={formData.email}
                 onChange={handleChange}
               />
-              <button
-                className="btn"
-                style={{ backgroundColor: '#F4A261', borderColor: '#F4A261', color: 'white' }}
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                title="Mostrar/Ocultar"
-              >
-                {showPassword ? <i className="bi bi-eye-slash-fill"></i> : <i className="bi bi-eye-fill"></i>}
-              </button>
+            </div>
+            <div className="input-group mb-4">
+              <div className="d-flex w-100 gap-1">
+                <h3><i className="bi bi-key-fill"></i></h3>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  name="password"
+                  placeholder="Contraseña"
+                  className="form-control"
+                  value={formData.password}
+                  onChange={handleChange}
+                />
+                <button
+                  className="btn"
+                  style={{ backgroundColor: '#F4A261', borderColor: '#F4A261', color: 'white' }}
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  title="Mostrar/Ocultar"
+                >
+                  {showPassword ? <i className="bi bi-eye-slash-fill"></i> : <i className="bi bi-eye-fill"></i>}
+                </button>
+              </div>
             </div>
             <p>
               ¿No tienes una cuenta?{' '}
@@ -93,7 +99,7 @@ function LoginModal({ show, onClose, onRegisterClick }) {
           <div className="modal-footer" style={{ backgroundColor: '#F4A261' }}>
             <button className="button-login"
               onClick={handleSubmit}
-              >
+            >
               Iniciar Sesión
             </button>
           </div>

@@ -82,7 +82,7 @@ function Profile() {
   }
 
   return (
-    <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
+    <div className="d-flex flex-column oswald-text" style={{ minHeight: "100vh" }}>
       <div className="d-flex flex-grow-1">
         <Sidebar onSidebarClick={() => { }} />
         <div className="w-100 content">
@@ -191,20 +191,21 @@ function Profile() {
           {/* Botones */}
           <div className="profile-actions mt-3 text-center ">
             {isEditing ? (
-              <button className="btn btn-success me-2" title="Guardar cambios" onClick={handleSave}>
-                <i class="bi bi-floppy-fill"></i>
+              <button className="button-green me-2" title="Guardar cambios" onClick={handleSave}>
+                <i className="bi bi-floppy-fill"></i>
               </button>
             ) : (
-              <button className="btn btn-success me-2" title="Editar perfil" onClick={handleEdit}>
-                <i class="bi bi-pencil-fill"></i>
+              <button className="button-green me-2" title="Editar perfil" onClick={handleEdit}>
+                <i className="bi bi-pencil-fill"></i>
               </button>
             )}
-            <button className="btn btn-danger" title="Cerrar sesión" onClick={handleLogout}>
+            <button className="button-red" title="Cerrar sesión" onClick={handleLogout}>
               <i className="bi bi-exclamation-circle-fill"></i>
             </button>
           </div>
         </div>
       </div>
+      .
 
     </div>
   );
