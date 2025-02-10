@@ -167,18 +167,18 @@ const SavedRecipes = () => {
                       <p>{recipe.descripcion}</p>
                       <p><strong>Tiempo:</strong> {recipe.tiempo_elaboracion}</p>
                       <p><strong>Calorías:</strong> {recipe.calorias}</p>
-                      <div className="d-flex justify-content-end align-items-center w-100">
+                      <div className="d-flex justify-content-end align-items-center w-100 gap-1">
                         <button
                           onClick={() => setSelectedRecipe(recipe)}
                           // {() => navigate(`/recipe/${recipe.id}`)}
-                          className="btn btn-success"
+                          className="button-peach"
                           title="Ver receta completa"
                         >
                           <i className="bi bi-eye-fill"></i>
                         </button>
                         <button
                           onClick={() => handleDelete(recipe.id)}
-                          className="btn btn-danger"
+                          className="button-red"
                           title="Eliminar receta"
                         >
                           <i className="bi bi-trash3-fill"></i>
@@ -257,13 +257,13 @@ const SavedRecipes = () => {
                 </div>
               </div>
               <div className="recipe-actions">
-                <button className="btn btn-primary"
+                <button className="button-peach"
                   onClick={() => window.print()}
                   title="Imprimir receta">
                   <i className="bi bi-printer-fill"></i>
                 </button>
                 <a
-                  className="btn btn-secondary"
+                  className="button-peach"
                   href={`mailto:?subject=Receta: ${selectedRecipe.titulo}&body=Hola,%0D%0A%0D%0ATe comparto esta receta que creé con la aplicación mamma mIA:%0D%0A%0D%0ATítulo: ${selectedRecipe.titulo}%0D%0ADescripción: ${selectedRecipe.descripcion}%0D%0AIngredientes:%0D%0A${selectedRecipe.ingredients.replace(
                     /\n/g,
                     '%0D%0A'
@@ -276,7 +276,7 @@ const SavedRecipes = () => {
                 </a>
                 <button
                   onClick={() => handleDelete(selectedRecipe.id)}
-                  className="btn btn-danger"
+                  className="button-red"
                   title="Eliminar receta"
                 >
                   <i className="bi bi-trash3-fill"></i>
