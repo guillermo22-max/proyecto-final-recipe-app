@@ -27,4 +27,5 @@ La seguridad también es prioritaria, asegurandonos que los datos del usuario es
 <ul>
   <li><b>Luis Guillermo soto</b> <a href="https://www.linkedin.com/in/luis-guillermo-soto-siciliano/">Guillermo22-max</a>  </li>
   <li><b>Rubén Pérez Castrillo</b> <a href="https://github.com/rubpercas">rubpercas</a> </li>
+  <li> <b>Juan Cruz Pandolfo Martínez</b> <a href="https://github.com/Juantxo88">Juantxo88</a> </li>
 </ul>
