@@ -20,6 +20,7 @@ La seguridad también es prioritaria, asegurandonos que los datos del usuario es
   <li>Flask</li>
   <li>MySql</li>
   <li>JWT para la autenticación y autorización de usuarios</li>
+  <li>Flask-Bcrypt para el manejo seguro de contraseñas</li>
   <li>Flask-mail para enviar correos electrónicos</li>
 </ul>
 <h1>🤝Colaboradores</h1>
