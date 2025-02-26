@@ -23,6 +23,12 @@ La seguridad también es prioritaria, asegurandonos que los datos del usuario es
   <li>Flask-Bcrypt para el manejo seguro de contraseñas</li>
   <li>Flask-mail para enviar correos electrónicos</li>
 </ul>
+<h1>🚀Despliegue</h1>
+El despliegue está realizado en 2 repositorios. Este mismo pertenece al frontend, mientras que la URL del back esta en el siguiente enlace.
+
+URL DEL BACKEND: https://flask-rest-hello-2pl3.onrender.com/
+
+REPOSITORIO DEL BACKEND: https://github.com/rubpercas/proyecto-final-backend
 <h1>🤝Colaboradores</h1>
 <ul>
   <li><b>Luis Guillermo soto</b> <a href="https://www.linkedin.com/in/luis-guillermo-soto-siciliano/">Guillermo22-max</a>  </li>
